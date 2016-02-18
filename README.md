@@ -8,7 +8,7 @@ To get started, clone the repo to your target directory. This app uses Webpack, 
 ```bash
 npm install
 
-# To build only
+# To build only 
 npm run build
 
 # Start the app in browser (http://localhost:8000/)
