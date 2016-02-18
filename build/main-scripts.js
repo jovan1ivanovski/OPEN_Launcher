@@ -14256,7 +14256,7 @@ module.exports={
   "_args": [
     [
       "elliptic@^6.0.0",
-      "e:\\Projects\\OPEN\\OPEN\\node_modules\\browserify-sign"
+      "C:\\Users\\idimchevski\\Desktop\\OPEN\\node_modules\\browserify-sign"
     ]
   ],
   "_from": "elliptic@>=6.0.0 <7.0.0",
@@ -14287,7 +14287,7 @@ module.exports={
   "_shasum": "18e46d7306b0951275a2d42063270a14b74ebe99",
   "_shrinkwrap": null,
   "_spec": "elliptic@^6.0.0",
-  "_where": "e:\\Projects\\OPEN\\OPEN\\node_modules\\browserify-sign",
+  "_where": "C:\\Users\\idimchevski\\Desktop\\OPEN\\node_modules\\browserify-sign",
   "author": {
     "email": "fedor@indutny.com",
     "name": "Fedor Indutny"

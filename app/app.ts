@@ -2,7 +2,7 @@ import {provide, Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouterOutlet, LocationStrategy, HashLocationStrategy, APP_BASE_HREF} from 'angular2/router';
 
-import {HomeComponent} from '../components/HomeComponent';
+import {HomeComponent} from './components/HomeComponent';
 
 @Component({
     selector: 'app',

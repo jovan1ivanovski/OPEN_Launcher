@@ -17,7 +17,7 @@ module.exports = {
             'angular2/http'
         ],
         'components': ["./app/components/HomeComponent"],
-        'app': ["./app/ts/app"]
+        'app': ["./app/app"]
     },
 
     output: {
