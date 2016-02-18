@@ -30,9 +30,6 @@
         "jquery": "~2.2.0",
         "browserify": "~13.0.0",
         "vinyl-source-stream": "~1.1.0",
-        "event-stream": "~3.3.2",
-        "http-server": "~0.8.5",
-        "phaser": "~2.4.4",
-        "pixi": "~0.3.1"
+        "event-stream": "~3.3.2"        
     }
 }
