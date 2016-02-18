@@ -63,8 +63,7 @@ The entry point for the app is the `./index.html` file.
         <div class="container-fluid">
             <app></app>
         </div>
-        <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-        <script src="build/scripts.js"></script>
+        <script src="build/main-scripts.js"></script>
         <script src="build/common.js"></script>
         <script src="build/angular2.js"></script>
         <script src="build/app.js"></script>
