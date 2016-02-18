@@ -1,0 +1,38 @@
+{
+    "name": "open",
+    "version": "0.0.1",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "build": "gulp main-scripts | webpack --progress --profile --colors --display-error-details --display-cached",
+        "start": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8000",
+        "startWin": "electron app | npm run build"        
+    },
+    "author": "open",
+    "license": "MIT",
+    "devDependencies": {
+        "electron-prebuilt": "^0.35.4",
+        "es6-shim": "^0.34.0",
+        "ts-loader": "^0.7.2",
+        "typescript": "^1.7.3",
+        "webpack": "^1.12.9",
+        "webpack-dev-server": "^1.14.0"
+    },
+    "dependencies": {
+        "angular2": "2.0.0-beta.1",
+        "zone.js": "^0.5.10",
+        "bootstrap": "^3.3.6",
+        "gulp": "^3.9.0",
+        "gulp-rename": "~1.2.2",
+        "es6-shim": "^0.33.3",
+        "reflect-metadata": "0.1.2",
+        "rxjs": "5.0.0-beta.0",
+        "jquery": "~2.2.0",
+        "browserify": "~13.0.0",
+        "vinyl-source-stream": "~1.1.0",
+        "event-stream": "~3.3.2",
+        "http-server": "~0.8.5",
+        "phaser": "~2.4.4",
+        "pixi": "~0.3.1"
+    }
+}
