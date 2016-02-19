@@ -400,6 +400,7 @@ webpackJsonp([1,3],[
 	var browser_1 = __webpack_require__(380);
 	var router_1 = __webpack_require__(339);
 	var HomeComponent_1 = __webpack_require__(485);
+	var UploadPictureComponent_1 = __webpack_require__(486);
 	var App = (function () {
 	    function App() {
 	    }
@@ -407,11 +408,12 @@ webpackJsonp([1,3],[
 	        core_1.Component({
 	            selector: 'app',
 	            directives: [router_1.ROUTER_DIRECTIVES],
-	            templateUrl: "./app/views/main.html",
+	            templateUrl: "./app/views/app.html",
 	        }),
 	        router_1.RouteConfig([
 	            { path: '/', redirectTo: ['/Home'] },
-	            { path: '/home', component: HomeComponent_1.HomeComponent, name: 'Home' }
+	            { path: '/home', component: HomeComponent_1.HomeComponent, name: 'Home' },
+	            { path: '/uploadpicture', component: UploadPictureComponent_1.UploadPictureComponent, name: 'UploadPicture' },
 	        ]), 
 	        __metadata('design:paramtypes', [])
 	    ], App);
@@ -13341,6 +13343,35 @@ webpackJsonp([1,3],[
 	    return HomeComponent;
 	})();
 	exports.HomeComponent = HomeComponent;
+
+
+/***/ },
+/* 486 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var UploadPictureComponent = (function () {
+	    function UploadPictureComponent() {
+	    }
+	    UploadPictureComponent = __decorate([
+	        core_1.Component({
+	            selector: 'uploadPicture',
+	            templateUrl: "./app/views/uploadPicture.html"
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], UploadPictureComponent);
+	    return UploadPictureComponent;
+	})();
+	exports.UploadPictureComponent = UploadPictureComponent;
 
 
 /***/ }
