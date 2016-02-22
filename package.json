@@ -6,7 +6,7 @@
     "scripts": {
         "build": "gulp main-scripts main-css | webpack --progress --profile --colors --display-error-details --display-cached",
         "start": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8000",
-        "startWin": "electron app"        
+        "startWin": "electron app"
     },
     "author": "open",
     "license": "MIT",
@@ -32,6 +32,8 @@
         "vinyl-source-stream": "~1.1.0",
         "event-stream": "~3.3.2",
         "gulp-minify-css": "~1.2.3",
-        "gulp-concat-css" : "~2.2.0"
+        "gulp-concat-css": "~2.2.0",
+        "express": "~4.13.4",
+        "multer": "~1.1.0"
     }
 }

@@ -72,3 +72,47 @@ The entry point for the app is the `./index.html` file.
 ```
 
 The Angular 2 app uses TypeScript and the Webpack configuration is set up to place the transpiled JavaScipt in the `build` directory.
+
+To enable picture upload run the backend server.
+```bash
+# to run the server 
+node Server.js
+```
+
+The Server.js is express server that uses multer for file upload.
+```js
+var express = require("express");
+var multer = require('multer');
+var app = express();
+
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './app/assets/images');
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.fieldname + '-' + Date.now() + '.jpg');
+    }
+});
+
+var upload = multer({ storage: storage }).single('userPhoto');
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
+app.post('/api/upload', function (req, res) {
+    upload(req, res, function (err) {
+        if (err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
+    });
+});
+
+app.listen(3000, function () {
+    console.log("Working on port 3000");
+});
+
+``` 
