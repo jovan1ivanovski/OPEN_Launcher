@@ -210,9 +210,10 @@ var assert = require('minimalistic-assert');
 
 // Supported tags
 var tags = [
-  'seq', 'seqof', 'set', 'setof', 'octstr', 'bitstr', 'objid', 'bool',
-  'gentime', 'utctime', 'null_', 'enum', 'int', 'ia5str', 'utf8str', 'bmpstr',
-  'numstr', 'printstr'
+  'seq', 'seqof', 'set', 'setof', 'objid', 'bool',
+  'gentime', 'utctime', 'null_', 'enum', 'int',
+  'bitstr', 'bmpstr', 'charstr', 'genstr', 'graphstr', 'ia5str', 'iso646str',
+  'numstr', 'octstr', 'printstr', 't61str', 'unistr', 'utf8str', 'videostr'
 ];
 
 // Public methods list
@@ -596,11 +597,7 @@ Node.prototype._decodeGeneric = function decodeGeneric(tag, input) {
     return null;
   if (tag === 'seqof' || tag === 'setof')
     return this._decodeList(input, tag, state.args[0]);
-  else if (tag === 'octstr' || tag === 'bitstr')
-    return this._decodeStr(input, tag);
-  else if (tag === 'ia5str' || tag === 'utf8str' || tag === 'bmpstr')
-    return this._decodeStr(input, tag);
-  else if (tag === 'numstr' || tag === 'printstr')
+  else if (/str$/.test(tag))
     return this._decodeStr(input, tag);
   else if (tag === 'objid' && state.args)
     return this._decodeObjid(input, state.args[0], state.args[1]);
@@ -804,11 +801,7 @@ Node.prototype._encodeChoice = function encodeChoice(data, reporter) {
 Node.prototype._encodePrimitive = function encodePrimitive(tag, data) {
   var state = this._baseState;
 
-  if (tag === 'octstr' || tag === 'bitstr' || tag === 'ia5str')
-    return this._encodeStr(data, tag);
-  else if (tag === 'utf8str' || tag === 'bmpstr')
-    return this._encodeStr(data, tag);
-  else if (tag === 'numstr' || tag === 'printstr')
+  if (/str$/.test(tag))
     return this._encodeStr(data, tag);
   else if (tag === 'objid' && state.args)
     return this._encodeObjid(data, state.reverseArgs[0], state.args[1]);
@@ -1129,33 +1122,12 @@ DERNode.prototype._decodeList = function decodeList(buffer, tag, decoder) {
 };
 
 DERNode.prototype._decodeStr = function decodeStr(buffer, tag) {
-  if (tag === 'octstr') {
-    return buffer.raw();
-  } else if (tag === 'bitstr') {
+  if (tag === 'bitstr') {
     var unused = buffer.readUInt8();
     if (buffer.isError(unused))
       return unused;
-
     return { unused: unused, data: buffer.raw() };
-  } else if (tag === 'ia5str' || tag === 'utf8str') {
-    return buffer.raw().toString();
-  } else if(tag === 'numstr') {
-    var numstr = buffer.raw().toString('ascii');
-    if (!this._isNumstr(numstr)) {
-      return buffer.error('Decoding of string type: ' +
-                          'numstr unsupported characters');
-    }
-
-    return numstr;
-  } else if (tag === 'printstr') {
-    var printstr = buffer.raw().toString('ascii');
-    if (!this._isPrintstr(printstr)) {
-      return buffer.error('Decoding of string type: ' +
-                          'printstr unsupported characters');
-    }
-
-    return printstr;
-  } else if(tag === 'bmpstr') {
+  } else if (tag === 'bmpstr') {
     var raw = buffer.raw();
     if (raw.length % 2 === 1)
       return buffer.error('Decoding of string type: bmpstr length mismatch');
@@ -1165,6 +1137,24 @@ DERNode.prototype._decodeStr = function decodeStr(buffer, tag) {
       str += String.fromCharCode(raw.readUInt16BE(i * 2));
     }
     return str;
+  } else if (tag === 'numstr') {
+    var numstr = buffer.raw().toString('ascii');
+    if (!this._isNumstr(numstr)) {
+      return buffer.error('Decoding of string type: ' +
+                          'numstr unsupported characters');
+    }
+    return numstr;
+  } else if (tag === 'octstr') {
+    return buffer.raw();
+  } else if (tag === 'printstr') {
+    var printstr = buffer.raw().toString('ascii');
+    if (!this._isPrintstr(printstr)) {
+      return buffer.error('Decoding of string type: ' +
+                          'printstr unsupported characters');
+    }
+    return printstr;
+  } else if (/str$/.test(tag)) {
+    return buffer.raw().toString();
   } else {
     return buffer.error('Decoding of string type: ' + tag + ' unsupported');
   }
@@ -1450,12 +1440,8 @@ DERNode.prototype._encodeComposite = function encodeComposite(tag,
 };
 
 DERNode.prototype._encodeStr = function encodeStr(str, tag) {
-  if (tag === 'octstr') {
-    return this._createEncoderBuffer(str);
-  } else if (tag === 'bitstr') {
+  if (tag === 'bitstr') {
     return this._createEncoderBuffer([ str.unused | 0, str.data ]);
-  } else if (tag === 'ia5str' || tag === 'utf8str') {
-    return this._createEncoderBuffer(str);
   } else if (tag === 'bmpstr') {
     var buf = new Buffer(str.length * 2);
     for (var i = 0; i < str.length; i++) {
@@ -1467,7 +1453,6 @@ DERNode.prototype._encodeStr = function encodeStr(str, tag) {
       return this.reporter.error('Encoding of string type: numstr supports ' +
                                  'only digits and space');
     }
-
     return this._createEncoderBuffer(str);
   } else if (tag === 'printstr') {
     if (!this._isPrintstr(str)) {
@@ -1478,7 +1463,8 @@ DERNode.prototype._encodeStr = function encodeStr(str, tag) {
                                  'dot, slash, colon, equal sign, ' +
                                  'question mark');
     }
-
+    return this._createEncoderBuffer(str);
+  } else if (/str$/.test(tag)) {
     return this._createEncoderBuffer(str);
   } else {
     return this.reporter.error('Encoding of string type: ' + tag +
@@ -14256,7 +14242,7 @@ module.exports={
   "_args": [
     [
       "elliptic@^6.0.0",
-      "C:\\Users\\idimchevski\\Desktop\\OPEN\\node_modules\\browserify-sign"
+      "C:\\OPEN\\node_modules\\browserify-sign"
     ]
   ],
   "_from": "elliptic@>=6.0.0 <7.0.0",
@@ -14287,7 +14273,7 @@ module.exports={
   "_shasum": "18e46d7306b0951275a2d42063270a14b74ebe99",
   "_shrinkwrap": null,
   "_spec": "elliptic@^6.0.0",
-  "_where": "C:\\Users\\idimchevski\\Desktop\\OPEN\\node_modules\\browserify-sign",
+  "_where": "C:\\OPEN\\node_modules\\browserify-sign",
   "author": {
     "email": "fedor@indutny.com",
     "name": "Fedor Indutny"
