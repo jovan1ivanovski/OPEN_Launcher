@@ -4,6 +4,8 @@ import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouterOutlet, Location
 
 import {HomeComponent} from './components/HomeComponent';
 import {UploadPictureComponent} from './components/UploadPictureComponent';
+import {RegisterComponent} from './components/RegisterComponent';
+
 
 @Component({
     selector: 'app',
@@ -15,6 +17,8 @@ import {UploadPictureComponent} from './components/UploadPictureComponent';
     { path: '/', redirectTo: ['/Home'] },
     { path: '/home', component: HomeComponent, name: 'Home' },
     { path: '/uploadpicture', component: UploadPictureComponent, name: 'UploadPicture' },
+    { path: '/register', component: RegisterComponent, name: 'Register' },
+ 
 ])
 
 export class App { }
