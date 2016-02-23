@@ -12,6 +12,7 @@
     "app/app.ts",
     "app/components/LoginComponent.ts",
     "app/components/UploadPictureComponent.ts",    
+    "app/components/RegisterComponent.ts",
     "app/components/HomeComponent.ts"
   ]
 }

@@ -15,3 +15,7 @@
 a.link{
     cursor: pointer;
 }
+
+ul#pics li {
+    display: inline;
+}

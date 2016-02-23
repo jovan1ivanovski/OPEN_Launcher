@@ -2,9 +2,6 @@ webpackJsonp([1,3],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-	(function webpackMissingModule() { throw new Error("Cannot find module \"./app/app\""); }());
-=======
 	module.exports = __webpack_require__(379);
 
 
@@ -405,7 +402,8 @@ webpackJsonp([1,3],[
 	var http_1 = __webpack_require__(364);
 	var HomeComponent_1 = __webpack_require__(485);
 	var UploadPictureComponent_1 = __webpack_require__(486);
-	var LoginComponent_1 = __webpack_require__(489);
+	var RegisterComponent_1 = __webpack_require__(489);
+	var LoginComponent_1 = __webpack_require__(490);
 	var App = (function () {
 	    function App() {
 	    }
@@ -419,6 +417,7 @@ webpackJsonp([1,3],[
 	            { path: '/', redirectTo: ['/Home'] },
 	            { path: '/home', component: HomeComponent_1.HomeComponent, name: 'Home' },
 	            { path: '/uploadpicture', component: UploadPictureComponent_1.UploadPictureComponent, name: 'UploadPicture' },
+	            { path: '/register', component: RegisterComponent_1.RegisterComponent, name: 'Register' },
 	            { path: '/login', component: LoginComponent_1.LoginComponent, name: 'Login' },
 	        ]), 
 	        __metadata('design:paramtypes', [])
@@ -13412,7 +13411,6 @@ webpackJsonp([1,3],[
 	    return UploadPictureComponent;
 	})();
 	exports.UploadPictureComponent = UploadPictureComponent;
->>>>>>> 3bbda76d477c89528d4cb4b31d157a8d095fc3ab
 
 
 /***/ },
@@ -13652,14 +13650,62 @@ webpackJsonp([1,3],[
 /* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
 	var core_1 = __webpack_require__(246);
-	core_1.Component({
-	    selector: 'login',
-	    templateUrl: "./app/views/login.html"
-	});
+	var SOURCES = [
+	    { "path": "./app/assets/images/fish.png" },
+	    { "path": "./app/assets/images/owl.png" },
+	    { "path": "./app/assets/images/lion.png" },
+	    { "path": "./app/assets/images/penguin.png" }
+	];
+	var RegisterComponent = (function () {
+	    function RegisterComponent() {
+	        this.paths = SOURCES;
+	    }
+	    RegisterComponent.prototype.onSelect = function (src) { this.selectedPath = src; };
+	    RegisterComponent = __decorate([
+	        core_1.Component({
+	            templateUrl: './app/views/register.html'
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], RegisterComponent);
+	    return RegisterComponent;
+	})();
+	exports.RegisterComponent = RegisterComponent;
+
+
+/***/ },
+/* 490 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
 	var LoginComponent = (function () {
 	    function LoginComponent() {
 	    }
+	    LoginComponent = __decorate([
+	        core_1.Component({
+	            selector: 'login',
+	            templateUrl: "./app/views/login.html"
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], LoginComponent);
 	    return LoginComponent;
 	})();
 	exports.LoginComponent = LoginComponent;
