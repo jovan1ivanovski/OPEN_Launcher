@@ -10,6 +10,7 @@
   },
   "files": [
     "app/app.ts",
+    "app/components/LoginComponent.ts",
     "app/components/HomeComponent.ts"
   ]
 }

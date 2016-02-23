@@ -16,7 +16,7 @@ module.exports = {
             'angular2/router',
             'angular2/http'
         ],
-        'components': ["./app/components/HomeComponent"],
+        'components': ["./app/components/LoginComponent","./app/components/HomeComponent"],
         'app': ["./app/app"]
     },
 
