@@ -5,7 +5,7 @@
     "main": "main.js",
     "scripts": {
         "build": "gulp main-scripts main-css | webpack --progress --profile --colors --display-error-details --display-cached",
-        "start": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8000",
+        "start": "node Server.js",
         "startWin": "electron app"
     },
     "author": "open",
@@ -34,6 +34,7 @@
         "gulp-minify-css": "~1.2.3",
         "gulp-concat-css": "~2.2.0",
         "express": "~4.13.4",
-        "multer": "~1.1.0"
+        "multer": "~1.1.0",
+        "json-file-db": "~0.0.2"
     }
 }
