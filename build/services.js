@@ -22,18 +22,19 @@ webpackJsonp([3,4],{
 	};
 	var core_1 = __webpack_require__(246);
 	var http_1 = __webpack_require__(364);
+	var URL = 'http://localhost:3000';
 	var UserService = (function () {
 	    function UserService(http) {
 	        this.http = http;
 	    }
 	    UserService.prototype.getAllUsers = function () {
-	        return this.http.get('/getAllUsers').map(function (res) { return res.json(); });
+	        return this.http.get(URL + '/getAllUsers').map(function (res) { return res.json(); });
 	    };
 	    UserService.prototype.addUser = function (name, profileImg) {
 	        var headers = new http_1.Headers();
 	        headers.append('Content-Type', 'application/json');
 	        var data = JSON.stringify({ name: name, profileImg: profileImg });
-	        return this.http.post('/addUser', data, { headers: headers }).map(function (res) { return res.json(); });
+	        return this.http.post(URL + '/addUser', data, { headers: headers }).map(function (res) { return res.json(); });
 	    };
 	    UserService = __decorate([
 	        core_1.Injectable(), 

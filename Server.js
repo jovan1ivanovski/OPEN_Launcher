@@ -3,13 +3,12 @@ var multer = require("multer");
 var path = require('path');
 var bodyParser = require('body-parser');
 
-const low = require('lowdb');
-const lowdbstorage = require('lowdb/file-async');
-const db = low('./app/assets/db.json', { storage: lowdbstorage });
+var low = require('lowdb');
+var lowdbStorage = require('lowdb/file-async');
 
 var app = express();
 
-var storage = multer.diskStorage({
+var fileStorage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './app/assets/images');
     },
@@ -18,13 +17,11 @@ var storage = multer.diskStorage({
     }
 });
 
-var upload = multer({ storage: storage }).single('userPhoto');
+var db = low('./app/assets/db.json', { storage: lowdbStorage });
+var upload = multer({ storage: fileStorage }).single('userPhoto');
 
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
-
+app.use(bodyParser.json());                         // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -32,6 +29,12 @@ app.use(function (req, res, next) {
 });
 app.use(express.static(path.join(__dirname, '/')));
 
+// == API ============================================================================
+app.get('/', function (req, res) {
+    res.sendFile('/index.html');
+});
+
+// Upload profile picture
 app.post('/api/upload', function (req, res) {
     upload(req, res, function (err) {
         if (err) {
@@ -41,7 +44,7 @@ app.post('/api/upload', function (req, res) {
     });
 });
 
-//Get all users or filter them bu name parametar
+// Get all users defined in json lowdb file
 app.get('/getAllUsers/:name?', function (req, res) {
     if (req.params.name != undefined) {
         res.send(db('users').find({ name: req.params.name }));
@@ -50,15 +53,13 @@ app.get('/getAllUsers/:name?', function (req, res) {
     }
 });
 
-//Add new user
+// Add new user in the json lowdb file
 app.post('/addUser', function (req, res) {
-     db('users').push(req.body)
-                .then(post => res.send(post));
+    db('users').push(req.body)
+        .then(post => res.send(post));
 });
 
-app.get('/', function (req, res) {
-    res.sendFile('/index.html');
-});
+// == API ============================================================================
 
 app.listen(3000, function () {
     console.log("Working on port 3000");
