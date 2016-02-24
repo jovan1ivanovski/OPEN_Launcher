@@ -1,4 +1,4 @@
-webpackJsonp([1,3],[
+webpackJsonp([1,4],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -401,11 +401,14 @@ webpackJsonp([1,3],[
 	var router_1 = __webpack_require__(339);
 	var http_1 = __webpack_require__(364);
 	var HomeComponent_1 = __webpack_require__(485);
-	var UploadPictureComponent_1 = __webpack_require__(486);
-	var RegisterComponent_1 = __webpack_require__(489);
-	var LoginComponent_1 = __webpack_require__(490);
+	var UploadPictureComponent_1 = __webpack_require__(487);
+	var RegisterComponent_1 = __webpack_require__(490);
+	var LoginComponent_1 = __webpack_require__(491);
+	var UserService_1 = __webpack_require__(486);
+	var UserService_2 = __webpack_require__(486);
 	var App = (function () {
-	    function App() {
+	    function App(userService) {
+	        this.userService = userService;
 	    }
 	    App = __decorate([
 	        core_1.Component({
@@ -420,12 +423,12 @@ webpackJsonp([1,3],[
 	            { path: '/register', component: RegisterComponent_1.RegisterComponent, name: 'Register' },
 	            { path: '/login', component: LoginComponent_1.LoginComponent, name: 'Login' },
 	        ]), 
-	        __metadata('design:paramtypes', [])
+	        __metadata('design:paramtypes', [UserService_2.UserService])
 	    ], App);
 	    return App;
 	})();
 	exports.App = App;
-	browser_1.bootstrap(App, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS,
+	browser_1.bootstrap(App, [UserService_1.userServiceInjectables, router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS,
 	    core_1.provide(router_1.APP_BASE_HREF, { useValue: "/" }),
 	    core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })]);
 
@@ -13335,15 +13338,26 @@ webpackJsonp([1,3],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
+	var UserService_1 = __webpack_require__(486);
 	var HomeComponent = (function () {
-	    function HomeComponent() {
+	    function HomeComponent(userService) {
+	        this.userService = userService;
+	        this.data = this.getAllUSers();
 	    }
+	    HomeComponent.prototype.getAllUSers = function () {
+	        var _this = this;
+	        this.userService.getAllUsers().subscribe(function (data) { _this.allUsers = data; }, function (err) { return console.log(err); });
+	    };
+	    HomeComponent.prototype.addUser = function (name, profileImg) {
+	        var _this = this;
+	        this.userService.addUser(name, profileImg).subscribe(function (data) { _this.allUsers = data; }, function (err) { return console.log(err); });
+	    };
 	    HomeComponent = __decorate([
 	        core_1.Component({
 	            selector: 'home',
 	            templateUrl: "./app/views/home.html"
 	        }), 
-	        __metadata('design:paramtypes', [])
+	        __metadata('design:paramtypes', [UserService_1.UserService])
 	    ], HomeComponent);
 	    return HomeComponent;
 	})();
@@ -13365,8 +13379,48 @@ webpackJsonp([1,3],[
 	};
 	var core_1 = __webpack_require__(246);
 	var http_1 = __webpack_require__(364);
-	var multipart_item_1 = __webpack_require__(487);
-	var multipart_uploader_1 = __webpack_require__(488);
+	var UserService = (function () {
+	    function UserService(http) {
+	        this.http = http;
+	    }
+	    UserService.prototype.getAllUsers = function () {
+	        return this.http.get('/getAllUsers').map(function (res) { return res.json(); });
+	    };
+	    UserService.prototype.addUser = function (name, profileImg) {
+	        var headers = new http_1.Headers();
+	        headers.append('Content-Type', 'application/json');
+	        var data = JSON.stringify({ name: name, profileImg: profileImg });
+	        return this.http.post('/addUser', data, { headers: headers }).map(function (res) { return res.json(); });
+	    };
+	    UserService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [http_1.Http])
+	    ], UserService);
+	    return UserService;
+	})();
+	exports.UserService = UserService;
+	exports.userServiceInjectables = [
+	    core_1.bind(UserService).toClass(UserService)
+	];
+
+
+/***/ },
+/* 487 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var http_1 = __webpack_require__(364);
+	var multipart_item_1 = __webpack_require__(488);
+	var multipart_uploader_1 = __webpack_require__(489);
 	var URL = 'http://localhost:3000/api/upload';
 	var UploadPictureComponent = (function () {
 	    function UploadPictureComponent(http) {
@@ -13414,7 +13468,7 @@ webpackJsonp([1,3],[
 
 
 /***/ },
-/* 487 */
+/* 488 */
 /***/ function(module, exports) {
 
 	var MultipartItem = (function () {
@@ -13529,7 +13583,7 @@ webpackJsonp([1,3],[
 
 
 /***/ },
-/* 488 */
+/* 489 */
 /***/ function(module, exports) {
 
 	var MultipartUploader = (function () {
@@ -13647,7 +13701,7 @@ webpackJsonp([1,3],[
 
 
 /***/ },
-/* 489 */
+/* 490 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13683,7 +13737,7 @@ webpackJsonp([1,3],[
 
 
 /***/ },
-/* 490 */
+/* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
