@@ -8,13 +8,13 @@ To get started, clone the repo to your target directory. This app uses Webpack, 
 ```bash
 npm install
 
-# To build only 
+# To build only (this files are already uploaded in the repo so it is not needed unless you want to change some scripts)
 npm run build
 
-# Start the app in browser (http://localhost:8000/)
+# Start the app in browser (http://localhost:3000/)
 npm start
 
-# Start the Electron app
+# Start the Electron app with ExpressJS server
 npm run startWin
 ```
 
@@ -25,9 +25,8 @@ Electron can be used with any framework, so once all of the code needed to make 
 The Electron configuration is contained in `./main.js`.
 ```js
 // main.js
-
 var app = require('app');
-console.log(__dirname);
+var expressServer = require('./Server');
 
 // browser-window creates a native window
 var BrowserWindow = require('browser-window');
@@ -43,9 +42,6 @@ app.on('ready', function () {
     // Initialize the window to our specified dimensions
     mainWindow = new BrowserWindow({ width: 1200, height: 900 });
 
-    // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
-  
     // Tell Electron where to load the entry point from
     mainWindow.loadURL('file://' + __dirname + '/index.html');
   
@@ -58,61 +54,16 @@ app.on('ready', function () {
 
 The entry point for the app is the `./index.html` file.
 ```html
-    <!-- index.html -->
-    <body>
-        <div class="container-fluid">
-            <app></app>
-        </div>
-        <script src="build/main-scripts.js"></script>
-        <script src="build/common.js"></script>
-        <script src="build/angular2.js"></script>
-        <script src="build/app.js"></script>
-        <script src="build/components.js"></script>
-    </body>
+<!-- index.html -->
+<body>
+    <app></app>
+    
+    <script src="build/main-scripts.js"></script>
+    <script src="build/common.js"></script>
+    <script src="build/angular2.js"></script>
+    <script src="build/app.js"></script>
+    <script src="build/components.js"></script>
+</body>
 ```
 
 The Angular 2 app uses TypeScript and the Webpack configuration is set up to place the transpiled JavaScipt in the `build` directory.
-
-To enable picture upload run the backend server.
-```bash
-# to run the server 
-node Server.js
-```
-
-The Server.js is express server that uses multer for file upload.
-```js
-var express = require("express");
-var multer = require('multer');
-var app = express();
-
-var storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        callback(null, './app/assets/images');
-    },
-    filename: function (req, file, callback) {
-        callback(null, file.fieldname + '-' + Date.now() + '.jpg');
-    }
-});
-
-var upload = multer({ storage: storage }).single('userPhoto');
-
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
-
-app.post('/api/upload', function (req, res) {
-    upload(req, res, function (err) {
-        if (err) {
-            return res.end("Error uploading file.");
-        }
-        res.end("File is uploaded");
-    });
-});
-
-app.listen(3000, function () {
-    console.log("Working on port 3000");
-});
-
-``` 

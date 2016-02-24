@@ -5,7 +5,7 @@
     "main": "main.js",
     "scripts": {
         "build": "gulp main-scripts main-css | webpack --progress --profile --colors --display-error-details --display-cached",
-        "start": "webpack-dev-server --progress --colors --host 0.0.0.0 --port 8000",
+        "start": "node Server.js",
         "startWin": "electron app"
     },
     "author": "open",

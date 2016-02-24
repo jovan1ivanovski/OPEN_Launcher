@@ -1,5 +1,6 @@
 var app = require('app');
-console.log(__dirname);
+var expressServer = require('./Server');
+
 // browser-window creates a native window
 var BrowserWindow = require('browser-window');
 var mainWindow = null;
