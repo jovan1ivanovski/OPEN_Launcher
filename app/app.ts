@@ -3,9 +3,22 @@ import {bootstrap} from 'angular2/platform/browser';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouterOutlet, LocationStrategy, HashLocationStrategy, APP_BASE_HREF} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http'
 
+/*
+ * Components
+ */
 import {HomeComponent} from './components/HomeComponent';
 import {UploadPictureComponent} from './components/UploadPictureComponent';
 import {LoginComponent} from './components/LoginComponent';
+
+/*
+ * Injectables
+ */
+import { userServiceInjectables } from './services/UserService';
+
+/*
+ * Services
+ */
+import {UserService} from './services/UserService';
 
 @Component({
     selector: 'app',
@@ -20,8 +33,10 @@ import {LoginComponent} from './components/LoginComponent';
     { path: '/login', component: LoginComponent, name: 'Login' },
 ])
 
-export class App { }
+export class App {
+    constructor(public userService: UserService) {}
+ }
 
-bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS,
+bootstrap(App, [userServiceInjectables, ROUTER_PROVIDERS, HTTP_PROVIDERS,
     provide(APP_BASE_HREF, { useValue: "/" }),
     provide(LocationStrategy, { useClass: HashLocationStrategy })]);

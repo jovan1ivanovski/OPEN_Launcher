@@ -6,4 +6,10 @@
 </div>
 <div class="col-md-3 main-tiles">
     <p>ЛОГИРАЈ СЕ</p>
+    <ul>
+        <li *ngFor="#user of allUsers">{{user.name}} 
+            <img src="{{user.profileImg}}" class="thumbnail" width="100" height="100"/>
+        </li>
+    </ul>
+    <button (click)="addUser('Igor', 'Miko')">Add User</button>
 </div>

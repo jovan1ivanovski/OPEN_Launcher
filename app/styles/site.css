@@ -1,7 +1,6 @@
 .main-tiles{
     background-color: lightgray;
     border: 1px solid black;
-    height: 100px;
     margin: 10px;
     cursor: pointer;
 }
