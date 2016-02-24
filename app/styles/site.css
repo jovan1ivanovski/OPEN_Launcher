@@ -19,3 +19,33 @@ a.link{
 ul#pics li {
     display: inline;
 }
+ul#pics {
+    padding-left: 0;
+}
+ul#pics img {
+    margin: 5;
+    border: royalblue 3px solid;
+    border-radius: 25px;
+    padding: 10;
+}
+.profileBox {
+    border: royalblue 3px solid;
+    border-radius: 25px 25px 0px 0px; 
+    width: fit-content; 
+}
+.profileBox #up {
+    height: 40;
+    background-color: #ebebe0;
+    border-radius: 25px 25px 0px 0px; 
+    text-align: -webkit-center;
+    padding-top: 6px;
+    color: royalblue;
+    
+}
+
+.profileBox #middle {
+    position: relative;
+}
+.create {
+        margin-top: 15px; 
+}
