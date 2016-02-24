@@ -25,7 +25,7 @@ export class UserService {
         return this.http.post(URL + '/addUser', data, { headers: headers }).map(res => res.json());
     }
     
-    deleteUser(name: string) {
+    deleteUser(name) {
         return this.http.get(URL + '/deleteUser/' + name).map(res => res.json());
     }
 }
