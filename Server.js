@@ -56,7 +56,13 @@ app.get('/getAllUsers/:name?', function (req, res) {
 // Add new user in the json lowdb file
 app.post('/addUser', function (req, res) {
     db('users').push(req.body)
-        .then(post => res.send(post));
+               .then(post => res.send(post));
+});
+
+// Delete user from json lowdb file
+app.get('/deleteUser/:name', function (req, res) {
+    db('users').remove({ name: req.params.name });
+    res.send(db('users').value());
 });
 
 // == API ============================================================================

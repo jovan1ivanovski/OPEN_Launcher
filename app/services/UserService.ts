@@ -12,6 +12,10 @@ export class UserService {
         return this.http.get(URL + '/getAllUsers').map(res => res.json());
     }
 
+    getUserByName(name) {
+        return this.http.get(URL + '/getAllUsers/' + name).map(res => res.json());
+    }
+
     addUser(name, profileImg) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -19,6 +23,10 @@ export class UserService {
         var data = JSON.stringify({ name: name, profileImg: profileImg });
 
         return this.http.post(URL + '/addUser', data, { headers: headers }).map(res => res.json());
+    }
+    
+    deleteUser(name: string) {
+        return this.http.get(URL + '/deleteUser/' + name).map(res => res.json());
     }
 }
 
