@@ -8,6 +8,7 @@ import {HTTP_PROVIDERS} from 'angular2/http'
  */
 import {HomeComponent} from './components/HomeComponent';
 import {UploadPictureComponent} from './components/UploadPictureComponent';
+import {RegisterComponent} from './components/RegisterComponent';
 import {LoginComponent} from './components/LoginComponent';
 
 /*
@@ -30,6 +31,7 @@ import {UserService} from './services/UserService';
     { path: '/', redirectTo: ['/Home'] },
     { path: '/home', component: HomeComponent, name: 'Home' },
     { path: '/uploadpicture', component: UploadPictureComponent, name: 'UploadPicture' },
+    { path: '/register', component: RegisterComponent, name: 'Register' },
     { path: '/login', component: LoginComponent, name: 'Login' },
 ])
 

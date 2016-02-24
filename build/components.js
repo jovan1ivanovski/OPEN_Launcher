@@ -4,6 +4,7 @@ webpackJsonp([2,3],{
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(489);
+	__webpack_require__(490);
 	__webpack_require__(486);
 	module.exports = __webpack_require__(485);
 
@@ -342,14 +343,63 @@ webpackJsonp([2,3],{
 /***/ 489:
 /***/ function(module, exports, __webpack_require__) {
 
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
 	var core_1 = __webpack_require__(246);
-	core_1.Component({
-	    selector: 'login',
-	    templateUrl: "./app/views/login.html"
-	});
+	var SOURCES = [
+	    { "path": "./app/assets/images/fish.png" },
+	    { "path": "./app/assets/images/owl.png" },
+	    { "path": "./app/assets/images/lion.png" },
+	    { "path": "./app/assets/images/penguin.png" }
+	];
+	var RegisterComponent = (function () {
+	    function RegisterComponent() {
+	        this.paths = SOURCES;
+	    }
+	    RegisterComponent.prototype.onSelect = function (src) { this.selectedPath = src; };
+	    RegisterComponent = __decorate([
+	        core_1.Component({
+	            templateUrl: './app/views/register.html'
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], RegisterComponent);
+	    return RegisterComponent;
+	})();
+	exports.RegisterComponent = RegisterComponent;
+
+
+/***/ },
+
+/***/ 490:
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
 	var LoginComponent = (function () {
 	    function LoginComponent() {
 	    }
+	    LoginComponent = __decorate([
+	        core_1.Component({
+	            selector: 'login',
+	            templateUrl: "./app/views/login.html"
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], LoginComponent);
 	    return LoginComponent;
 	})();
 	exports.LoginComponent = LoginComponent;
