@@ -30,11 +30,17 @@ webpackJsonp([3,4],{
 	    UserService.prototype.getAllUsers = function () {
 	        return this.http.get(URL + '/getAllUsers').map(function (res) { return res.json(); });
 	    };
+	    UserService.prototype.getUserByName = function (name) {
+	        return this.http.get(URL + '/getAllUsers/' + name).map(function (res) { return res.json(); });
+	    };
 	    UserService.prototype.addUser = function (name, profileImg) {
 	        var headers = new http_1.Headers();
 	        headers.append('Content-Type', 'application/json');
 	        var data = JSON.stringify({ name: name, profileImg: profileImg });
 	        return this.http.post(URL + '/addUser', data, { headers: headers }).map(function (res) { return res.json(); });
+	    };
+	    UserService.prototype.deleteUser = function (name) {
+	        return this.http.get(URL + '/deleteUser/' + name).map(function (res) { return res.json(); });
 	    };
 	    UserService = __decorate([
 	        core_1.Injectable(), 

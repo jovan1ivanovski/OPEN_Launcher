@@ -13342,15 +13342,20 @@ webpackJsonp([1,4],[
 	var HomeComponent = (function () {
 	    function HomeComponent(userService) {
 	        this.userService = userService;
-	        this.data = this.getAllUSers();
+	        this.data = this.getAllUsers();
 	    }
-	    HomeComponent.prototype.getAllUSers = function () {
+	    HomeComponent.prototype.getAllUsers = function () {
 	        var _this = this;
 	        this.userService.getAllUsers().subscribe(function (data) { _this.allUsers = data; }, function (err) { return console.log(err); });
 	    };
 	    HomeComponent.prototype.addUser = function (name, profileImg) {
 	        var _this = this;
 	        this.userService.addUser(name, profileImg).subscribe(function (data) { _this.allUsers = data; }, function (err) { return console.log(err); });
+	    };
+	    HomeComponent.prototype.deleteUser = function (name) {
+	        var _this = this;
+	        this.userService.deleteUser(name).subscribe(function (data) { _this.allUsers = data; }, function (err) { return console.log(err); });
+	        ;
 	    };
 	    HomeComponent = __decorate([
 	        core_1.Component({
@@ -13387,11 +13392,17 @@ webpackJsonp([1,4],[
 	    UserService.prototype.getAllUsers = function () {
 	        return this.http.get(URL + '/getAllUsers').map(function (res) { return res.json(); });
 	    };
+	    UserService.prototype.getUserByName = function (name) {
+	        return this.http.get(URL + '/getAllUsers/' + name).map(function (res) { return res.json(); });
+	    };
 	    UserService.prototype.addUser = function (name, profileImg) {
 	        var headers = new http_1.Headers();
 	        headers.append('Content-Type', 'application/json');
 	        var data = JSON.stringify({ name: name, profileImg: profileImg });
 	        return this.http.post(URL + '/addUser', data, { headers: headers }).map(function (res) { return res.json(); });
+	    };
+	    UserService.prototype.deleteUser = function (name) {
+	        return this.http.get(URL + '/deleteUser/' + name).map(function (res) { return res.json(); });
 	    };
 	    UserService = __decorate([
 	        core_1.Injectable(), 
@@ -13427,7 +13438,6 @@ webpackJsonp([1,4],[
 	    function UploadPictureComponent(http) {
 	        var _this = this;
 	        this.http = http;
-	        this.spanText = "Loading...";
 	        this.uploader = new multipart_uploader_1.MultipartUploader({ url: URL });
 	        this.multipartItem = new multipart_item_1.MultipartItem(this.uploader);
 	        this.upload = function () {
@@ -13454,7 +13464,6 @@ webpackJsonp([1,4],[
 	    }
 	    UploadPictureComponent.prototype.onChange = function (event) {
 	        this.selectedFiles = event.srcElement.files;
-	        console.log(this.selectedFiles);
 	    };
 	    UploadPictureComponent = __decorate([
 	        core_1.Component({
