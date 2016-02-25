@@ -1,7 +1,6 @@
 import {Injectable, bind} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
-import {Users} from '../models/User';
-import {User} from '../models/User';
+import {Users, User} from '../models/User';
 import {GlobalService} from '../services/GlobalService';
 
 @Injectable()
