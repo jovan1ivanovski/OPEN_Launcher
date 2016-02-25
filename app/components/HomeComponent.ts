@@ -1,37 +1,33 @@
 import {Component} from 'angular2/core';
 import {UserService} from '../services/UserService';
-import {Users} from '../models/User';
-import {User} from '../models/User';
+import {Users, User} from '../models/User';
 
 @Component({
     selector: 'home',
     templateUrl: `./app/views/home.html`
 })
-
 export class HomeComponent {
-    public allUsers: User[];
-
-    constructor(private userService: UserService) { }
+    public allUsers: User[] = new Array<User>();
+    public newUser: User = new User();
+    
+    constructor(private userService: UserService) {
+        this.newUser.name = 'Igor';
+        this.newUser.profileImg = 'Picajzla';
+     }
 
     getAllUsers() {
-        this.userService.getAllUsers().subscribe(
-            data => { this.allUsers = data },
-            err => console.log(err)
-        );
+        this.userService.getAllUsers()
+                        .subscribe(data => this.allUsers = data , err => console.log(err));
     }
 
-    addUser(name, profileImg) {
-        this.userService.addUser(name, profileImg).subscribe(
-            data => { this.allUsers = data; },
-            err => console.log(err)
-        );
+    addUser(user: User) {
+        this.userService.addUser(user)
+                        .subscribe(data => this.allUsers = data , err => console.log(err));
     }
 
     deleteUser(name) {
-        this.userService.deleteUser(name).subscribe(
-            data => { this.allUsers = data; },
-            err => console.log(err)
-        );;
+        this.userService.deleteUser(name)
+                        .subscribe(data => this.allUsers = data, err => console.log(err));
     }
 
     data = this.getAllUsers();

@@ -27,7 +27,7 @@ import {UserService} from './services/UserService';
     templateUrl: `./app/views/app.html`,
 })
 @RouteConfig([
-    { path: '/', redirectTo: ['/Home'] },
+    { path: '/', redirectTo: ['/Login'] },
     { path: '/home', component: HomeComponent, name: 'Home' },
     { path: '/uploadpicture', component: UploadPictureComponent, name: 'UploadPicture' },
     { path: '/register', component: RegisterComponent, name: 'Register' },

@@ -2,37 +2,51 @@ import {Injectable, bind} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 import {Users} from '../models/User';
 import {User} from '../models/User';
-
-const URL = 'http://localhost:3000';
+import {GlobalService} from '../services/GlobalService';
 
 @Injectable()
+
 export class UserService {
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private globalService: GlobalService) { }
 
+    //Get all users from db
     getAllUsers() {
-        return this.http.get(URL + '/getAllUsers')
-                   .map(res => {
-                        var usersData = new Users(res.json()); 
-                        return usersData.users;
-                    });
+        return this.http.get(this.globalService.URL_GETALLUSERS)
+            .map(res => {
+                var response = new Users(res.json());
+                return response.users;
+            });
     }
 
-    getUserByName(name) {
-        return this.http.get(URL + '/getAllUsers/' + name).map(res => res.json());
+    //Get user filtered by name from db
+    getUserByName(name: string) {
+        return this.http.get(this.globalService.URL_GETUSER(name))
+            .map(res => {
+                var response = new Users(res.json());
+                return response.users;
+            });
     }
 
-    addUser(name, profileImg) {
+    //Add new user to db
+    addUser(user: User) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        var data = JSON.stringify({ name: name, profileImg: profileImg });
-
-        return this.http.post(URL + '/addUser', data, { headers: headers }).map(res => res.json());
+        return this.http.post(this.globalService.URL_ADDUSER, JSON.stringify(user), { headers: headers })
+            .map(res => {
+                var response = new Users(res.json());
+                return response.users;
+            });
     }
     
+    //Delete user by name from db
     deleteUser(name) {
-        return this.http.get(URL + '/deleteUser/' + name).map(res => res.json());
+        return this.http.get(this.globalService.URL_DELETEUSER(name))
+            .map(res => {
+                var response = new Users(res.json());
+                return response.users;
+            });
     }
 }
 
