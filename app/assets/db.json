@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "name": "Kiko",
-      "profileImg": "./app/assets/images/userPhoto-1456224008238.jpg",
-      "pointerSize": "",
-      "pointerColor": "",
-      "pointerSpeed": "",
-      "backgroundColor": ""
-    },
-    {
       "name": "Igor",
       "profileImg": "./app/assets/images/userPhoto-1456224068215.jpg",
       "pointerType": "",
@@ -16,6 +8,14 @@
       "pointerColor": "",
       "pointerSpeed": "",
       "backgroundColor": ""
+    },
+    {
+      "name": "Test",
+      "profileImg": "Test"
+    },
+    {
+      "name": "Test",
+      "profileImg": "Test"
     }
   ]
 }
