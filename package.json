@@ -4,7 +4,7 @@
     "description": "",
     "main": "main.js",
     "scripts": {
-        "build": "gulp main-scripts main-css | webpack --progress --profile --colors --display-error-details --display-cached",
+        "build": "gulp main-scripts main-css | webpack --progress --profile --colors --display-error-details --display-cached --watch",
         "start": "node Server.js",
         "startWin": "electron app"
     },
