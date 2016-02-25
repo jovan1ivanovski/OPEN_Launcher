@@ -3,8 +3,8 @@ webpackJsonp([2,4],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(490);
-	__webpack_require__(491);
+	__webpack_require__(492);
+	__webpack_require__(493);
 	__webpack_require__(487);
 	module.exports = __webpack_require__(485);
 
@@ -118,38 +118,14 @@ webpackJsonp([2,4],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
-	var http_1 = __webpack_require__(364);
-	var multipart_item_1 = __webpack_require__(488);
-	var multipart_uploader_1 = __webpack_require__(489);
-	var URL = 'http://localhost:3000/api/upload';
+	var UploadPictureService_1 = __webpack_require__(488);
 	var UploadPictureComponent = (function () {
-	    function UploadPictureComponent(http) {
-	        var _this = this;
-	        this.http = http;
-	        this.uploader = new multipart_uploader_1.MultipartUploader({ url: URL });
-	        this.multipartItem = new multipart_item_1.MultipartItem(this.uploader);
-	        this.upload = function () {
-	            console.debug("home.ts & upload() ==>");
-	            if (_this.multipartItem == null) {
-	                _this.multipartItem = new multipart_item_1.MultipartItem(_this.uploader);
-	            }
-	            if (_this.multipartItem.formData == null)
-	                _this.multipartItem.formData = new FormData();
-	            _this.multipartItem.formData.append("userPhoto", _this.selectedFiles[0]);
-	            _this.multipartItem.withCredentials = false;
-	            _this.multipartItem.callback = _this.uploadCallback;
-	            _this.multipartItem.upload();
-	        };
-	        this.uploadCallback = function (data) {
-	            console.debug("home.ts & uploadCallback() ==>");
-	            if (data) {
-	                console.debug("home.ts & uploadCallback() upload file success.");
-	            }
-	            else {
-	                console.error("home.ts & uploadCallback() upload file false.");
-	            }
-	        };
+	    function UploadPictureComponent(uploadPictureService) {
+	        this.uploadPictureService = uploadPictureService;
 	    }
+	    UploadPictureComponent.prototype.uploadFile = function () {
+	        this.uploadPictureService.upload(this.selectedFiles[0]);
+	    };
 	    UploadPictureComponent.prototype.onChange = function (event) {
 	        this.selectedFiles = event.srcElement.files;
 	    };
@@ -158,7 +134,7 @@ webpackJsonp([2,4],{
 	            selector: 'uploadPicture',
 	            templateUrl: "./app/views/uploadPicture.html"
 	        }), 
-	        __metadata('design:paramtypes', [http_1.Http])
+	        __metadata('design:paramtypes', [UploadPictureService_1.UploadPictureService])
 	    ], UploadPictureComponent);
 	    return UploadPictureComponent;
 	})();
@@ -168,6 +144,95 @@ webpackJsonp([2,4],{
 /***/ },
 
 /***/ 488:
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var http_1 = __webpack_require__(364);
+	var GlobalService_1 = __webpack_require__(489);
+	var multipart_item_1 = __webpack_require__(490);
+	var multipart_uploader_1 = __webpack_require__(491);
+	var UploadPictureService = (function () {
+	    function UploadPictureService(http, globalService) {
+	        this.http = http;
+	        this.globalService = globalService;
+	        this.uploader = new multipart_uploader_1.MultipartUploader({ url: this.globalService.URL_UPLOAD_PICTURE });
+	        this.multipartItem = new multipart_item_1.MultipartItem(this.uploader);
+	    }
+	    UploadPictureService.prototype.upload = function (file) {
+	        if (this.multipartItem == null) {
+	            this.multipartItem = new multipart_item_1.MultipartItem(this.uploader);
+	        }
+	        if (this.multipartItem.formData == null)
+	            this.multipartItem.formData = new FormData();
+	        this.multipartItem.formData.append("userPhoto", file);
+	        this.multipartItem.withCredentials = false;
+	        this.multipartItem.callback = this.uploadCallback;
+	        this.multipartItem.upload();
+	    };
+	    UploadPictureService.prototype.uploadCallback = function (data) {
+	        if (data) {
+	            console.debug("uploadCallback() upload file success.");
+	        }
+	        else {
+	            console.error("uploadCallback() upload file false.");
+	        }
+	    };
+	    UploadPictureService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [http_1.Http, GlobalService_1.GlobalService])
+	    ], UploadPictureService);
+	    return UploadPictureService;
+	})();
+	exports.UploadPictureService = UploadPictureService;
+	exports.uploadPictureServiceInjectables = [
+	    core_1.bind(UploadPictureService).toClass(UploadPictureService)
+	];
+
+
+/***/ },
+
+/***/ 489:
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var URL = 'http://localhost:3000';
+	var GlobalService = (function () {
+	    function GlobalService() {
+	        this.URL_UPLOAD_PICTURE = URL + "/api/upload";
+	    }
+	    GlobalService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], GlobalService);
+	    return GlobalService;
+	})();
+	exports.GlobalService = GlobalService;
+	exports.globalServiceInjectables = [
+	    core_1.bind(GlobalService).toClass(GlobalService)
+	];
+
+
+/***/ },
+
+/***/ 490:
 /***/ function(module, exports) {
 
 	var MultipartItem = (function () {
@@ -283,7 +348,7 @@ webpackJsonp([2,4],{
 
 /***/ },
 
-/***/ 489:
+/***/ 491:
 /***/ function(module, exports) {
 
 	var MultipartUploader = (function () {
@@ -402,7 +467,7 @@ webpackJsonp([2,4],{
 
 /***/ },
 
-/***/ 490:
+/***/ 492:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -439,7 +504,7 @@ webpackJsonp([2,4],{
 
 /***/ },
 
-/***/ 491:
+/***/ 493:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

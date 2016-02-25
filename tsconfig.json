@@ -1,19 +1,22 @@
 {
-  "compilerOptions": {
-    "target": "ES5",
-    "module": "commonjs",
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "outDir": "build"
-  },
-  "files": [
-    "app/app.ts",
-    "app/services/UserService.ts",
-    "app/components/LoginComponent.ts",
-    "app/components/UploadPictureComponent.ts",    
-    "app/components/RegisterComponent.ts",
-    "app/components/HomeComponent.ts"
-  ]
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "outDir": "build"
+    },
+    "files": [
+        "app/app.ts",
+        "app/services/services.ts",
+        "app/services/GlobalService.ts",
+        "app/services/UploadPictureService.ts",
+        "app/services/UserService.ts",
+        "app/components/LoginComponent.ts",
+        "app/components/UploadPictureComponent.ts",
+        "app/components/RegisterComponent.ts",
+        "app/components/HomeComponent.ts"
+    ]
 }

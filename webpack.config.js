@@ -16,7 +16,7 @@ module.exports = {
             'angular2/router',
             'angular2/http'
         ],
-        'services': ["./app/services/UserService"],
+        'services': ["./app/services/GlobalService", "./app/services/UploadPictureService", "./app/services/UserService", "./app/services/services.ts"],
         'components': ["./app/components/RegisterComponent", "./app/components/LoginComponent", "./app/components/UploadPictureComponent", "./app/components/HomeComponent"],
         'app': ["./app/app"]
     },

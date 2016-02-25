@@ -14,7 +14,7 @@ import {LoginComponent} from './components/LoginComponent';
 /*
  * Injectables
  */
-import { userServiceInjectables } from './services/UserService';
+import { servicesInjectables } from './services/services';
 
 /*
  * Services
@@ -26,7 +26,6 @@ import {UserService} from './services/UserService';
     directives: [ROUTER_DIRECTIVES],
     templateUrl: `./app/views/app.html`,
 })
-
 @RouteConfig([
     { path: '/', redirectTo: ['/Home'] },
     { path: '/home', component: HomeComponent, name: 'Home' },
@@ -34,11 +33,8 @@ import {UserService} from './services/UserService';
     { path: '/register', component: RegisterComponent, name: 'Register' },
     { path: '/login', component: LoginComponent, name: 'Login' },
 ])
+export class App { }
 
-export class App {
-    constructor(public userService: UserService) {}
- }
-
-bootstrap(App, [userServiceInjectables, ROUTER_PROVIDERS, HTTP_PROVIDERS,
+bootstrap(App, [servicesInjectables, ROUTER_PROVIDERS, HTTP_PROVIDERS,
     provide(APP_BASE_HREF, { useValue: "/" }),
     provide(LocationStrategy, { useClass: HashLocationStrategy })]);
