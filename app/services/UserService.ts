@@ -1,5 +1,7 @@
 import {Injectable, bind} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
+import {Users} from '../models/User';
+import {User} from '../models/User';
 
 const URL = 'http://localhost:3000';
 
@@ -9,7 +11,11 @@ export class UserService {
     constructor(private http: Http) { }
 
     getAllUsers() {
-        return this.http.get(URL + '/getAllUsers').map(res => res.json());
+        return this.http.get(URL + '/getAllUsers')
+                   .map(res => {
+                        var usersData = new Users(res.json()); 
+                        return usersData.users;
+                    });
     }
 
     getUserByName(name) {

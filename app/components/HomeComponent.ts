@@ -1,5 +1,7 @@
 import {Component} from 'angular2/core';
 import {UserService} from '../services/UserService';
+import {Users} from '../models/User';
+import {User} from '../models/User';
 
 @Component({
     selector: 'home',
@@ -7,13 +9,13 @@ import {UserService} from '../services/UserService';
 })
 
 export class HomeComponent {
-    public allUsers: {};
+    public allUsers: User[];
 
     constructor(private userService: UserService) { }
 
     getAllUsers() {
         this.userService.getAllUsers().subscribe(
-            data => { this.allUsers = data; },
+            data => { this.allUsers = data },
             err => console.log(err)
         );
     }
