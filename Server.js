@@ -10,14 +10,14 @@ var app = express();
 
 var fileStorage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, './app/assets/images');
+        callback(null, path.join(__dirname, '/app/assets/images'));
     },
     filename: function (req, file, callback) {
         callback(null, file.fieldname + '-' + Date.now() + '.jpg');
     }
 });
 
-var db = low('./app/assets/db.json', { storage: lowdbStorage });
+var db = low(path.join(__dirname, '/app/assets/db.json'), { storage: lowdbStorage });
 var upload = multer({ storage: fileStorage }).single('userPhoto');
 
 app.use(bodyParser.json());                         // to support JSON-encoded bodies
@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, '/')));
 
 // == API ============================================================================
 app.get('/', function (req, res) {
-    res.sendFile('/index.html');
+    res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 // Upload profile picture
