@@ -11,7 +11,7 @@ export class avatarService {
     constructor(private http: Http, private globalService: GlobalService) { }
     
     //getUnusedImages
-     getUnusedImages(name: string) {
+     getUnusedImages() {
         return this.http.get(this.globalService.URL_GETAVAILABLE_IMAGES)
             .map(res => {
                 return res.json();

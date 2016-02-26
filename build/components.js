@@ -4,7 +4,7 @@ webpackJsonp([2,5],{
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(493);
-	__webpack_require__(494);
+	__webpack_require__(496);
 	__webpack_require__(489);
 	module.exports = __webpack_require__(485);
 
@@ -176,6 +176,7 @@ webpackJsonp([2,5],{
 	        this.URL_UPLOAD_PICTURE = URL + "/api/upload";
 	        this.URL_GETALLUSERS = URL + "/getAllUsers";
 	        this.URL_ADDUSER = URL + "/addUser";
+	        this.URL_GETAVAILABLE_IMAGES = URL + "/getAvailableImages";
 	    }
 	    GlobalService.prototype.URL_GETUSER = function (username) { return URL + "/getAllUsers/" + username; };
 	    GlobalService.prototype.URL_DELETEUSER = function (username) { return URL + "/deleteUser/" + username; };
@@ -537,6 +538,8 @@ webpackJsonp([2,5],{
 	};
 	var core_1 = __webpack_require__(246);
 	var User_1 = __webpack_require__(487);
+	var Image_1 = __webpack_require__(494);
+	var avatarService_1 = __webpack_require__(495);
 	var SOURCES = [
 	    { "path": "./app/assets/images/fish.png" },
 	    { "path": "./app/assets/images/owl.png" },
@@ -544,19 +547,29 @@ webpackJsonp([2,5],{
 	    { "path": "./app/assets/images/penguin.png" }
 	];
 	var RegisterComponent = (function () {
-	    function RegisterComponent() {
+	    function RegisterComponent(avatService) {
+	        this.avatService = avatService;
+	        this.newUser = new User_1.User();
+	        this.allImages = new Array();
+	        this.newUserImage = new Image_1.Image();
+	        this.data = this.getAvailableImages();
 	        this.paths = SOURCES;
-	        this.user = new User_1.User();
+	        this.selectedPath = new Image_1.Image();
 	    }
-	    RegisterComponent.prototype.onSelect = function (src) { this.selectedPath = src; };
-	    RegisterComponent.prototype.createUser = function (user) {
-	        console.log(user);
+	    RegisterComponent.prototype.getAvailableImages = function () {
+	        var _this = this;
+	        this.avatService.getUnusedImages()
+	            .subscribe(function (data) { return _this.allImages = data; }, function (err) { return console.log(err); });
+	    };
+	    RegisterComponent.prototype.onSelect = function (src) { this.selectedPath.path = src.path; };
+	    RegisterComponent.prototype.createUser = function (user, image) {
+	        console.log(user.name, image.path, image.availability);
 	    };
 	    RegisterComponent = __decorate([
 	        core_1.Component({
 	            templateUrl: './app/views/register.html'
 	        }), 
-	        __metadata('design:paramtypes', [])
+	        __metadata('design:paramtypes', [avatarService_1.avatarService])
 	    ], RegisterComponent);
 	    return RegisterComponent;
 	})();
@@ -566,6 +579,72 @@ webpackJsonp([2,5],{
 /***/ },
 
 /***/ 494:
+/***/ function(module, exports) {
+
+	var Image = (function () {
+	    function Image() {
+	    }
+	    return Image;
+	})();
+	exports.Image = Image;
+	var Images = (function () {
+	    function Images(objets) {
+	        this.images = new Array();
+	        for (var key in objets) {
+	            var obj = objets[key];
+	            var image = new Image();
+	            for (var prop in obj) {
+	                image[prop] = obj[prop];
+	            }
+	            this.images.push(image);
+	        }
+	    }
+	    return Images;
+	})();
+	exports.Images = Images;
+
+
+/***/ },
+
+/***/ 495:
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var http_1 = __webpack_require__(364);
+	var GlobalService_1 = __webpack_require__(488);
+	var avatarService = (function () {
+	    function avatarService(http, globalService) {
+	        this.http = http;
+	        this.globalService = globalService;
+	    }
+	    avatarService.prototype.getUnusedImages = function () {
+	        return this.http.get(this.globalService.URL_GETAVAILABLE_IMAGES)
+	            .map(function (res) {
+	            return res.json();
+	        });
+	    };
+	    avatarService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [http_1.Http, GlobalService_1.GlobalService])
+	    ], avatarService);
+	    return avatarService;
+	})();
+	exports.avatarService = avatarService;
+	exports.avatarServiceInjectables = [core_1.bind(avatarService).toClass(avatarService)];
+
+
+/***/ },
+
+/***/ 496:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
