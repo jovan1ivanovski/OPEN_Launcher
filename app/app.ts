@@ -16,10 +16,11 @@ import {LoginComponent} from './components/LoginComponent';
  */
 import { servicesInjectables } from './services/services';
 
+
 /*
  * Services
  */
-import {UserService} from './services/UserService';
+import { AUTH_PROVIDERS } from './services/AuthService';
 
 @Component({
     selector: 'app',
@@ -35,6 +36,7 @@ import {UserService} from './services/UserService';
 ])
 export class App { }
 
-bootstrap(App, [servicesInjectables, ROUTER_PROVIDERS, HTTP_PROVIDERS,
+bootstrap(App, [servicesInjectables,
+    AUTH_PROVIDERS, ROUTER_PROVIDERS, HTTP_PROVIDERS,
     provide(APP_BASE_HREF, { useValue: "/" }),
     provide(LocationStrategy, { useClass: HashLocationStrategy })]);

@@ -25,10 +25,12 @@ webpackJsonp([2,5],{
 	};
 	var core_1 = __webpack_require__(246);
 	var UserService_1 = __webpack_require__(486);
+	var AuthService_1 = __webpack_require__(496);
 	var User_1 = __webpack_require__(487);
 	var HomeComponent = (function () {
-	    function HomeComponent(userService) {
+	    function HomeComponent(userService, authService) {
 	        this.userService = userService;
+	        this.authService = authService;
 	        this.allUsers = new Array();
 	        this.newUser = new User_1.User();
 	        this.data = this.getAllUsers();
@@ -50,12 +52,21 @@ webpackJsonp([2,5],{
 	        this.userService.deleteUser(name)
 	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
 	    };
+	    HomeComponent.prototype.login = function (username) {
+	        if (!this.authService.login(username)) {
+	            setTimeout(function () { }.bind(this), 2500);
+	        }
+	        return false;
+	    };
+	    HomeComponent.prototype.logout = function () {
+	        this.authService.logout();
+	    };
 	    HomeComponent = __decorate([
 	        core_1.Component({
 	            selector: 'home',
 	            templateUrl: "./app/views/home.html"
 	        }), 
-	        __metadata('design:paramtypes', [UserService_1.UserService])
+	        __metadata('design:paramtypes', [UserService_1.UserService, AuthService_1.AuthService])
 	    ], HomeComponent);
 	    return HomeComponent;
 	})();
@@ -206,6 +217,8 @@ webpackJsonp([2,5],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
+	var router_1 = __webpack_require__(339);
+	var AuthService_1 = __webpack_require__(496);
 	var UploadPictureService_1 = __webpack_require__(490);
 	var UploadPictureComponent = (function () {
 	    function UploadPictureComponent(uploadPictureService) {
@@ -221,6 +234,11 @@ webpackJsonp([2,5],{
 	        core_1.Component({
 	            selector: 'uploadPicture',
 	            templateUrl: "./app/views/uploadPicture.html"
+	        }),
+	        router_1.CanActivate(function (nextInstr, currInstr) {
+	            var injector = core_1.Injector.resolveAndCreate([AuthService_1.AuthService]);
+	            var authService = injector.get(AuthService_1.AuthService);
+	            return authService.isLogged();
 	        }), 
 	        __metadata('design:paramtypes', [UploadPictureService_1.UploadPictureService])
 	    ], UploadPictureComponent);
@@ -588,6 +606,52 @@ webpackJsonp([2,5],{
 	    return LoginComponent;
 	})();
 	exports.LoginComponent = LoginComponent;
+
+
+/***/ },
+
+/***/ 496:
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var AuthService = (function () {
+	    function AuthService() {
+	    }
+	    AuthService.prototype.login = function (user) {
+	        if (user === 'Igor') {
+	            localStorage.setItem('username', user);
+	            return true;
+	        }
+	        return false;
+	    };
+	    AuthService.prototype.logout = function () {
+	        localStorage.removeItem('username');
+	    };
+	    AuthService.prototype.getUser = function () {
+	        return localStorage.getItem('username');
+	    };
+	    AuthService.prototype.isLogged = function () {
+	        return this.getUser() !== null;
+	    };
+	    AuthService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], AuthService);
+	    return AuthService;
+	})();
+	exports.AuthService = AuthService;
+	exports.AUTH_PROVIDERS = [
+	    core_1.provide(AuthService, { useClass: AuthService })
+	];
 
 
 /***/ }
