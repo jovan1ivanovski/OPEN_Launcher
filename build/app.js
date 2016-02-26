@@ -401,11 +401,11 @@ webpackJsonp([1,5],[
 	var router_1 = __webpack_require__(339);
 	var http_1 = __webpack_require__(364);
 	var HomeComponent_1 = __webpack_require__(485);
-	var UploadPictureComponent_1 = __webpack_require__(489);
-	var RegisterComponent_1 = __webpack_require__(493);
-	var LoginComponent_1 = __webpack_require__(494);
-	var services_1 = __webpack_require__(495);
-	var AuthService_1 = __webpack_require__(496);
+	var UploadPictureComponent_1 = __webpack_require__(490);
+	var RegisterComponent_1 = __webpack_require__(494);
+	var LoginComponent_1 = __webpack_require__(497);
+	var services_1 = __webpack_require__(498);
+	var AuthService_1 = __webpack_require__(489);
 	var App = (function () {
 	    function App() {
 	    }
@@ -13339,7 +13339,7 @@ webpackJsonp([1,5],[
 	};
 	var core_1 = __webpack_require__(246);
 	var UserService_1 = __webpack_require__(486);
-	var AuthService_1 = __webpack_require__(496);
+	var AuthService_1 = __webpack_require__(489);
 	var User_1 = __webpack_require__(487);
 	var HomeComponent = (function () {
 	    function HomeComponent(userService, authService) {
@@ -13498,6 +13498,7 @@ webpackJsonp([1,5],[
 	        this.URL_UPLOAD_PICTURE = URL + "/api/upload";
 	        this.URL_GETALLUSERS = URL + "/getAllUsers";
 	        this.URL_ADDUSER = URL + "/addUser";
+	        this.URL_GETAVAILABLE_IMAGES = URL + "/getAvailableImages";
 	    }
 	    GlobalService.prototype.URL_GETUSER = function (username) { return URL + "/getAllUsers/" + username; };
 	    GlobalService.prototype.URL_DELETEUSER = function (username) { return URL + "/deleteUser/" + username; };
@@ -13527,9 +13528,54 @@ webpackJsonp([1,5],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
+	var AuthService = (function () {
+	    function AuthService() {
+	    }
+	    AuthService.prototype.login = function (user) {
+	        if (user === 'Igor') {
+	            localStorage.setItem('username', user);
+	            return true;
+	        }
+	        return false;
+	    };
+	    AuthService.prototype.logout = function () {
+	        localStorage.removeItem('username');
+	    };
+	    AuthService.prototype.getUser = function () {
+	        return localStorage.getItem('username');
+	    };
+	    AuthService.prototype.isLogged = function () {
+	        return this.getUser() !== null;
+	    };
+	    AuthService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], AuthService);
+	    return AuthService;
+	})();
+	exports.AuthService = AuthService;
+	exports.AUTH_PROVIDERS = [
+	    core_1.provide(AuthService, { useClass: AuthService })
+	];
+
+
+/***/ },
+/* 490 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
 	var router_1 = __webpack_require__(339);
-	var AuthService_1 = __webpack_require__(496);
-	var UploadPictureService_1 = __webpack_require__(490);
+	var AuthService_1 = __webpack_require__(489);
+	var UploadPictureService_1 = __webpack_require__(491);
 	var UploadPictureComponent = (function () {
 	    function UploadPictureComponent(uploadPictureService) {
 	        this.uploadPictureService = uploadPictureService;
@@ -13558,7 +13604,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 490 */
+/* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13573,8 +13619,8 @@ webpackJsonp([1,5],[
 	var core_1 = __webpack_require__(246);
 	var http_1 = __webpack_require__(364);
 	var GlobalService_1 = __webpack_require__(488);
-	var multipart_item_1 = __webpack_require__(491);
-	var multipart_uploader_1 = __webpack_require__(492);
+	var multipart_item_1 = __webpack_require__(492);
+	var multipart_uploader_1 = __webpack_require__(493);
 	var UploadPictureService = (function () {
 	    function UploadPictureService(http, globalService) {
 	        this.http = http;
@@ -13614,7 +13660,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 491 */
+/* 492 */
 /***/ function(module, exports) {
 
 	var MultipartItem = (function () {
@@ -13729,7 +13775,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 492 */
+/* 493 */
 /***/ function(module, exports) {
 
 	var MultipartUploader = (function () {
@@ -13847,7 +13893,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 493 */
+/* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13860,6 +13906,9 @@ webpackJsonp([1,5],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
+	var User_1 = __webpack_require__(487);
+	var Image_1 = __webpack_require__(495);
+	var avatarService_1 = __webpack_require__(496);
 	var SOURCES = [
 	    { "path": "./app/assets/images/fish.png" },
 	    { "path": "./app/assets/images/owl.png" },
@@ -13867,15 +13916,29 @@ webpackJsonp([1,5],[
 	    { "path": "./app/assets/images/penguin.png" }
 	];
 	var RegisterComponent = (function () {
-	    function RegisterComponent() {
+	    function RegisterComponent(avatService) {
+	        this.avatService = avatService;
+	        this.newUser = new User_1.User();
+	        this.allImages = new Array();
+	        this.newUserImage = new Image_1.Image();
+	        this.data = this.getAvailableImages();
 	        this.paths = SOURCES;
+	        this.selectedPath = new Image_1.Image();
 	    }
-	    RegisterComponent.prototype.onSelect = function (src) { this.selectedPath = src; };
+	    RegisterComponent.prototype.getAvailableImages = function () {
+	        var _this = this;
+	        this.avatService.getUnusedImages()
+	            .subscribe(function (data) { return _this.allImages = data; }, function (err) { return console.log(err); });
+	    };
+	    RegisterComponent.prototype.onSelect = function (src) { this.selectedPath.path = src.path; };
+	    RegisterComponent.prototype.createUser = function (user, image) {
+	        console.log(user.name, image.path, image.availability);
+	    };
 	    RegisterComponent = __decorate([
 	        core_1.Component({
 	            templateUrl: './app/views/register.html'
 	        }), 
-	        __metadata('design:paramtypes', [])
+	        __metadata('design:paramtypes', [avatarService_1.avatarService])
 	    ], RegisterComponent);
 	    return RegisterComponent;
 	})();
@@ -13883,7 +13946,71 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 494 */
+/* 495 */
+/***/ function(module, exports) {
+
+	var Image = (function () {
+	    function Image() {
+	    }
+	    return Image;
+	})();
+	exports.Image = Image;
+	var Images = (function () {
+	    function Images(objets) {
+	        this.images = new Array();
+	        for (var key in objets) {
+	            var obj = objets[key];
+	            var image = new Image();
+	            for (var prop in obj) {
+	                image[prop] = obj[prop];
+	            }
+	            this.images.push(image);
+	        }
+	    }
+	    return Images;
+	})();
+	exports.Images = Images;
+
+
+/***/ },
+/* 496 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var http_1 = __webpack_require__(364);
+	var GlobalService_1 = __webpack_require__(488);
+	var avatarService = (function () {
+	    function avatarService(http, globalService) {
+	        this.http = http;
+	        this.globalService = globalService;
+	    }
+	    avatarService.prototype.getUnusedImages = function () {
+	        return this.http.get(this.globalService.URL_GETAVAILABLE_IMAGES)
+	            .map(function (res) {
+	            return res.json();
+	        });
+	    };
+	    avatarService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [http_1.Http, GlobalService_1.GlobalService])
+	    ], avatarService);
+	    return avatarService;
+	})();
+	exports.avatarService = avatarService;
+	exports.avatarServiceInjectables = [core_1.bind(avatarService).toClass(avatarService)];
+
+
+/***/ },
+/* 497 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13914,67 +14041,25 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 495 */
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	var GlobalService_1 = __webpack_require__(488);
-	var UploadPictureService_1 = __webpack_require__(490);
+	var UploadPictureService_1 = __webpack_require__(491);
 	var UserService_1 = __webpack_require__(486);
+	var avatarService_1 = __webpack_require__(496);
 	__export(__webpack_require__(488));
-	__export(__webpack_require__(490));
+	__export(__webpack_require__(491));
 	__export(__webpack_require__(486));
+	__export(__webpack_require__(496));
 	exports.servicesInjectables = [
 	    GlobalService_1.globalServiceInjectables,
 	    UploadPictureService_1.uploadPictureServiceInjectables,
-	    UserService_1.userServiceInjectables
-	];
-
-
-/***/ },
-/* 496 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(246);
-	var AuthService = (function () {
-	    function AuthService() {
-	    }
-	    AuthService.prototype.login = function (user) {
-	        if (user === 'Igor') {
-	            localStorage.setItem('username', user);
-	            return true;
-	        }
-	        return false;
-	    };
-	    AuthService.prototype.logout = function () {
-	        localStorage.removeItem('username');
-	    };
-	    AuthService.prototype.getUser = function () {
-	        return localStorage.getItem('username');
-	    };
-	    AuthService.prototype.isLogged = function () {
-	        return this.getUser() !== null;
-	    };
-	    AuthService = __decorate([
-	        core_1.Injectable(), 
-	        __metadata('design:paramtypes', [])
-	    ], AuthService);
-	    return AuthService;
-	})();
-	exports.AuthService = AuthService;
-	exports.AUTH_PROVIDERS = [
-	    core_1.provide(AuthService, { useClass: AuthService })
+	    UserService_1.userServiceInjectables,
+	    avatarService_1.avatarServiceInjectables
 	];
 
 

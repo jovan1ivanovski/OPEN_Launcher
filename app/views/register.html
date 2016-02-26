@@ -1,26 +1,24 @@
 
-<div class="registerView">
+<div class="registerView" onload="getAvailableImages()">
     <h1>Креирај нов профил</h1>  
     Внеси корисничко име:
-    <form>
-    <input type="text" name="userName" #box (keyup)="0" required><br/>
+    <form #user="ngForm" (ngSubmit)="createUser(user.value)">
+    <input type="text" name="userName" ngControl="name" (keyup)="0" required><br/>
     <p>Одбери слика: </p>
     <ul id="pics">
-    <li *ngFor="#path of paths" (click)="onSelect(path)" [class.selected]="path === selectedPath" ><img  src="{{path.path}}"></li>;
+    <li *ngFor="#path of allImages" (click)="onSelect(path)" [class.selected]="path === selectedPath" ><img  src="{{path.path}}"></li>
     </ul>
     <br/>
-    <br/><br/>
+    <br/>
     <div *ngIf="selectedPath">
         <label>Вашиот профил:</label>
         <div class="profileBox">
-        <div id="up"><label>{{box.value}}</label></div>
+        <div id="up"><label>{{user.value.name}}</label></div>
         <div id="middle"><img src="{{selectedPath.path}}"></div>          
         </div>
-        <div class="create"><button onclick="createUser(user)" class="btn btn-primary btn-lg">Креирај</button></div>
+        <div class="create">
+            <button type="submit" class="btn btn-primary btn-lg">Креирај</button></div>
     </div> 
+    
     </form>   
 </div>
-
-
-
-<!-- Source is the path to the photo, going to be provided by kirche -->

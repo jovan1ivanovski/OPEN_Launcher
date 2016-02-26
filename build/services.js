@@ -4,9 +4,9 @@ webpackJsonp([4,5],{
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(488);
-	__webpack_require__(490);
+	__webpack_require__(491);
 	__webpack_require__(486);
-	module.exports = __webpack_require__(495);
+	module.exports = __webpack_require__(498);
 
 
 /***/ },
@@ -123,6 +123,7 @@ webpackJsonp([4,5],{
 	        this.URL_UPLOAD_PICTURE = URL + "/api/upload";
 	        this.URL_GETALLUSERS = URL + "/getAllUsers";
 	        this.URL_ADDUSER = URL + "/addUser";
+	        this.URL_GETAVAILABLE_IMAGES = URL + "/getAvailableImages";
 	    }
 	    GlobalService.prototype.URL_GETUSER = function (username) { return URL + "/getAllUsers/" + username; };
 	    GlobalService.prototype.URL_DELETEUSER = function (username) { return URL + "/deleteUser/" + username; };
@@ -140,7 +141,7 @@ webpackJsonp([4,5],{
 
 /***/ },
 
-/***/ 490:
+/***/ 491:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -155,8 +156,8 @@ webpackJsonp([4,5],{
 	var core_1 = __webpack_require__(246);
 	var http_1 = __webpack_require__(364);
 	var GlobalService_1 = __webpack_require__(488);
-	var multipart_item_1 = __webpack_require__(491);
-	var multipart_uploader_1 = __webpack_require__(492);
+	var multipart_item_1 = __webpack_require__(492);
+	var multipart_uploader_1 = __webpack_require__(493);
 	var UploadPictureService = (function () {
 	    function UploadPictureService(http, globalService) {
 	        this.http = http;
@@ -197,7 +198,7 @@ webpackJsonp([4,5],{
 
 /***/ },
 
-/***/ 491:
+/***/ 492:
 /***/ function(module, exports) {
 
 	var MultipartItem = (function () {
@@ -313,7 +314,7 @@ webpackJsonp([4,5],{
 
 /***/ },
 
-/***/ 492:
+/***/ 493:
 /***/ function(module, exports) {
 
 	var MultipartUploader = (function () {
@@ -432,22 +433,63 @@ webpackJsonp([4,5],{
 
 /***/ },
 
-/***/ 495:
+/***/ 496:
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var http_1 = __webpack_require__(364);
+	var GlobalService_1 = __webpack_require__(488);
+	var avatarService = (function () {
+	    function avatarService(http, globalService) {
+	        this.http = http;
+	        this.globalService = globalService;
+	    }
+	    avatarService.prototype.getUnusedImages = function () {
+	        return this.http.get(this.globalService.URL_GETAVAILABLE_IMAGES)
+	            .map(function (res) {
+	            return res.json();
+	        });
+	    };
+	    avatarService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [http_1.Http, GlobalService_1.GlobalService])
+	    ], avatarService);
+	    return avatarService;
+	})();
+	exports.avatarService = avatarService;
+	exports.avatarServiceInjectables = [core_1.bind(avatarService).toClass(avatarService)];
+
+
+/***/ },
+
+/***/ 498:
 /***/ function(module, exports, __webpack_require__) {
 
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	var GlobalService_1 = __webpack_require__(488);
-	var UploadPictureService_1 = __webpack_require__(490);
+	var UploadPictureService_1 = __webpack_require__(491);
 	var UserService_1 = __webpack_require__(486);
+	var avatarService_1 = __webpack_require__(496);
 	__export(__webpack_require__(488));
-	__export(__webpack_require__(490));
+	__export(__webpack_require__(491));
 	__export(__webpack_require__(486));
+	__export(__webpack_require__(496));
 	exports.servicesInjectables = [
 	    GlobalService_1.globalServiceInjectables,
 	    UploadPictureService_1.uploadPictureServiceInjectables,
-	    UserService_1.userServiceInjectables
+	    UserService_1.userServiceInjectables,
+	    avatarService_1.avatarServiceInjectables
 	];
 
 
