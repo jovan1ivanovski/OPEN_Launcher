@@ -16,13 +16,18 @@ var SOURCES: Path[] = [
     templateUrl: './app/views/register.html'
 })
 export class RegisterComponent {
+    public user : User = new User();
+    
+   /* pervious code */
     paths = SOURCES;
     selectedPath: Path;
-    public user: User = new User();
 
     onSelect(src: Path) { this.selectedPath = src; }
     
+    /*ends previous code */
+
+    
     createUser(user: User){
-        console.log(user);
+        console.log(user.name);
     }
 }

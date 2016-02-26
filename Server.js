@@ -53,6 +53,13 @@ app.get('/getAllUsers/:name?', function (req, res) {
     }
 });
 
+//
+app.get('/getAvailableImages', function (req, res) {
+   
+        res.send(db('images').filter({availability: true}));
+    
+});
+
 // Add new user in the json lowdb file
 app.post('/addUser', function (req, res) {
     db('users').push(req.body)

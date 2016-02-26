@@ -13840,6 +13840,7 @@ webpackJsonp([1,5],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
+	var User_1 = __webpack_require__(487);
 	var SOURCES = [
 	    { "path": "./app/assets/images/fish.png" },
 	    { "path": "./app/assets/images/owl.png" },
@@ -13849,8 +13850,12 @@ webpackJsonp([1,5],[
 	var RegisterComponent = (function () {
 	    function RegisterComponent() {
 	        this.paths = SOURCES;
+	        this.user = new User_1.User();
 	    }
 	    RegisterComponent.prototype.onSelect = function (src) { this.selectedPath = src; };
+	    RegisterComponent.prototype.createUser = function (user) {
+	        console.log(user);
+	    };
 	    RegisterComponent = __decorate([
 	        core_1.Component({
 	            templateUrl: './app/views/register.html'

@@ -9,7 +9,7 @@ export class GlobalService {
     URL_GETUSER(username: string): string { return URL + "/getAllUsers/" + username; }
     URL_ADDUSER: string = URL + "/addUser";
     URL_DELETEUSER(username: string): string { return URL + "/deleteUser/" + username; }
-    
+    URL_GETAVAILABLE_IMAGES: string = URL + "/getAvailableImages";
     constructor() { }
 }
 
