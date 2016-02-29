@@ -1,51 +1,28 @@
 {
   "users": [
     {
-      "name": "Igor",
-      "profileImg": "./app/assets/images/userPhoto-1456224068215.jpg",
-      "pointerType": "",
-      "pointerSize": "",
-      "pointerColor": "",
-      "pointerSpeed": "",
-      "backgroundColor": ""
-    },
-    {
-      "name": "Test",
-      "profileImg": "Test"
-    },
-    {
-      "name": "Test",
-      "profileImg": "Test"
-    },
-    {
       "name": "eljesa",
-      "profileImg": "./app/assets/images/fish.png"
-    },
-    {
-      "name": "gbfdg"
-    },
-    {
-      "name": "gbfdg"
-    },
-    {
-      "name": "gbfdg",
-      "profileImg": "./app/assets/images/fish.png"
-    },
-    {
-      "name": "test",
-      "profileImg": "./app/assets/images/lion.png"
-    },
-    {
-      "name": "haj",
-      "profileImg": "./app/assets/images/owl.png"
-    },
-    {
-      "name": "haja",
       "profileImg": "./app/assets/images/penguin.png"
     },
     {
       "name": "eljesa",
-      "profileImg": "./app/assets/images/owl.png"
+      "profileImg": "./app/assets/images/lion.png"
+    },
+    {
+      "name": "eljesa",
+      "profileImg": "./app/assets/images/lion.png"
+    },
+    {
+      "name": "dgf",
+      "profileImg": "./app/assets/images/fish.png"
+    },
+    {
+      "name": "dgf",
+      "profileImg": "./app/assets/images/fish.png"
+    },
+    {
+      "name": "dxbg",
+      "profileImg": "./app/assets/images/lion.png"
     }
   ],
   "images": [

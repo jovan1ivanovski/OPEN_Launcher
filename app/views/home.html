@@ -4,20 +4,3 @@
         <a href (click)="logout()">Log out</a>
     </div>
 </div>
-
-<div class="col-md-3 main-tiles">
-    <p>КРЕИРАЈ НОВ ПРОФИЛ</p>
-</div>
-<div class="col-md-3 main-tiles">
-    <p>ОДБЕРИ ИГРА</p>
-</div>
-<div class="col-md-3 main-tiles">
-    <p>ЛОГИРАЈ СЕ</p>
-    <ul>
-        <li *ngFor="#user of allUsers">{{user.name}}
-            <img src="{{user.profileImg}}" class="thumbnail" width="100" height="100" (click)="login(user.name)" />
-            <button class=" btn btn-danger btn-sm " (click)="deleteUser(user.name) ">Delete</button>
-        </li>
-    </ul>
-    <button class="btn btn-success btn-sm " (click)="addUser(newUser) ">Add User</button>
-</div>

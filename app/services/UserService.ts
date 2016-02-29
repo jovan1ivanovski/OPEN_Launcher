@@ -29,6 +29,7 @@ export class UserService {
 
     //Add new user to db
     addUser(user: User) {
+        console.log("add user");
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 

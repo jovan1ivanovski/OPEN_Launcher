@@ -1,57 +1,44 @@
 import {Component} from 'angular2/core';
-import {NgFor} from 'angular2/common';
-import {Users, User} from '../models/User';
-import {Images, Image} from '../models/Image';
+import {Router} from 'angular2/router';
+
+import {User} from '../models/User';
 import {avatarService} from '../services/avatarService';
 import {UserService} from '../services/UserService';
-import {AuthService} from '../services/AuthService';
-
-
-interface Path {
-    path: string;
-}
-var SOURCES: Path[] = [
-    { "path": "./app/assets/images/fish.png" },
-    { "path": "./app/assets/images/owl.png" },
-    { "path": "./app/assets/images/lion.png" },
-    { "path": "./app/assets/images/penguin.png" }
-]
 
 @Component({
     templateUrl: './app/views/register.html'
 })
 export class RegisterComponent {
-    public newUser : User = new User();
-    public allImages: Image[] = new Array<Image>();
-    public newUserImage: Image = new Image();
+    public newUser: User = new User();
+    public allImages: string[] = new Array<string>();
+    public newUserImage: string;
     public allUsers: User[] = new Array<User>();
-    
-    constructor(private avatService: avatarService, private userService: UserService){
-        
+    public errorMesage: string;
+    public selectedImage: string;
+
+    constructor(private avatarService: avatarService, private userService: UserService, private router: Router) {
+        this.selectedImage = "./app/assets/default.jpg";
+        this.getAvailableImages();
     }
-  getAvailableImages() {
-        this.avatService.getUnusedImages()
-                         .subscribe(data => this.allImages = data, err => console.log(err));
+
+    getAvailableImages() {
+        this.avatarService.getUnusedImages()
+            .subscribe(data => this.allImages = data, err => console.log(err));
     }
-    
-    data = this.getAvailableImages();
-    
 
-    paths = SOURCES;
-    public selectedPath: User = new User();
-
-    onSelect(src: Image) { this.selectedPath.profileImg = src.path;
-    console.log(this.selectedPath.profileImg)    
-     }
-
+    onSelect(img: string) {
+        this.selectedImage = img;
+    }
 
     addUser(user: User) {
-        user.profileImg = this.selectedPath.profileImg;
-        console.log(user.name, user.profileImg);
-        this.userService.addUser(user)
-            .subscribe(data => this.allUsers = data, err => console.log(err));
+        user.profileImg = this.selectedImage;
+        if (user.profileImg == "./app/assets/default.jpg") {
+            this.errorMesage = "За да креирате профил, ве молам изберете слика"
+        }
+        else {
+            this.userService.addUser(user)
+                .subscribe(data => this.allUsers = data, err => console.log(err));
+            this.router.navigate(["/Login"]);
+        }
     }
-   
-    
-    
 }

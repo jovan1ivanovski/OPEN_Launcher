@@ -111,6 +111,7 @@ webpackJsonp([2,5],{
 	        });
 	    };
 	    UserService.prototype.addUser = function (user) {
+	        console.log("add user");
 	        var headers = new http_1.Headers();
 	        headers.append('Content-Type', 'application/json');
 	        return this.http.post(this.globalService.URL_ADDUSER, JSON.stringify(user), { headers: headers })
@@ -601,27 +602,23 @@ webpackJsonp([2,5],{
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
+	var router_1 = __webpack_require__(339);
 	var User_1 = __webpack_require__(487);
 	var Image_1 = __webpack_require__(495);
 	var avatarService_1 = __webpack_require__(496);
 	var UserService_1 = __webpack_require__(486);
-	var SOURCES = [
-	    { "path": "./app/assets/images/fish.png" },
-	    { "path": "./app/assets/images/owl.png" },
-	    { "path": "./app/assets/images/lion.png" },
-	    { "path": "./app/assets/images/penguin.png" }
-	];
 	var RegisterComponent = (function () {
-	    function RegisterComponent(avatService, userService) {
+	    function RegisterComponent(avatService, userService, router) {
 	        this.avatService = avatService;
 	        this.userService = userService;
+	        this.router = router;
 	        this.newUser = new User_1.User();
 	        this.allImages = new Array();
 	        this.newUserImage = new Image_1.Image();
 	        this.allUsers = new Array();
-	        this.data = this.getAvailableImages();
-	        this.paths = SOURCES;
 	        this.selectedPath = new User_1.User();
+	        this.data = this.getAvailableImages();
+	        this.selectedPath.profileImg = "./app/assets/default.jpg";
 	    }
 	    RegisterComponent.prototype.getAvailableImages = function () {
 	        var _this = this;
@@ -635,15 +632,22 @@ webpackJsonp([2,5],{
 	    RegisterComponent.prototype.addUser = function (user) {
 	        var _this = this;
 	        user.profileImg = this.selectedPath.profileImg;
-	        console.log(user.name, user.profileImg);
-	        this.userService.addUser(user)
-	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	        if (user.profileImg == "./app/assets/default.jpg") {
+	            this.errorMesage = "За да креирате профил, ве молам изберете слика";
+	            return console.log(this.errorMesage);
+	        }
+	        else {
+	            console.log(user.name, user.profileImg);
+	            this.userService.addUser(user)
+	                .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	            this.router.navigate(["/Login"]);
+	        }
 	    };
 	    RegisterComponent = __decorate([
 	        core_1.Component({
 	            templateUrl: './app/views/register.html'
 	        }), 
-	        __metadata('design:paramtypes', [avatarService_1.avatarService, UserService_1.UserService])
+	        __metadata('design:paramtypes', [avatarService_1.avatarService, UserService_1.UserService, router_1.Router])
 	    ], RegisterComponent);
 	    return RegisterComponent;
 	})();
