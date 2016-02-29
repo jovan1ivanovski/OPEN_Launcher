@@ -404,7 +404,7 @@ webpackJsonp([1,5],[
 	var UploadPictureComponent_1 = __webpack_require__(490);
 	var RegisterComponent_1 = __webpack_require__(494);
 	var LoginComponent_1 = __webpack_require__(497);
-	var services_1 = __webpack_require__(498);
+	var services_1 = __webpack_require__(499);
 	var AuthService_1 = __webpack_require__(489);
 	var App = (function () {
 	    function App() {
@@ -14036,13 +14036,14 @@ webpackJsonp([1,5],[
 	var router_1 = __webpack_require__(339);
 	var UserService_1 = __webpack_require__(486);
 	var AuthService_1 = __webpack_require__(489);
+	var usersFilter_1 = __webpack_require__(498);
 	var LoginComponent = (function () {
 	    function LoginComponent(userService, authService, router) {
 	        this.userService = userService;
 	        this.authService = authService;
 	        this.router = router;
 	        this.allUsers = new Array();
-	        this.filterargs = { name: 'Igor' };
+	        this.usernameFilter = "";
 	        this.getAllUsers();
 	    }
 	    LoginComponent.prototype.getAllUsers = function () {
@@ -14076,6 +14077,7 @@ webpackJsonp([1,5],[
 	        core_1.Component({
 	            selector: 'login',
 	            directives: [router_1.RouterLink],
+	            pipes: [usersFilter_1.UsersFilter],
 	            templateUrl: "./app/views/login.html"
 	        }), 
 	        __metadata('design:paramtypes', [UserService_1.UserService, AuthService_1.AuthService, router_1.Router])
@@ -14087,6 +14089,37 @@ webpackJsonp([1,5],[
 
 /***/ },
 /* 498 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var UsersFilter = (function () {
+	    function UsersFilter() {
+	    }
+	    UsersFilter.prototype.transform = function (value, args) {
+	        return value.filter(function (item) { return item.name.toLowerCase().indexOf(args[0].toLowerCase()) !== -1; });
+	    };
+	    UsersFilter = __decorate([
+	        core_1.Pipe({
+	            name: 'usersFilter'
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], UsersFilter);
+	    return UsersFilter;
+	})();
+	exports.UsersFilter = UsersFilter;
+
+
+/***/ },
+/* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
 	function __export(m) {

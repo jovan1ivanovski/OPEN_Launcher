@@ -4,17 +4,18 @@ import {RouterLink, Router} from 'angular2/router';
 import {UserService} from '../services/UserService';
 import {AuthService} from '../services/AuthService';
 import {Users, User} from '../models/User';
+import {UsersFilter} from '../filters/usersFilter';
 
 @Component({
     selector: 'login',
     directives: [RouterLink],
+    pipes: [UsersFilter],
     templateUrl: `./app/views/login.html`
 })
-
 export class LoginComponent {
     public allUsers: User[] = new Array<User>();
     public selectedUser: User;
-    public filterargs = {name: 'Igor'};
+    public usernameFilter = "";
 
     constructor(private userService: UserService, private authService: AuthService, private router: Router) {
         this.getAllUsers();

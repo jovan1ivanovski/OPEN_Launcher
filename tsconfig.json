@@ -11,6 +11,7 @@
     "files": [
         "app/app.ts",
         "app/models/User.ts",
+        "app/filters/UsersFilter.ts",
         "app/services/services.ts",
         "app/services/AuthService.ts",
         "app/services/GlobalService.ts",
@@ -19,6 +20,6 @@
         "app/components/LoginComponent.ts",
         "app/components/UploadPictureComponent.ts",
         "app/components/RegisterComponent.ts",
-        "app/components/HomeComponent.ts"
+        "app/components/HomeComponent.ts"        
     ]
 }
