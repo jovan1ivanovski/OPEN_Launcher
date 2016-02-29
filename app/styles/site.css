@@ -52,8 +52,15 @@ ul#pics img {
 .create{
         margin-top: 15px; 
 }
+
 .msg {
     margin-top: 17px;
     margin-left: 15px;
     height: 45px
 }
+
+.selected-user{
+    box-shadow:0px 12px 22px 1px #333;
+    border:solid 2px gold;
+}
+
