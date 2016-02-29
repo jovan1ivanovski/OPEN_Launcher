@@ -3,6 +3,8 @@ import {NgFor} from 'angular2/common';
 import {Users, User} from '../models/User';
 import {Images, Image} from '../models/Image';
 import {avatarService} from '../services/avatarService';
+import {UserService} from '../services/UserService';
+import {AuthService} from '../services/AuthService';
 
 
 interface Path {
@@ -22,8 +24,9 @@ export class RegisterComponent {
     public newUser : User = new User();
     public allImages: Image[] = new Array<Image>();
     public newUserImage: Image = new Image();
+    public allUsers: User[] = new Array<User>();
     
-    constructor(private avatService: avatarService){
+    constructor(private avatService: avatarService, private userService: UserService){
         
     }
   getAvailableImages() {
@@ -33,16 +36,22 @@ export class RegisterComponent {
     
     data = this.getAvailableImages();
     
-   /* pervious code */
+
     paths = SOURCES;
-    public selectedPath: Image = new Image();
+    public selectedPath: User = new User();
 
-    onSelect(src: Image) { this.selectedPath.path = src.path }
-    
-    /*ends previous code */
+    onSelect(src: Image) { this.selectedPath.profileImg = src.path;
+    console.log(this.selectedPath.profileImg)    
+     }
 
-    
-    createUser(user: User, image: Image){
-        console.log(user.name, image.path, image.availability);
+
+    addUser(user: User) {
+        user.profileImg = this.selectedPath.profileImg;
+        console.log(user.name, user.profileImg);
+        this.userService.addUser(user)
+            .subscribe(data => this.allUsers = data, err => console.log(err));
     }
+   
+    
+    
 }

@@ -16,15 +16,50 @@
     {
       "name": "Test",
       "profileImg": "Test"
+    },
+    {
+      "name": "eljesa",
+      "profileImg": "./app/assets/images/fish.png"
+    },
+    {
+      "name": "gbfdg"
+    },
+    {
+      "name": "gbfdg"
+    },
+    {
+      "name": "gbfdg",
+      "profileImg": "./app/assets/images/fish.png"
+    },
+    {
+      "name": "test",
+      "profileImg": "./app/assets/images/lion.png"
+    },
+    {
+      "name": "haj",
+      "profileImg": "./app/assets/images/owl.png"
+    },
+    {
+      "name": "haja",
+      "profileImg": "./app/assets/images/penguin.png"
+    },
+    {
+      "name": "eljesa",
+      "profileImg": "./app/assets/images/owl.png"
     }
   ],
   "images": [
-      { "path": "./app/assets/images/fish.png", "availability": true },
-      { "path": "./app/assets/images/owl.png", "availability": true },
-      { "path": "./app/assets/images/lion.png", "availability": true },
-      { "path": "./app/assets/images/penguin.png", "availability": true },
-      {"path": "./app/assets/images/userPhoto-1456224068215.jpg" , "availability": false},
-      {"path": "./app/assets/images/userPhoto-1456224008238.jpg", "availability": false}
-    
+    {
+      "path": "./app/assets/images/fish.png"
+    },
+    {
+      "path": "./app/assets/images/owl.png"
+    },
+    {
+      "path": "./app/assets/images/lion.png"
+    },
+    {
+      "path": "./app/assets/images/penguin.png"
+    }
   ]
 }
