@@ -1,31 +1,43 @@
-
-<div class="registerView" onload="getAvailableImages()">
-    <h1>Креирај нов профил</h1>  
-    Внеси корисничко име:
-    <form #user="ngForm" (ngSubmit)="addUser(user.value)">
-    <input type="text" name="userName" ngControl="name" (keyup)="0" required><br/>
-    <p>Одбери слика: </p>
-    <ul id="pics">
-    <li *ngFor="#path of allImages" (click)="onSelect(path)" [class.selected]="path === selectedPath" ><img src="{{path.path}}"></li>
-    </ul>
-    <br/>
-    <br/>
-    <div *ngIf="selectedPath">
-        <label>Вашиот профил:</label>
-        <div class="profileBox">
-        <div id="up"><label>{{user.value.name}}</label></div>
-        <div id="middle"><img src="{{selectedPath.profileImg}}"></div> 
-                 
-        </div>
-        <div class="create">
-            <table>
-                <tr>
-           <td> <button type="submit"  class="btn btn-primary btn-lg">Креирај</button></td>
-           <td><label class="alert alert-danger msg">{{errorMesage}}</label></td>
-                </tr>
-            </table>
-        </div>
-     </div> 
-    
-    </form>   
+<div class="alert alert-danger" *ngIf="errorMesage" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {{errorMesage}}
+</div>
+<div class="form-horizontal">
+    <div class="container">
+        <form #user="ngForm" (ngSubmit)="addUser(user.value)">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Корисничко име</label>
+                <div class="col-sm-10">
+                    <input type="text" ngControl="name" required class="form-control" placeholder="Корисничко име" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Слика</label>
+                <div class="col-sm-10">
+                    <div class="col-sm-4 col-md-3 col-lg-2" *ngFor="#img of allImages">
+                        <div class="col-sm-10">
+                            <img src="{{img}}" class="img-circle" width="100" height="100" (click)="onSelect(img)" [class.selected]="img === selectedImage"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Вашиот профил:</label>
+                <div class="col-sm-10">
+                    <div class="profileBox">
+                        <div id="up">
+                            <label>{{user.value.name}}</label>
+                        </div>
+                        <div id="middle"><img src="{{selectedImage}}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary">Креирај</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
