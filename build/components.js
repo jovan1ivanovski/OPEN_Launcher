@@ -604,6 +604,7 @@ webpackJsonp([2,5],{
 	var User_1 = __webpack_require__(487);
 	var Image_1 = __webpack_require__(495);
 	var avatarService_1 = __webpack_require__(496);
+	var UserService_1 = __webpack_require__(486);
 	var SOURCES = [
 	    { "path": "./app/assets/images/fish.png" },
 	    { "path": "./app/assets/images/owl.png" },
@@ -611,29 +612,38 @@ webpackJsonp([2,5],{
 	    { "path": "./app/assets/images/penguin.png" }
 	];
 	var RegisterComponent = (function () {
-	    function RegisterComponent(avatService) {
+	    function RegisterComponent(avatService, userService) {
 	        this.avatService = avatService;
+	        this.userService = userService;
 	        this.newUser = new User_1.User();
 	        this.allImages = new Array();
 	        this.newUserImage = new Image_1.Image();
+	        this.allUsers = new Array();
 	        this.data = this.getAvailableImages();
 	        this.paths = SOURCES;
-	        this.selectedPath = new Image_1.Image();
+	        this.selectedPath = new User_1.User();
 	    }
 	    RegisterComponent.prototype.getAvailableImages = function () {
 	        var _this = this;
 	        this.avatService.getUnusedImages()
 	            .subscribe(function (data) { return _this.allImages = data; }, function (err) { return console.log(err); });
 	    };
-	    RegisterComponent.prototype.onSelect = function (src) { this.selectedPath.path = src.path; };
-	    RegisterComponent.prototype.createUser = function (user, image) {
-	        console.log(user.name, image.path, image.availability);
+	    RegisterComponent.prototype.onSelect = function (src) {
+	        this.selectedPath.profileImg = src.path;
+	        console.log(this.selectedPath.profileImg);
+	    };
+	    RegisterComponent.prototype.addUser = function (user) {
+	        var _this = this;
+	        user.profileImg = this.selectedPath.profileImg;
+	        console.log(user.name, user.profileImg);
+	        this.userService.addUser(user)
+	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
 	    };
 	    RegisterComponent = __decorate([
 	        core_1.Component({
 	            templateUrl: './app/views/register.html'
 	        }), 
-	        __metadata('design:paramtypes', [avatarService_1.avatarService])
+	        __metadata('design:paramtypes', [avatarService_1.avatarService, UserService_1.UserService])
 	    ], RegisterComponent);
 	    return RegisterComponent;
 	})();
