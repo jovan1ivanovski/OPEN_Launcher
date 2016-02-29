@@ -1,3 +1,7 @@
+img{
+    height: 128px;
+    width: 128px;
+}
 
 a.link{
     cursor: pointer;
@@ -6,24 +10,13 @@ a.link{
 .profileBox {
     border: gold 2px solid;
     border-radius: 25px 25px 0px 0px; 
-    width: 168px;
-    height: 208px;
+    width: 132px;
 }
 
-#up {
-    height: 40;
+.profileBox > .title {
+    height: 30;
     background-color: #ebebe0;
-    border-radius: 25px 25px 0px 0px; 
-    text-align: -webkit-center;
-    padding-top: 6px;
-}
-
-#middle {
-    position: relative;
-}
-
-#middle img {
-    padding: 19px;
+    border-radius: 25px 25px 0px 0px;    
 }
 
 .selected {
@@ -31,3 +24,13 @@ a.link{
     border:solid 2px gold;
 }
 
+.text-overflow {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.top-buffer { 
+  margin-top:20px; 
+}

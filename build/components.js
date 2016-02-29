@@ -4,7 +4,7 @@ webpackJsonp([2,5],{
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(494);
-	__webpack_require__(497);
+	__webpack_require__(496);
 	__webpack_require__(490);
 	module.exports = __webpack_require__(485);
 
@@ -188,7 +188,7 @@ webpackJsonp([2,5],{
 	        this.URL_UPLOAD_PICTURE = URL + "/api/upload";
 	        this.URL_GETALLUSERS = URL + "/getAllUsers";
 	        this.URL_ADDUSER = URL + "/addUser";
-	        this.URL_GETAVAILABLE_IMAGES = URL + "/getAvailableImages";
+	        this.URL_GETAVAILABLE_IMAGES = URL + "/api/GetAssetImages/";
 	    }
 	    GlobalService.prototype.URL_GETUSER = function (username) { return URL + "/getAllUsers/" + username; };
 	    GlobalService.prototype.URL_DELETEUSER = function (username) { return URL + "/deleteUser/" + username; };
@@ -604,40 +604,34 @@ webpackJsonp([2,5],{
 	var core_1 = __webpack_require__(246);
 	var router_1 = __webpack_require__(339);
 	var User_1 = __webpack_require__(487);
-	var Image_1 = __webpack_require__(495);
-	var avatarService_1 = __webpack_require__(496);
+	var avatarService_1 = __webpack_require__(495);
 	var UserService_1 = __webpack_require__(486);
 	var RegisterComponent = (function () {
-	    function RegisterComponent(avatService, userService, router) {
-	        this.avatService = avatService;
+	    function RegisterComponent(avatarService, userService, router) {
+	        this.avatarService = avatarService;
 	        this.userService = userService;
 	        this.router = router;
 	        this.newUser = new User_1.User();
 	        this.allImages = new Array();
-	        this.newUserImage = new Image_1.Image();
 	        this.allUsers = new Array();
-	        this.selectedPath = new User_1.User();
-	        this.data = this.getAvailableImages();
-	        this.selectedPath.profileImg = "./app/assets/default.jpg";
+	        this.selectedImage = "./app/assets/default.jpg";
+	        this.getAvailableImages();
 	    }
 	    RegisterComponent.prototype.getAvailableImages = function () {
 	        var _this = this;
-	        this.avatService.getUnusedImages()
+	        this.avatarService.getUnusedImages()
 	            .subscribe(function (data) { return _this.allImages = data; }, function (err) { return console.log(err); });
 	    };
-	    RegisterComponent.prototype.onSelect = function (src) {
-	        this.selectedPath.profileImg = src.path;
-	        console.log(this.selectedPath.profileImg);
+	    RegisterComponent.prototype.onSelect = function (img) {
+	        this.selectedImage = img;
 	    };
 	    RegisterComponent.prototype.addUser = function (user) {
 	        var _this = this;
-	        user.profileImg = this.selectedPath.profileImg;
+	        user.profileImg = this.selectedImage;
 	        if (user.profileImg == "./app/assets/default.jpg") {
 	            this.errorMesage = "За да креирате профил, ве молам изберете слика";
-	            return console.log(this.errorMesage);
 	        }
 	        else {
-	            console.log(user.name, user.profileImg);
 	            this.userService.addUser(user)
 	                .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
 	            this.router.navigate(["/Login"]);
@@ -657,34 +651,6 @@ webpackJsonp([2,5],{
 /***/ },
 
 /***/ 495:
-/***/ function(module, exports) {
-
-	var Image = (function () {
-	    function Image() {
-	    }
-	    return Image;
-	})();
-	exports.Image = Image;
-	var Images = (function () {
-	    function Images(objets) {
-	        this.images = new Array();
-	        for (var key in objets) {
-	            var obj = objets[key];
-	            var image = new Image();
-	            for (var prop in obj) {
-	                image[prop] = obj[prop];
-	            }
-	            this.images.push(image);
-	        }
-	    }
-	    return Images;
-	})();
-	exports.Images = Images;
-
-
-/***/ },
-
-/***/ 496:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -722,7 +688,7 @@ webpackJsonp([2,5],{
 
 /***/ },
 
-/***/ 497:
+/***/ 496:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -738,7 +704,7 @@ webpackJsonp([2,5],{
 	var router_1 = __webpack_require__(339);
 	var UserService_1 = __webpack_require__(486);
 	var AuthService_1 = __webpack_require__(489);
-	var usersFilter_1 = __webpack_require__(498);
+	var usersFilter_1 = __webpack_require__(497);
 	var LoginComponent = (function () {
 	    function LoginComponent(userService, authService, router) {
 	        this.userService = userService;
@@ -791,7 +757,7 @@ webpackJsonp([2,5],{
 
 /***/ },
 
-/***/ 498:
+/***/ 497:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

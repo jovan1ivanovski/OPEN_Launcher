@@ -6,7 +6,7 @@ webpackJsonp([4,5],{
 	__webpack_require__(488);
 	__webpack_require__(491);
 	__webpack_require__(486);
-	module.exports = __webpack_require__(499);
+	module.exports = __webpack_require__(498);
 
 
 /***/ },
@@ -124,7 +124,7 @@ webpackJsonp([4,5],{
 	        this.URL_UPLOAD_PICTURE = URL + "/api/upload";
 	        this.URL_GETALLUSERS = URL + "/getAllUsers";
 	        this.URL_ADDUSER = URL + "/addUser";
-	        this.URL_GETAVAILABLE_IMAGES = URL + "/getAvailableImages";
+	        this.URL_GETAVAILABLE_IMAGES = URL + "/api/GetAssetImages/";
 	    }
 	    GlobalService.prototype.URL_GETUSER = function (username) { return URL + "/getAllUsers/" + username; };
 	    GlobalService.prototype.URL_DELETEUSER = function (username) { return URL + "/deleteUser/" + username; };
@@ -434,7 +434,7 @@ webpackJsonp([4,5],{
 
 /***/ },
 
-/***/ 496:
+/***/ 495:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -472,7 +472,7 @@ webpackJsonp([4,5],{
 
 /***/ },
 
-/***/ 499:
+/***/ 498:
 /***/ function(module, exports, __webpack_require__) {
 
 	function __export(m) {
@@ -481,11 +481,11 @@ webpackJsonp([4,5],{
 	var GlobalService_1 = __webpack_require__(488);
 	var UploadPictureService_1 = __webpack_require__(491);
 	var UserService_1 = __webpack_require__(486);
-	var avatarService_1 = __webpack_require__(496);
+	var avatarService_1 = __webpack_require__(495);
 	__export(__webpack_require__(488));
 	__export(__webpack_require__(491));
 	__export(__webpack_require__(486));
-	__export(__webpack_require__(496));
+	__export(__webpack_require__(495));
 	exports.servicesInjectables = [
 	    GlobalService_1.globalServiceInjectables,
 	    UploadPictureService_1.uploadPictureServiceInjectables,

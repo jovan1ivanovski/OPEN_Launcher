@@ -40,7 +40,7 @@ app.get('/api/GetAssetImages', function (req, res) {
     readFiles(path.join(__dirname, '/app/assets/images/'),
         function (data) {
             for (var index = 0; index < data.length; index++) {
-                data[index] = __dirname + '\\' + data[index];
+                data[index] = './app/assets/images/' + data[index];
             }
             return res.send(data);
         },
