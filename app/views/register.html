@@ -6,7 +6,7 @@
     <input type="text" name="userName" ngControl="name" (keyup)="0" required><br/>
     <p>Одбери слика: </p>
     <ul id="pics">
-    <li *ngFor="#path of allImages" (click)="onSelect(path)" [class.selected]="path === selectedPath" ><img  src="{{path.path}}"></li>
+    <li *ngFor="#path of allImages" (click)="onSelect(path)" [class.selected]="path === selectedPath" ><img src="{{path.path}}"></li>
     </ul>
     <br/>
     <br/>
@@ -18,8 +18,14 @@
                  
         </div>
         <div class="create">
-            <button type="submit" class="btn btn-primary btn-lg">Креирај</button></div>
-        </div> 
+            <table>
+                <tr>
+           <td> <button type="submit"  class="btn btn-primary btn-lg">Креирај</button></td>
+           <td><label class="alert alert-danger msg">{{errorMesage}}</label></td>
+                </tr>
+            </table>
+        </div>
+     </div> 
     
     </form>   
 </div>

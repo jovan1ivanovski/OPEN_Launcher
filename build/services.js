@@ -47,6 +47,7 @@ webpackJsonp([4,5],{
 	        });
 	    };
 	    UserService.prototype.addUser = function (user) {
+	        console.log("add user");
 	        var headers = new http_1.Headers();
 	        headers.append('Content-Type', 'application/json');
 	        return this.http.post(this.globalService.URL_ADDUSER, JSON.stringify(user), { headers: headers })

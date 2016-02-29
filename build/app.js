@@ -13424,6 +13424,7 @@ webpackJsonp([1,5],[
 	        });
 	    };
 	    UserService.prototype.addUser = function (user) {
+	        console.log("add user");
 	        var headers = new http_1.Headers();
 	        headers.append('Content-Type', 'application/json');
 	        return this.http.post(this.globalService.URL_ADDUSER, JSON.stringify(user), { headers: headers })
@@ -13910,12 +13911,6 @@ webpackJsonp([1,5],[
 	var Image_1 = __webpack_require__(495);
 	var avatarService_1 = __webpack_require__(496);
 	var UserService_1 = __webpack_require__(486);
-	var SOURCES = [
-	    { "path": "./app/assets/images/fish.png" },
-	    { "path": "./app/assets/images/owl.png" },
-	    { "path": "./app/assets/images/lion.png" },
-	    { "path": "./app/assets/images/penguin.png" }
-	];
 	var RegisterComponent = (function () {
 	    function RegisterComponent(avatService, userService) {
 	        this.avatService = avatService;
@@ -13924,9 +13919,9 @@ webpackJsonp([1,5],[
 	        this.allImages = new Array();
 	        this.newUserImage = new Image_1.Image();
 	        this.allUsers = new Array();
-	        this.data = this.getAvailableImages();
-	        this.paths = SOURCES;
 	        this.selectedPath = new User_1.User();
+	        this.data = this.getAvailableImages();
+	        this.selectedPath.profileImg = "./app/assets/default.jpg";
 	    }
 	    RegisterComponent.prototype.getAvailableImages = function () {
 	        var _this = this;
@@ -13940,9 +13935,15 @@ webpackJsonp([1,5],[
 	    RegisterComponent.prototype.addUser = function (user) {
 	        var _this = this;
 	        user.profileImg = this.selectedPath.profileImg;
-	        console.log(user.name, user.profileImg);
-	        this.userService.addUser(user)
-	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	        if (user.profileImg == "./app/assets/default.jpg") {
+	            this.errorMesage = "За да креирате профил, ве молам изберете слика";
+	            return console.log(this.errorMesage);
+	        }
+	        else {
+	            console.log(user.name, user.profileImg);
+	            this.userService.addUser(user)
+	                .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	        }
 	    };
 	    RegisterComponent = __decorate([
 	        core_1.Component({

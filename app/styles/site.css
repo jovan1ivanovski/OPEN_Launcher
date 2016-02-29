@@ -30,7 +30,8 @@ ul#pics img {
 .profileBox {
     border: royalblue 3px solid;
     border-radius: 25px 25px 0px 0px; 
-    width: fit-content; 
+    width: 168px;
+    height: 208px;
 }
 .profileBox #up {
     height: 40;
@@ -45,6 +46,14 @@ ul#pics img {
 .profileBox #middle {
     position: relative;
 }
-.create {
+.profileBox #middle img {
+    padding: 19px;
+}
+.create{
         margin-top: 15px; 
+}
+.msg {
+    margin-top: 17px;
+    margin-left: 15px;
+    height: 45px
 }
