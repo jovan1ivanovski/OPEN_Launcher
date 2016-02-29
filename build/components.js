@@ -54,7 +54,7 @@ webpackJsonp([2,5],{
 	    };
 	    HomeComponent.prototype.login = function (username) {
 	        if (!this.authService.login(username)) {
-	            setTimeout(function () { }.bind(this), 2500);
+	            alert("User is not valid.");
 	        }
 	        return false;
 	    };
@@ -722,16 +722,51 @@ webpackJsonp([2,5],{
 	};
 	var core_1 = __webpack_require__(246);
 	var router_1 = __webpack_require__(339);
+	var UserService_1 = __webpack_require__(486);
+	var AuthService_1 = __webpack_require__(489);
 	var LoginComponent = (function () {
-	    function LoginComponent() {
+	    function LoginComponent(userService, authService, router) {
+	        this.userService = userService;
+	        this.authService = authService;
+	        this.router = router;
+	        this.allUsers = new Array();
+	        this.filterargs = { name: 'Igor' };
+	        this.getAllUsers();
 	    }
+	    LoginComponent.prototype.getAllUsers = function () {
+	        var _this = this;
+	        this.userService.getAllUsers()
+	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	    };
+	    LoginComponent.prototype.deleteUser = function () {
+	        var _this = this;
+	        this.userService.deleteUser(this.selectedUser.name)
+	            .subscribe(function (data) {
+	            _this.allUsers = data;
+	            _this.selectedUser = null;
+	        }, function (err) { return console.log(err); });
+	    };
+	    LoginComponent.prototype.login = function () {
+	        if (!this.authService.login(this.selectedUser.name)) {
+	            alert("User is not valid.");
+	        }
+	        else {
+	            this.router.navigate(["/Home"]);
+	        }
+	    };
+	    LoginComponent.prototype.selectUser = function (user) {
+	        this.selectedUser = user;
+	    };
+	    LoginComponent.prototype.ShouldApplySelectedUserCss = function (user) {
+	        return this.selectedUser === user;
+	    };
 	    LoginComponent = __decorate([
 	        core_1.Component({
 	            selector: 'login',
 	            directives: [router_1.RouterLink],
 	            templateUrl: "./app/views/login.html"
 	        }), 
-	        __metadata('design:paramtypes', [])
+	        __metadata('design:paramtypes', [UserService_1.UserService, AuthService_1.AuthService, router_1.Router])
 	    ], LoginComponent);
 	    return LoginComponent;
 	})();

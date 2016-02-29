@@ -33,7 +33,7 @@ export class HomeComponent {
 
     login(username: string): boolean {
         if (!this.authService.login(username)) {
-            setTimeout(function() { }.bind(this), 2500);
+            alert("User is not valid.");
         }
         return false;
     }
