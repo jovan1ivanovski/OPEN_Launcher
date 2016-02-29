@@ -2,6 +2,7 @@ var express = require("express");
 var multer = require("multer");
 var path = require('path');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 var low = require('lowdb');
 var lowdbStorage = require('lowdb/file-async');
@@ -34,6 +35,20 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
 });
 
+// Retreave all images from ./app/assets/images/ directory
+app.get('/api/GetAssetImages', function (req, res) {
+    readFiles(path.join(__dirname, '/app/assets/images/'),
+        function (data) {
+            for (var index = 0; index < data.length; index++) {
+                data[index] = __dirname + '\\' + data[index];
+            }
+            return res.send(data);
+        },
+        function (error) {
+            throw error;
+        });
+});
+
 // Upload profile picture
 app.post('/api/upload', function (req, res) {
     upload(req, res, function (err) {
@@ -53,17 +68,10 @@ app.get('/getAllUsers/:name?', function (req, res) {
     }
 });
 
-//
-app.get('/getAvailableImages', function (req, res) {
-   
-        res.send(db('images').value());
-    
-});
-
 // Add new user in the json lowdb file
 app.post('/addUser', function (req, res) {
     db('users').push(req.body)
-               .then(post => res.send(post));
+        .then(post => res.send(post));
 });
 
 // Delete user from json lowdb file
@@ -71,8 +79,19 @@ app.get('/deleteUser/:name', function (req, res) {
     db('users').remove({ name: req.params.name });
     res.send(db('users').value());
 });
-
 // == API ============================================================================
+
+// == HELPER FUNCTIONS ===============================================================
+function readFiles(dirname, onSuccess, onError) {
+    fs.readdir(dirname, function (err, filenames) {
+        if (err) {
+            onError(err);
+            return;
+        }
+        onSuccess(filenames);
+    });
+}
+// == HELPER FUNCTIONS ===============================================================
 
 app.listen(3000, function () {
     console.log("Working on port 3000");
