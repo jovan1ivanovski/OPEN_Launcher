@@ -16,6 +16,50 @@
     {
       "name": "Test",
       "profileImg": "Test"
+    },
+    {
+      "name": "eljesa",
+      "profileImg": "./app/assets/images/fish.png"
+    },
+    {
+      "name": "gbfdg"
+    },
+    {
+      "name": "gbfdg"
+    },
+    {
+      "name": "gbfdg",
+      "profileImg": "./app/assets/images/fish.png"
+    },
+    {
+      "name": "test",
+      "profileImg": "./app/assets/images/lion.png"
+    },
+    {
+      "name": "haj",
+      "profileImg": "./app/assets/images/owl.png"
+    },
+    {
+      "name": "haja",
+      "profileImg": "./app/assets/images/penguin.png"
+    },
+    {
+      "name": "eljesa",
+      "profileImg": "./app/assets/images/owl.png"
+    }
+  ],
+  "images": [
+    {
+      "path": "./app/assets/images/fish.png"
+    },
+    {
+      "path": "./app/assets/images/owl.png"
+    },
+    {
+      "path": "./app/assets/images/lion.png"
+    },
+    {
+      "path": "./app/assets/images/penguin.png"
     }
   ]
 }

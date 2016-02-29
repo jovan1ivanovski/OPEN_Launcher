@@ -56,7 +56,7 @@ app.get('/getAllUsers/:name?', function (req, res) {
 //
 app.get('/getAvailableImages', function (req, res) {
    
-        res.send(db('images').filter({availability: true}));
+        res.send(db('images').value());
     
 });
 
