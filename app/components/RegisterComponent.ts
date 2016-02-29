@@ -1,5 +1,7 @@
 import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
+import {Router} from 'angular2/router';
+
 import {Users, User} from '../models/User';
 import {Images, Image} from '../models/Image';
 import {avatarService} from '../services/avatarService';
@@ -26,7 +28,7 @@ export class RegisterComponent {
     public newUserImage: Image = new Image();
     public allUsers: User[] = new Array<User>();
     
-    constructor(private avatService: avatarService, private userService: UserService){
+    constructor(private avatService: avatarService, private userService: UserService, private router: Router){
         
     }
   getAvailableImages() {
@@ -50,6 +52,7 @@ export class RegisterComponent {
         console.log(user.name, user.profileImg);
         this.userService.addUser(user)
             .subscribe(data => this.allUsers = data, err => console.log(err));
+        this.router.navigate(["/Login"]);
     }
    
     

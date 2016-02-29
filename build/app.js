@@ -13906,6 +13906,7 @@ webpackJsonp([1,5],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
+	var router_1 = __webpack_require__(339);
 	var User_1 = __webpack_require__(487);
 	var Image_1 = __webpack_require__(495);
 	var avatarService_1 = __webpack_require__(496);
@@ -13917,9 +13918,10 @@ webpackJsonp([1,5],[
 	    { "path": "./app/assets/images/penguin.png" }
 	];
 	var RegisterComponent = (function () {
-	    function RegisterComponent(avatService, userService) {
+	    function RegisterComponent(avatService, userService, router) {
 	        this.avatService = avatService;
 	        this.userService = userService;
+	        this.router = router;
 	        this.newUser = new User_1.User();
 	        this.allImages = new Array();
 	        this.newUserImage = new Image_1.Image();
@@ -13943,12 +13945,13 @@ webpackJsonp([1,5],[
 	        console.log(user.name, user.profileImg);
 	        this.userService.addUser(user)
 	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	        this.router.navigate(["/Login"]);
 	    };
 	    RegisterComponent = __decorate([
 	        core_1.Component({
 	            templateUrl: './app/views/register.html'
 	        }), 
-	        __metadata('design:paramtypes', [avatarService_1.avatarService, UserService_1.UserService])
+	        __metadata('design:paramtypes', [avatarService_1.avatarService, UserService_1.UserService, router_1.Router])
 	    ], RegisterComponent);
 	    return RegisterComponent;
 	})();
