@@ -8,17 +8,6 @@ import {avatarService} from '../services/avatarService';
 import {UserService} from '../services/UserService';
 import {AuthService} from '../services/AuthService';
 
-
-interface Path {
-    path: string;
-}
-var SOURCES: Path[] = [
-    { "path": "./app/assets/images/fish.png" },
-    { "path": "./app/assets/images/owl.png" },
-    { "path": "./app/assets/images/lion.png" },
-    { "path": "./app/assets/images/penguin.png" }
-]
-
 @Component({
     templateUrl: './app/views/register.html'
 })
@@ -27,9 +16,10 @@ export class RegisterComponent {
     public allImages: Image[] = new Array<Image>();
     public newUserImage: Image = new Image();
     public allUsers: User[] = new Array<User>();
-    
+    public errorMesage: string;
+    public selectedPath: User = new User();
     constructor(private avatService: avatarService, private userService: UserService, private router: Router){
-        
+        this.selectedPath.profileImg = "./app/assets/default.jpg";
     }
   getAvailableImages() {
         this.avatService.getUnusedImages()
@@ -38,9 +28,7 @@ export class RegisterComponent {
     
     data = this.getAvailableImages();
     
-
-    paths = SOURCES;
-    public selectedPath: User = new User();
+    
 
     onSelect(src: Image) { this.selectedPath.profileImg = src.path;
     console.log(this.selectedPath.profileImg)    
@@ -49,12 +37,15 @@ export class RegisterComponent {
 
     addUser(user: User) {
         user.profileImg = this.selectedPath.profileImg;
+        if (user.profileImg == "./app/assets/default.jpg"){
+        this.errorMesage =  "За да креирате профил, ве молам изберете слика"
+        return console.log(this.errorMesage);
+    }
+        else {
         console.log(user.name, user.profileImg);
         this.userService.addUser(user)
             .subscribe(data => this.allUsers = data, err => console.log(err));
         this.router.navigate(["/Login"]);
+        }
     }
-   
-    
-    
 }
