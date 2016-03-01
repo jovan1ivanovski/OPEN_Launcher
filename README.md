@@ -65,5 +65,13 @@ The entry point for the app is the `./index.html` file.
     <script src="build/components.js"></script>
 </body>
 ```
-
 The Angular 2 app uses TypeScript and the Webpack configuration is set up to place the transpiled JavaScipt in the `build` directory.
+
+Build exe file for this application
+```bash
+#install electron-packager globaly
+npm install -g electron-packager
+
+#buld application into win32 x64 exe file
+electron-packager . OPEN --platform=win32 --arch=x64 --version=version=0.35.6
+```
