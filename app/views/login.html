@@ -31,7 +31,8 @@
                     <a class="btn btn-primary col-sm-12 center-block" [routerLink]="['/Register']">Креирај нов профил</a>
                 </div>
                 <div class="col-sm-4 text-center" *ngIf="selectedUser">
-                    <input type="button" class="btn btn-primary col-sm-12 center-block" value="Избриши профил" data-toggle="modal" data-target="#myModal" data-backdrop="static" />
+                    <input type="button" class="btn btn-primary col-sm-12 center-block" value="Избриши профил" data-toggle="modal" data-target="#myModal"
+                    data-backdrop="static" />
                 </div>
             </div>
         </div>
@@ -46,6 +47,12 @@
                     </div>
                     <div class="modal-body">
                         Дали сте сигурни дека сакате да го избришете профилот?
+                        <div class="row text-center">
+                            <label class="text-overflow">{{selectedUser.name}}</label>
+                        </div>
+                        <div class="row text-center">
+                            <img src="{{selectedUser.profileImg}}" class="img-circle" [class.selected]="ShouldApplySelectedUserCss(user)"/>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Не</button>
