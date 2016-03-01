@@ -10,12 +10,12 @@ import {HomeComponent} from './components/HomeComponent';
 import {UploadPictureComponent} from './components/UploadPictureComponent';
 import {RegisterComponent} from './components/RegisterComponent';
 import {LoginComponent} from './components/LoginComponent';
+import {AlertingComponent} from './components/AlertingComponent';
 
 /*
  * Injectables
  */
 import { servicesInjectables } from './services/services';
-
 
 /*
  * Services
@@ -24,7 +24,7 @@ import { AUTH_PROVIDERS } from './services/AuthService';
 
 @Component({
     selector: 'app',
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, AlertingComponent],
     templateUrl: `./app/views/app.html`,
 })
 @RouteConfig([

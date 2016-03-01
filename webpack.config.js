@@ -17,8 +17,8 @@ module.exports = {
             'angular2/http'
         ],
         'models': ["./app/models/User"],
-        'services': ["./app/services/GlobalService", "./app/services/UploadPictureService", "./app/services/UserService", "./app/services/services.ts"],
-        'components': ["./app/components/RegisterComponent", "./app/components/LoginComponent", "./app/components/UploadPictureComponent", "./app/components/HomeComponent"],
+        'services': ["./app/services/AlertingService", "./app/services/GlobalService", "./app/services/UploadPictureService", "./app/services/UserService", "./app/services/services.ts"],
+        'components': ["./app/components/AlertingComponent", "./app/components/RegisterComponent", "./app/components/LoginComponent", "./app/components/UploadPictureComponent", "./app/components/HomeComponent"],
         'app': ["./app/app"]
     },
 
