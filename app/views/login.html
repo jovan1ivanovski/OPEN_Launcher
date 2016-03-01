@@ -15,9 +15,8 @@
                         <label class="text-overflow">{{user.name}}</label>
                     </div>
                     <div class="row text-center">
-                        <img src="{{user.profileImg}}" class="img-circle" 
-                        [class.selected]="ShouldApplySelectedUserCss(user)" 
-                        (click)="selectUser(user)"/>
+                        <img src="{{user.profileImg}}" class="img-circle" [class.selected]="ShouldApplySelectedUserCss(user)" (click)="selectUser(user)"
+                        />
                     </div>
                 </div>
             </div>
@@ -32,9 +31,29 @@
                     <a class="btn btn-primary col-sm-12 center-block" [routerLink]="['/Register']">Креирај нов профил</a>
                 </div>
                 <div class="col-sm-4 text-center" *ngIf="selectedUser">
-                    <input type="button" class="btn btn-primary col-sm-12 center-block" value="Избриши профил" (click)="deleteUser()" />
+                    <input type="button" class="btn btn-primary col-sm-12 center-block" value="Избриши профил" data-toggle="modal" data-target="#myModal" data-backdrop="static" />
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Бришење</h4>
+                    </div>
+                    <div class="modal-body">
+                        Дали сте сигурни дека сакате да го избришете профилот?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Не</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteUser()">Дa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
     </div>
 </div>
