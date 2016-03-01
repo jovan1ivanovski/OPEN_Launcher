@@ -70,8 +70,8 @@ The Angular 2 app uses TypeScript and the Webpack configuration is set up to pla
 Build exe file for this application
 ```bash
 #install electron-packager globaly
-npm install -g electron-packager
+npm install electron-packager -g
 
 #buld application into win32 x64 exe file
-electron-packager . OPEN --platform=win32 --arch=x64 --version=version=0.35.6
+electron-packager . OPEN --platform=win32 --arch=x64 --version=version=0.36.9
 ```
