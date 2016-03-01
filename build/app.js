@@ -404,7 +404,8 @@ webpackJsonp([1,5],[
 	var UploadPictureComponent_1 = __webpack_require__(490);
 	var RegisterComponent_1 = __webpack_require__(494);
 	var LoginComponent_1 = __webpack_require__(496);
-	var services_1 = __webpack_require__(498);
+	var AlertingComponent_1 = __webpack_require__(500);
+	var services_1 = __webpack_require__(501);
 	var AuthService_1 = __webpack_require__(489);
 	var App = (function () {
 	    function App() {
@@ -412,7 +413,7 @@ webpackJsonp([1,5],[
 	    App = __decorate([
 	        core_1.Component({
 	            selector: 'app',
-	            directives: [router_1.ROUTER_DIRECTIVES],
+	            directives: [router_1.ROUTER_DIRECTIVES, AlertingComponent_1.AlertingComponent],
 	            templateUrl: "./app/views/app.html",
 	        }),
 	        router_1.RouteConfig([
@@ -13340,9 +13341,11 @@ webpackJsonp([1,5],[
 	var core_1 = __webpack_require__(246);
 	var UserService_1 = __webpack_require__(486);
 	var AuthService_1 = __webpack_require__(489);
+	var AlertingService_1 = __webpack_require__(497);
 	var User_1 = __webpack_require__(487);
 	var HomeComponent = (function () {
-	    function HomeComponent(userService, authService) {
+	    function HomeComponent(alertingService, userService, authService) {
+	        this.alertingService = alertingService;
 	        this.userService = userService;
 	        this.authService = authService;
 	        this.allUsers = new Array();
@@ -13354,21 +13357,21 @@ webpackJsonp([1,5],[
 	    HomeComponent.prototype.getAllUsers = function () {
 	        var _this = this;
 	        this.userService.getAllUsers()
-	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	    };
 	    HomeComponent.prototype.addUser = function (user) {
 	        var _this = this;
 	        this.userService.addUser(user)
-	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	    };
 	    HomeComponent.prototype.deleteUser = function (name) {
 	        var _this = this;
 	        this.userService.deleteUser(name)
-	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	    };
 	    HomeComponent.prototype.login = function (username) {
 	        if (!this.authService.login(username)) {
-	            alert("User is not valid.");
+	            this.alertingService.addDanger("User is not valid.");
 	        }
 	        return false;
 	    };
@@ -13380,7 +13383,7 @@ webpackJsonp([1,5],[
 	            selector: 'home',
 	            templateUrl: "./app/views/home.html"
 	        }), 
-	        __metadata('design:paramtypes', [UserService_1.UserService, AuthService_1.AuthService])
+	        __metadata('design:paramtypes', [AlertingService_1.AlertingService, UserService_1.UserService, AuthService_1.AuthService])
 	    ], HomeComponent);
 	    return HomeComponent;
 	})();
@@ -13424,7 +13427,6 @@ webpackJsonp([1,5],[
 	        });
 	    };
 	    UserService.prototype.addUser = function (user) {
-	        console.log("add user");
 	        var headers = new http_1.Headers();
 	        headers.append('Content-Type', 'application/json');
 	        return this.http.post(this.globalService.URL_ADDUSER, JSON.stringify(user), { headers: headers })
@@ -13533,11 +13535,13 @@ webpackJsonp([1,5],[
 	    function AuthService() {
 	    }
 	    AuthService.prototype.login = function (user) {
-	        if (user === 'Igor') {
+	        if (user.length > 0) {
 	            localStorage.setItem('username', user);
 	            return true;
 	        }
-	        return false;
+	        else {
+	            return false;
+	        }
 	    };
 	    AuthService.prototype.logout = function () {
 	        localStorage.removeItem('username');
@@ -13583,9 +13587,11 @@ webpackJsonp([1,5],[
 	    }
 	    UploadPictureComponent.prototype.uploadFile = function () {
 	        this.uploadPictureService.upload(this.selectedFiles[0]);
+	        this.selectedImage = "";
 	    };
 	    UploadPictureComponent.prototype.onChange = function (event) {
 	        this.selectedFiles = event.srcElement.files;
+	        this.selectedImage = this.selectedFiles[0].name;
 	    };
 	    UploadPictureComponent = __decorate([
 	        core_1.Component({
@@ -13911,8 +13917,10 @@ webpackJsonp([1,5],[
 	var User_1 = __webpack_require__(487);
 	var avatarService_1 = __webpack_require__(495);
 	var UserService_1 = __webpack_require__(486);
+	var AlertingService_1 = __webpack_require__(497);
 	var RegisterComponent = (function () {
-	    function RegisterComponent(avatarService, userService, router) {
+	    function RegisterComponent(alertingService, avatarService, userService, router) {
+	        this.alertingService = alertingService;
 	        this.avatarService = avatarService;
 	        this.userService = userService;
 	        this.router = router;
@@ -13925,7 +13933,7 @@ webpackJsonp([1,5],[
 	    RegisterComponent.prototype.getAvailableImages = function () {
 	        var _this = this;
 	        this.avatarService.getUnusedImages()
-	            .subscribe(function (data) { return _this.allImages = data; }, function (err) { return console.log(err); });
+	            .subscribe(function (data) { return _this.allImages = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	    };
 	    RegisterComponent.prototype.onSelect = function (img) {
 	        this.selectedImage = img;
@@ -13934,11 +13942,11 @@ webpackJsonp([1,5],[
 	        var _this = this;
 	        user.profileImg = this.selectedImage;
 	        if (user.profileImg == "./app/assets/default.jpg") {
-	            this.errorMesage = "За да креирате профил, ве молам изберете слика";
+	            this.alertingService.addDanger("За да креирате профил, ве молам изберете слика");
 	        }
 	        else {
 	            this.userService.addUser(user)
-	                .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	                .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	            this.router.navigate(["/Login"]);
 	        }
 	    };
@@ -13946,7 +13954,7 @@ webpackJsonp([1,5],[
 	        core_1.Component({
 	            templateUrl: './app/views/register.html'
 	        }), 
-	        __metadata('design:paramtypes', [avatarService_1.avatarService, UserService_1.UserService, router_1.Router])
+	        __metadata('design:paramtypes', [AlertingService_1.AlertingService, avatarService_1.avatarService, UserService_1.UserService, router_1.Router])
 	    ], RegisterComponent);
 	    return RegisterComponent;
 	})();
@@ -14007,32 +14015,36 @@ webpackJsonp([1,5],[
 	var router_1 = __webpack_require__(339);
 	var UserService_1 = __webpack_require__(486);
 	var AuthService_1 = __webpack_require__(489);
-	var usersFilter_1 = __webpack_require__(497);
+	var AlertingService_1 = __webpack_require__(497);
+	var User_1 = __webpack_require__(487);
+	var usersFilter_1 = __webpack_require__(499);
 	var LoginComponent = (function () {
-	    function LoginComponent(userService, authService, router) {
+	    function LoginComponent(alertingService, userService, authService, router) {
+	        this.alertingService = alertingService;
 	        this.userService = userService;
 	        this.authService = authService;
 	        this.router = router;
 	        this.allUsers = new Array();
+	        this.selectedUser = new User_1.User();
 	        this.usernameFilter = "";
 	        this.getAllUsers();
 	    }
 	    LoginComponent.prototype.getAllUsers = function () {
 	        var _this = this;
 	        this.userService.getAllUsers()
-	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return console.log(err); });
+	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	    };
 	    LoginComponent.prototype.deleteUser = function () {
 	        var _this = this;
 	        this.userService.deleteUser(this.selectedUser.name)
 	            .subscribe(function (data) {
 	            _this.allUsers = data;
-	            _this.selectedUser = null;
-	        }, function (err) { return console.log(err); });
+	            _this.selectedUser = new User_1.User();
+	        }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	    };
 	    LoginComponent.prototype.login = function () {
 	        if (!this.authService.login(this.selectedUser.name)) {
-	            alert("User is not valid.");
+	            this.alertingService.addDanger("User is not valid.");
 	        }
 	        else {
 	            this.router.navigate(["/Home"]);
@@ -14051,7 +14063,7 @@ webpackJsonp([1,5],[
 	            pipes: [usersFilter_1.UsersFilter],
 	            templateUrl: "./app/views/login.html"
 	        }), 
-	        __metadata('design:paramtypes', [UserService_1.UserService, AuthService_1.AuthService, router_1.Router])
+	        __metadata('design:paramtypes', [AlertingService_1.AlertingService, UserService_1.UserService, AuthService_1.AuthService, router_1.Router])
 	    ], LoginComponent);
 	    return LoginComponent;
 	})();
@@ -14060,6 +14072,75 @@ webpackJsonp([1,5],[
 
 /***/ },
 /* 497 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var Alert_1 = __webpack_require__(498);
+	var AlertingService = (function () {
+	    function AlertingService() {
+	        this.currentAlerts = new Array();
+	        this.addAlert = function (type, message) {
+	            var alert = new Alert_1.Alert(type, message);
+	            this.currentAlerts.push(alert);
+	        };
+	    }
+	    AlertingService.prototype.addSuccess = function (message) {
+	        this.addAlert("success", message);
+	    };
+	    AlertingService.prototype.addInfo = function (message) {
+	        this.addAlert("info", message);
+	    };
+	    AlertingService.prototype.addWarning = function (message) {
+	        this.addAlert("warning", message);
+	    };
+	    AlertingService.prototype.addDanger = function (message) {
+	        this.addAlert("danger", message);
+	    };
+	    AlertingService.prototype.removeAlert = function (alert) {
+	        for (var index = 0; index < this.currentAlerts.length; index++) {
+	            if (this.currentAlerts[index] === alert) {
+	                this.currentAlerts.splice(index, 1);
+	                break;
+	            }
+	        }
+	    };
+	    AlertingService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], AlertingService);
+	    return AlertingService;
+	})();
+	exports.AlertingService = AlertingService;
+	exports.alertingServiceInjectables = [
+	    core_1.bind(AlertingService).toClass(AlertingService)
+	];
+
+
+/***/ },
+/* 498 */
+/***/ function(module, exports) {
+
+	var Alert = (function () {
+	    function Alert(type, message) {
+	        this.type = type;
+	        this.message = message;
+	    }
+	    return Alert;
+	})();
+	exports.Alert = Alert;
+
+
+/***/ },
+/* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -14090,7 +14171,47 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 498 */
+/* 500 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var AlertingService_1 = __webpack_require__(497);
+	var AlertingComponent = (function () {
+	    function AlertingComponent(alertingService) {
+	        this.alertingService = alertingService;
+	    }
+	    AlertingComponent.prototype.alerts = function () {
+	        return this.alertingService.currentAlerts;
+	    };
+	    AlertingComponent.prototype.hasAlerts = function () {
+	        return this.alertingService.currentAlerts.length > 0;
+	    };
+	    AlertingComponent.prototype.removeAlert = function (alert) {
+	        this.alertingService.removeAlert(alert);
+	    };
+	    AlertingComponent = __decorate([
+	        core_1.Component({
+	            selector: 'alerts',
+	            template: "\n        <div *ngIf=\"hasAlerts()\">\n            <div *ngFor=\"#alert of alerts()\" class=\"alert alert-{{alert.type}}\">\n                {{ alert.message }}\n                <div class=\"close\" (click)=\"removeAlert(alert)\">\n                    <span class=\"glyphicon glyphicon-remove\"></span>\n                </div>\n            </div>\n        </div>"
+	        }), 
+	        __metadata('design:paramtypes', [AlertingService_1.AlertingService])
+	    ], AlertingComponent);
+	    return AlertingComponent;
+	})();
+	exports.AlertingComponent = AlertingComponent;
+
+
+/***/ },
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	function __export(m) {
@@ -14100,15 +14221,18 @@ webpackJsonp([1,5],[
 	var UploadPictureService_1 = __webpack_require__(491);
 	var UserService_1 = __webpack_require__(486);
 	var avatarService_1 = __webpack_require__(495);
+	var AlertingService_1 = __webpack_require__(497);
 	__export(__webpack_require__(488));
 	__export(__webpack_require__(491));
 	__export(__webpack_require__(486));
 	__export(__webpack_require__(495));
+	__export(__webpack_require__(497));
 	exports.servicesInjectables = [
 	    GlobalService_1.globalServiceInjectables,
 	    UploadPictureService_1.uploadPictureServiceInjectables,
 	    UserService_1.userServiceInjectables,
-	    avatarService_1.avatarServiceInjectables
+	    avatarService_1.avatarServiceInjectables,
+	    AlertingService_1.alertingServiceInjectables
 	];
 
 

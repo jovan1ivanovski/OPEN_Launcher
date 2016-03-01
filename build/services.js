@@ -3,10 +3,11 @@ webpackJsonp([4,5],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
+	__webpack_require__(497);
 	__webpack_require__(488);
 	__webpack_require__(491);
 	__webpack_require__(486);
-	module.exports = __webpack_require__(498);
+	module.exports = __webpack_require__(501);
 
 
 /***/ },
@@ -47,7 +48,6 @@ webpackJsonp([4,5],{
 	        });
 	    };
 	    UserService.prototype.addUser = function (user) {
-	        console.log("add user");
 	        var headers = new http_1.Headers();
 	        headers.append('Content-Type', 'application/json');
 	        return this.http.post(this.globalService.URL_ADDUSER, JSON.stringify(user), { headers: headers })
@@ -472,7 +472,78 @@ webpackJsonp([4,5],{
 
 /***/ },
 
+/***/ 497:
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
+	var Alert_1 = __webpack_require__(498);
+	var AlertingService = (function () {
+	    function AlertingService() {
+	        this.currentAlerts = new Array();
+	        this.addAlert = function (type, message) {
+	            var alert = new Alert_1.Alert(type, message);
+	            this.currentAlerts.push(alert);
+	        };
+	    }
+	    AlertingService.prototype.addSuccess = function (message) {
+	        this.addAlert("success", message);
+	    };
+	    AlertingService.prototype.addInfo = function (message) {
+	        this.addAlert("info", message);
+	    };
+	    AlertingService.prototype.addWarning = function (message) {
+	        this.addAlert("warning", message);
+	    };
+	    AlertingService.prototype.addDanger = function (message) {
+	        this.addAlert("danger", message);
+	    };
+	    AlertingService.prototype.removeAlert = function (alert) {
+	        for (var index = 0; index < this.currentAlerts.length; index++) {
+	            if (this.currentAlerts[index] === alert) {
+	                this.currentAlerts.splice(index, 1);
+	                break;
+	            }
+	        }
+	    };
+	    AlertingService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], AlertingService);
+	    return AlertingService;
+	})();
+	exports.AlertingService = AlertingService;
+	exports.alertingServiceInjectables = [
+	    core_1.bind(AlertingService).toClass(AlertingService)
+	];
+
+
+/***/ },
+
 /***/ 498:
+/***/ function(module, exports) {
+
+	var Alert = (function () {
+	    function Alert(type, message) {
+	        this.type = type;
+	        this.message = message;
+	    }
+	    return Alert;
+	})();
+	exports.Alert = Alert;
+
+
+/***/ },
+
+/***/ 501:
 /***/ function(module, exports, __webpack_require__) {
 
 	function __export(m) {
@@ -482,15 +553,18 @@ webpackJsonp([4,5],{
 	var UploadPictureService_1 = __webpack_require__(491);
 	var UserService_1 = __webpack_require__(486);
 	var avatarService_1 = __webpack_require__(495);
+	var AlertingService_1 = __webpack_require__(497);
 	__export(__webpack_require__(488));
 	__export(__webpack_require__(491));
 	__export(__webpack_require__(486));
 	__export(__webpack_require__(495));
+	__export(__webpack_require__(497));
 	exports.servicesInjectables = [
 	    GlobalService_1.globalServiceInjectables,
 	    UploadPictureService_1.uploadPictureServiceInjectables,
 	    UserService_1.userServiceInjectables,
-	    avatarService_1.avatarServiceInjectables
+	    avatarService_1.avatarServiceInjectables,
+	    AlertingService_1.alertingServiceInjectables
 	];
 
 

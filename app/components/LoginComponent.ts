@@ -3,6 +3,7 @@ import {RouterLink, Router} from 'angular2/router';
 
 import {UserService} from '../services/UserService';
 import {AuthService} from '../services/AuthService';
+import {AlertingService} from '../services/AlertingService';
 import {Users, User} from '../models/User';
 import {UsersFilter} from '../filters/usersFilter';
 
@@ -17,13 +18,13 @@ export class LoginComponent {
     public selectedUser: User = new User();
     public usernameFilter = "";
 
-    constructor(private userService: UserService, private authService: AuthService, private router: Router) {
+    constructor(private alertingService: AlertingService, private userService: UserService, private authService: AuthService, private router: Router) {
         this.getAllUsers();
     }
 
     getAllUsers(): void {
         this.userService.getAllUsers()
-            .subscribe(data => this.allUsers = data, err => console.log(err));
+            .subscribe(data => this.allUsers = data, err => this.alertingService.addDanger(err.toString()));
     }
 
     deleteUser() {
@@ -31,12 +32,12 @@ export class LoginComponent {
             .subscribe(data => {
                 this.allUsers = data;
                 this.selectedUser = new User();
-            }, err => console.log(err));
+            }, err => this.alertingService.addDanger(err.toString()));
     }
 
     login(): void {
         if (!this.authService.login(this.selectedUser.name)) {
-            alert("User is not valid.");
+            this.alertingService.addDanger("User is not valid.");
         }
         else {
             this.router.navigate(["/Home"])
