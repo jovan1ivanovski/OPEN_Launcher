@@ -6,7 +6,8 @@
     "scripts": {
         "build": "gulp main-scripts main-css | webpack --progress --profile --colors --display-error-details --display-cached --watch",
         "start": "node Server.js",
-        "startWin": "electron app"
+        "startWin": "electron app",
+        "e2e": "protractor protractor.conf.js"
     },
     "author": "open",
     "license": "MIT",
@@ -16,7 +17,8 @@
         "ts-loader": "^0.7.2",
         "typescript": "~1.7.3",
         "webpack": "^1.12.9",
-        "webpack-dev-server": "^1.14.0"
+        "webpack-dev-server": "^1.14.0",
+        "protractor": "~3.1.1"
     },
     "dependencies": {
         "angular2": "2.0.0-beta.1",
@@ -35,7 +37,7 @@
         "gulp-concat-css": "~2.2.0",
         "express": "~4.13.4",
         "multer": "~1.1.0",
-        "body-parser" : "~1.15.0",
-        "lowdb":"~0.12.4"
+        "body-parser": "~1.15.0",
+        "lowdb": "~0.12.4"
     }
 }
