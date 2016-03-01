@@ -3,12 +3,8 @@ import {Injectable, provide} from 'angular2/core';
 @Injectable()
 export class AuthService {
   login(user: string): boolean {
-    if (user === 'Igor') {
       localStorage.setItem('username', user);
       return true;
-    }
-
-    return false;
   }
 
   logout(): any {
