@@ -51,7 +51,7 @@
                             <label class="text-overflow">{{selectedUser.name}}</label>
                         </div>
                         <div class="row text-center">
-                            <img src="{{selectedUser.profileImg}}" class="img-circle" [class.selected]="ShouldApplySelectedUserCss(user)"/>
+                            <img src="{{selectedUser.profileImg}}" class="img-circle" [class.selected]="ShouldApplySelectedUserCss(selectedUser)"/>
                         </div>
                     </div>
                     <div class="modal-footer">
