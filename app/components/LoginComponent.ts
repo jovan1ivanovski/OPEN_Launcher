@@ -14,7 +14,7 @@ import {UsersFilter} from '../filters/usersFilter';
 })
 export class LoginComponent {
     public allUsers: User[] = new Array<User>();
-    public selectedUser: User;
+    public selectedUser: User = new User();
     public usernameFilter = "";
 
     constructor(private userService: UserService, private authService: AuthService, private router: Router) {
@@ -30,7 +30,7 @@ export class LoginComponent {
         this.userService.deleteUser(this.selectedUser.name)
             .subscribe(data => {
                 this.allUsers = data;
-                this.selectedUser = null;
+                this.selectedUser = new User();
             }, err => console.log(err));
     }
 
