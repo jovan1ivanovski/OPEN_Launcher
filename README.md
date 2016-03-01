@@ -1,6 +1,12 @@
 # OPEN
 
-Angular2 and Electron app to manage OpenTheWindow games project.
+OpenTheWindow games project.
+1.  Angular2 
+2.  Electron 
+3.  Express (node backend server)
+4.  Protractor (end to end testing)
+5.  Webpack
+6.  Gulp
 
 ## Instalation
 To get started, clone the repo to your target directory. This app uses Webpack, and a few commands have been provided as scripts in `package.json`.
@@ -20,7 +26,7 @@ npm run startWin
 
 ## Important Snippets
 
-Electron can be used with any framework, so once all of the code needed to make Electron work is in place, we simply create the Angular 2 app as we would for the web.
+Electron can be used with any framework, so once Electron is set in place, we simply create the Angular 2 app as we would for the web.
 
 The Electron configuration is contained in `./main.js`.
 ```js
@@ -67,11 +73,62 @@ The entry point for the app is the `./index.html` file.
 ```
 The Angular 2 app uses TypeScript and the Webpack configuration is set up to place the transpiled JavaScipt in the `build` directory.
 
-Build exe file for this application
+### Building the exe file using electron
+To install electron-packager globally:
 ```bash
-#install electron-packager globaly
 npm install electron-packager -g
-
-#buld application into win32 x64 exe file
+```
+To build application exe file for win32 x64 run the following command:
+```bash
 electron-packager . OPEN --platform=win32 --arch=x64 --version=version=0.36.9
+```
+
+## Testing
+
+### Protractor
+#### Setup
+Use npm to install Protractor globally with:
+```bash
+npm install -g protractor
+```
+This will install two command line tools, protractor and webdriver-manager. The webdriver-manager is a helper tool to easily get an instance of a Selenium Server running. Use it to download the necessary binaries with:
+```bash
+webdriver-manager update
+```
+Now start up a server with:
+```bash
+webdriver-manager start
+```
+
+#### Protractor example test
+Example test file can be found at `./app/tests/e2e/example.js`
+```js
+describe('angularjs homepage todo list', function() {
+  it('should add a todo', function() {
+    browser.get('https://angularjs.org');
+
+    element(by.model('todoList.todoText')).sendKeys('write first protractor test');
+    element(by.css('[value="add"]')).click();
+
+    var todoList = element.all(by.repeater('todo in todoList.todos'));
+    expect(todoList.count()).toEqual(3);
+    expect(todoList.get(2).getText()).toEqual('write first protractor test');
+
+    // You wrote your first test, cross it off the list
+    todoList.get(2).element(by.css('input')).click();
+    var completedAmount = element.all(by.css('.done-true'));
+    expect(completedAmount.count()).toEqual(2);
+  });
+});
+```
+
+#### Configuration
+Configuration file is `protractor.conf.js`
+Any protractor test file to be executed must be listed there in the specs array.
+
+#### Running protractor
+Assuming webdriver-manager is started in another terminal. Than run:
+```bash
+# "webdriver-manager start" has been executed and active in another terminal
+npm run e2e
 ```
