@@ -13583,8 +13583,10 @@ webpackJsonp([1,2],[
 	    function AlertingService() {
 	        this.currentAlerts = new Array();
 	        this.addAlert = function (type, message) {
+	            var _this = this;
 	            var alert = new Alert_1.Alert(type, message);
 	            this.currentAlerts.push(alert);
+	            setTimeout(function () { return _this.removeAlert(alert); }, 3500);
 	        };
 	    }
 	    AlertingService.prototype.addSuccess = function (message) {
@@ -13695,16 +13697,19 @@ webpackJsonp([1,2],[
 	var core_1 = __webpack_require__(246);
 	var http_1 = __webpack_require__(364);
 	var GlobalService_1 = __webpack_require__(488);
+	var AlertingService_1 = __webpack_require__(490);
 	var multipart_item_1 = __webpack_require__(494);
 	var multipart_uploader_1 = __webpack_require__(495);
 	var UploadPictureService = (function () {
-	    function UploadPictureService(http, globalService) {
+	    function UploadPictureService(http, globalService, alertingService) {
 	        this.http = http;
 	        this.globalService = globalService;
+	        this.alertingService = alertingService;
 	        this.uploader = new multipart_uploader_1.MultipartUploader({ url: this.globalService.URL_UPLOAD_PICTURE });
 	        this.multipartItem = new multipart_item_1.MultipartItem(this.uploader);
 	    }
 	    UploadPictureService.prototype.upload = function (file) {
+	        var _this = this;
 	        if (this.multipartItem == null) {
 	            this.multipartItem = new multipart_item_1.MultipartItem(this.uploader);
 	        }
@@ -13712,20 +13717,20 @@ webpackJsonp([1,2],[
 	            this.multipartItem.formData = new FormData();
 	        this.multipartItem.formData.append("userPhoto", file);
 	        this.multipartItem.withCredentials = false;
-	        this.multipartItem.callback = this.uploadCallback;
+	        this.multipartItem.callback = function (data) { return _this.uploadCallback(data); };
 	        this.multipartItem.upload();
 	    };
 	    UploadPictureService.prototype.uploadCallback = function (data) {
 	        if (data) {
-	            console.debug("uploadCallback() upload file success.");
+	            this.alertingService.addSuccess("Сликата е успешно додадена!");
 	        }
 	        else {
-	            console.error("uploadCallback() upload file false.");
+	            this.alertingService.addDanger("Грешка при додавање!");
 	        }
 	    };
 	    UploadPictureService = __decorate([
 	        core_1.Injectable(), 
-	        __metadata('design:paramtypes', [http_1.Http, GlobalService_1.GlobalService])
+	        __metadata('design:paramtypes', [http_1.Http, GlobalService_1.GlobalService, AlertingService_1.AlertingService])
 	    ], UploadPictureService);
 	    return UploadPictureService;
 	})();
@@ -14021,6 +14026,7 @@ webpackJsonp([1,2],[
 	    };
 	    RegisterComponent = __decorate([
 	        core_1.Component({
+	            directives: [router_1.RouterLink],
 	            templateUrl: './app/views/register.html'
 	        }), 
 	        __metadata('design:paramtypes', [AlertingService_1.AlertingService, avatarService_1.avatarService, UserService_1.UserService, router_1.Router])

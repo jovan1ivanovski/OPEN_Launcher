@@ -11,8 +11,7 @@ export class AlertingService {
     public addAlert = function(type: string, message: string) {
         var alert = new Alert(type, message);
         this.currentAlerts.push(alert);
-        
-        
+        setTimeout(() => this.removeAlert(alert), 3500);
     }
     addSuccess(message: string) {
         this.addAlert("success", message);
@@ -27,7 +26,7 @@ export class AlertingService {
         this.addAlert("danger", message);
     }
 
-    removeAlert(alert) {
+    removeAlert(alert: Alert) {
         for (var index = 0; index < this.currentAlerts.length; index++) {
             if (this.currentAlerts[index] === alert) {
                 this.currentAlerts.splice(index, 1);

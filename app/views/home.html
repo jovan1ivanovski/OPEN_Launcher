@@ -1,6 +1,6 @@
 <div class="row" *ngIf="authService.getUser()">
     <div class="col-sm-12">
-        Logged in as <b>{{ authService.getUser() }}</b>
-        <a href (click)="logout()">Log out</a>
+        Најавен корисник: <b>{{ authService.getUser() }}</b>
+        <a href (click)="logout()">Одјави се</a>
     </div>
 </div>
