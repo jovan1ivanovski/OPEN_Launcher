@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {Router} from 'angular2/router';
+import {RouterLink, Router} from 'angular2/router';
 
 import {User} from '../models/User';
 import {avatarService} from '../services/avatarService';
@@ -7,6 +7,7 @@ import {UserService} from '../services/UserService';
 import {AlertingService} from '../services/AlertingService';
 
 @Component({
+    directives: [RouterLink],
     templateUrl: './app/views/register.html'
 })
 export class RegisterComponent {
