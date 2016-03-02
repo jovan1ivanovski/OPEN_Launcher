@@ -1,4 +1,4 @@
-webpackJsonp([1,5],[
+webpackJsonp([1,2],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -401,9 +401,9 @@ webpackJsonp([1,5],[
 	var router_1 = __webpack_require__(339);
 	var http_1 = __webpack_require__(364);
 	var HomeComponent_1 = __webpack_require__(485);
-	var UploadPictureComponent_1 = __webpack_require__(490);
-	var RegisterComponent_1 = __webpack_require__(494);
-	var LoginComponent_1 = __webpack_require__(496);
+	var UploadPictureComponent_1 = __webpack_require__(492);
+	var RegisterComponent_1 = __webpack_require__(496);
+	var LoginComponent_1 = __webpack_require__(498);
 	var AlertingComponent_1 = __webpack_require__(500);
 	var services_1 = __webpack_require__(501);
 	var AuthService_1 = __webpack_require__(489);
@@ -13341,7 +13341,7 @@ webpackJsonp([1,5],[
 	var core_1 = __webpack_require__(246);
 	var UserService_1 = __webpack_require__(486);
 	var AuthService_1 = __webpack_require__(489);
-	var AlertingService_1 = __webpack_require__(497);
+	var AlertingService_1 = __webpack_require__(490);
 	var User_1 = __webpack_require__(487);
 	var HomeComponent = (function () {
 	    function HomeComponent(alertingService, userService, authService) {
@@ -13578,9 +13578,78 @@ webpackJsonp([1,5],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
+	var Alert_1 = __webpack_require__(491);
+	var AlertingService = (function () {
+	    function AlertingService() {
+	        this.currentAlerts = new Array();
+	        this.addAlert = function (type, message) {
+	            var alert = new Alert_1.Alert(type, message);
+	            this.currentAlerts.push(alert);
+	        };
+	    }
+	    AlertingService.prototype.addSuccess = function (message) {
+	        this.addAlert("success", message);
+	    };
+	    AlertingService.prototype.addInfo = function (message) {
+	        this.addAlert("info", message);
+	    };
+	    AlertingService.prototype.addWarning = function (message) {
+	        this.addAlert("warning", message);
+	    };
+	    AlertingService.prototype.addDanger = function (message) {
+	        this.addAlert("danger", message);
+	    };
+	    AlertingService.prototype.removeAlert = function (alert) {
+	        for (var index = 0; index < this.currentAlerts.length; index++) {
+	            if (this.currentAlerts[index] === alert) {
+	                this.currentAlerts.splice(index, 1);
+	                break;
+	            }
+	        }
+	    };
+	    AlertingService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], AlertingService);
+	    return AlertingService;
+	})();
+	exports.AlertingService = AlertingService;
+	exports.alertingServiceInjectables = [
+	    core_1.bind(AlertingService).toClass(AlertingService)
+	];
+
+
+/***/ },
+/* 491 */
+/***/ function(module, exports) {
+
+	var Alert = (function () {
+	    function Alert(type, message) {
+	        this.type = type;
+	        this.message = message;
+	    }
+	    return Alert;
+	})();
+	exports.Alert = Alert;
+
+
+/***/ },
+/* 492 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(246);
 	var router_1 = __webpack_require__(339);
 	var AuthService_1 = __webpack_require__(489);
-	var UploadPictureService_1 = __webpack_require__(491);
+	var UploadPictureService_1 = __webpack_require__(493);
 	var UploadPictureComponent = (function () {
 	    function UploadPictureComponent(uploadPictureService) {
 	        this.uploadPictureService = uploadPictureService;
@@ -13611,7 +13680,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 491 */
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13626,8 +13695,8 @@ webpackJsonp([1,5],[
 	var core_1 = __webpack_require__(246);
 	var http_1 = __webpack_require__(364);
 	var GlobalService_1 = __webpack_require__(488);
-	var multipart_item_1 = __webpack_require__(492);
-	var multipart_uploader_1 = __webpack_require__(493);
+	var multipart_item_1 = __webpack_require__(494);
+	var multipart_uploader_1 = __webpack_require__(495);
 	var UploadPictureService = (function () {
 	    function UploadPictureService(http, globalService) {
 	        this.http = http;
@@ -13667,7 +13736,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 492 */
+/* 494 */
 /***/ function(module, exports) {
 
 	var MultipartItem = (function () {
@@ -13782,7 +13851,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 493 */
+/* 495 */
 /***/ function(module, exports) {
 
 	var MultipartUploader = (function () {
@@ -13900,7 +13969,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 494 */
+/* 496 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13915,9 +13984,9 @@ webpackJsonp([1,5],[
 	var core_1 = __webpack_require__(246);
 	var router_1 = __webpack_require__(339);
 	var User_1 = __webpack_require__(487);
-	var avatarService_1 = __webpack_require__(495);
+	var avatarService_1 = __webpack_require__(497);
 	var UserService_1 = __webpack_require__(486);
-	var AlertingService_1 = __webpack_require__(497);
+	var AlertingService_1 = __webpack_require__(490);
 	var RegisterComponent = (function () {
 	    function RegisterComponent(alertingService, avatarService, userService, router) {
 	        this.alertingService = alertingService;
@@ -13962,7 +14031,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 495 */
+/* 497 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -13999,7 +14068,7 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 496 */
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -14015,7 +14084,7 @@ webpackJsonp([1,5],[
 	var router_1 = __webpack_require__(339);
 	var UserService_1 = __webpack_require__(486);
 	var AuthService_1 = __webpack_require__(489);
-	var AlertingService_1 = __webpack_require__(497);
+	var AlertingService_1 = __webpack_require__(490);
 	var User_1 = __webpack_require__(487);
 	var usersFilter_1 = __webpack_require__(499);
 	var LoginComponent = (function () {
@@ -14071,75 +14140,6 @@ webpackJsonp([1,5],[
 
 
 /***/ },
-/* 497 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(246);
-	var Alert_1 = __webpack_require__(498);
-	var AlertingService = (function () {
-	    function AlertingService() {
-	        this.currentAlerts = new Array();
-	        this.addAlert = function (type, message) {
-	            var alert = new Alert_1.Alert(type, message);
-	            this.currentAlerts.push(alert);
-	        };
-	    }
-	    AlertingService.prototype.addSuccess = function (message) {
-	        this.addAlert("success", message);
-	    };
-	    AlertingService.prototype.addInfo = function (message) {
-	        this.addAlert("info", message);
-	    };
-	    AlertingService.prototype.addWarning = function (message) {
-	        this.addAlert("warning", message);
-	    };
-	    AlertingService.prototype.addDanger = function (message) {
-	        this.addAlert("danger", message);
-	    };
-	    AlertingService.prototype.removeAlert = function (alert) {
-	        for (var index = 0; index < this.currentAlerts.length; index++) {
-	            if (this.currentAlerts[index] === alert) {
-	                this.currentAlerts.splice(index, 1);
-	                break;
-	            }
-	        }
-	    };
-	    AlertingService = __decorate([
-	        core_1.Injectable(), 
-	        __metadata('design:paramtypes', [])
-	    ], AlertingService);
-	    return AlertingService;
-	})();
-	exports.AlertingService = AlertingService;
-	exports.alertingServiceInjectables = [
-	    core_1.bind(AlertingService).toClass(AlertingService)
-	];
-
-
-/***/ },
-/* 498 */
-/***/ function(module, exports) {
-
-	var Alert = (function () {
-	    function Alert(type, message) {
-	        this.type = type;
-	        this.message = message;
-	    }
-	    return Alert;
-	})();
-	exports.Alert = Alert;
-
-
-/***/ },
 /* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -14184,7 +14184,7 @@ webpackJsonp([1,5],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(246);
-	var AlertingService_1 = __webpack_require__(497);
+	var AlertingService_1 = __webpack_require__(490);
 	var AlertingComponent = (function () {
 	    function AlertingComponent(alertingService) {
 	        this.alertingService = alertingService;
@@ -14218,15 +14218,15 @@ webpackJsonp([1,5],[
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	var GlobalService_1 = __webpack_require__(488);
-	var UploadPictureService_1 = __webpack_require__(491);
+	var UploadPictureService_1 = __webpack_require__(493);
 	var UserService_1 = __webpack_require__(486);
-	var avatarService_1 = __webpack_require__(495);
-	var AlertingService_1 = __webpack_require__(497);
+	var avatarService_1 = __webpack_require__(497);
+	var AlertingService_1 = __webpack_require__(490);
 	__export(__webpack_require__(488));
-	__export(__webpack_require__(491));
+	__export(__webpack_require__(493));
 	__export(__webpack_require__(486));
-	__export(__webpack_require__(495));
 	__export(__webpack_require__(497));
+	__export(__webpack_require__(490));
 	exports.servicesInjectables = [
 	    GlobalService_1.globalServiceInjectables,
 	    UploadPictureService_1.uploadPictureServiceInjectables,
