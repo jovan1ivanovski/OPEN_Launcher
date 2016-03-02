@@ -1,12 +1,12 @@
 import {Component, Injector} from 'angular2/core';
 import {CanActivate} from 'angular2/router';
 
-import {AuthService} from '../services/AuthService';
-import {UploadPictureService} from '../services/UploadPictureService';
+import {AuthService} from '../../shared/services/AuthService';
+import {UploadPictureService} from './UploadPictureService';
 
 @Component({
     selector: 'uploadPicture',
-    templateUrl: `./app/views/uploadPicture.html`
+    templateUrl: `./app/components/upload/uploadPicture.html`
 })
 @CanActivate(
     (nextInstr: any, currInstr: any) => {
@@ -25,6 +25,7 @@ export class UploadPictureComponent {
     uploadFile(): void {
         this.uploadPictureService.upload(this.selectedFiles[0]);
         this.selectedImage = "";
+        this.selectedFiles = null;
     }
 
     onChange(event) {

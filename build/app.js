@@ -414,7 +414,7 @@ webpackJsonp([1,2],[
 	        core_1.Component({
 	            selector: 'app',
 	            directives: [router_1.ROUTER_DIRECTIVES, AlertingComponent_1.AlertingComponent],
-	            templateUrl: "./app/views/app.html",
+	            templateUrl: "./app/app.html"
 	        }),
 	        router_1.RouteConfig([
 	            { path: '/', redirectTo: ['/Login'] },
@@ -13351,8 +13351,6 @@ webpackJsonp([1,2],[
 	        this.allUsers = new Array();
 	        this.newUser = new User_1.User();
 	        this.data = this.getAllUsers();
-	        this.newUser.name = 'Igor';
-	        this.newUser.profileImg = 'Picajzla';
 	    }
 	    HomeComponent.prototype.getAllUsers = function () {
 	        var _this = this;
@@ -13371,7 +13369,7 @@ webpackJsonp([1,2],[
 	    };
 	    HomeComponent.prototype.login = function (username) {
 	        if (!this.authService.login(username)) {
-	            this.alertingService.addDanger("User is not valid.");
+	            this.alertingService.addDanger("Корисникот не е валиден.");
 	        }
 	        return false;
 	    };
@@ -13381,7 +13379,7 @@ webpackJsonp([1,2],[
 	    HomeComponent = __decorate([
 	        core_1.Component({
 	            selector: 'home',
-	            templateUrl: "./app/views/home.html"
+	            templateUrl: "./app/components/home/home.html"
 	        }), 
 	        __metadata('design:paramtypes', [AlertingService_1.AlertingService, UserService_1.UserService, AuthService_1.AuthService])
 	    ], HomeComponent);
@@ -13499,12 +13497,12 @@ webpackJsonp([1,2],[
 	var GlobalService = (function () {
 	    function GlobalService() {
 	        this.URL_UPLOAD_PICTURE = URL + "/api/upload";
-	        this.URL_GETALLUSERS = URL + "/getAllUsers";
-	        this.URL_ADDUSER = URL + "/addUser";
-	        this.URL_GETAVAILABLE_IMAGES = URL + "/api/GetAssetImages/";
+	        this.URL_GETALLUSERS = URL + "/api/getAllUsers";
+	        this.URL_ADDUSER = URL + "/api/addUser";
+	        this.URL_GETPROFILE_IMAGES = URL + "/api/GetProfileImages/";
 	    }
-	    GlobalService.prototype.URL_GETUSER = function (username) { return URL + "/getAllUsers/" + username; };
-	    GlobalService.prototype.URL_DELETEUSER = function (username) { return URL + "/deleteUser/" + username; };
+	    GlobalService.prototype.URL_GETUSER = function (username) { return URL + "/api/getAllUsers/" + username; };
+	    GlobalService.prototype.URL_DELETEUSER = function (username) { return URL + "/api/deleteUser/" + username; };
 	    GlobalService = __decorate([
 	        core_1.Injectable(), 
 	        __metadata('design:paramtypes', [])
@@ -13659,6 +13657,7 @@ webpackJsonp([1,2],[
 	    UploadPictureComponent.prototype.uploadFile = function () {
 	        this.uploadPictureService.upload(this.selectedFiles[0]);
 	        this.selectedImage = "";
+	        this.selectedFiles = null;
 	    };
 	    UploadPictureComponent.prototype.onChange = function (event) {
 	        this.selectedFiles = event.srcElement.files;
@@ -13667,7 +13666,7 @@ webpackJsonp([1,2],[
 	    UploadPictureComponent = __decorate([
 	        core_1.Component({
 	            selector: 'uploadPicture',
-	            templateUrl: "./app/views/uploadPicture.html"
+	            templateUrl: "./app/components/upload/uploadPicture.html"
 	        }),
 	        router_1.CanActivate(function (nextInstr, currInstr) {
 	            var injector = core_1.Injector.resolveAndCreate([AuthService_1.AuthService]);
@@ -13989,7 +13988,7 @@ webpackJsonp([1,2],[
 	var core_1 = __webpack_require__(246);
 	var router_1 = __webpack_require__(339);
 	var User_1 = __webpack_require__(487);
-	var avatarService_1 = __webpack_require__(497);
+	var AvatarService_1 = __webpack_require__(497);
 	var UserService_1 = __webpack_require__(486);
 	var AlertingService_1 = __webpack_require__(490);
 	var RegisterComponent = (function () {
@@ -14001,12 +14000,12 @@ webpackJsonp([1,2],[
 	        this.newUser = new User_1.User();
 	        this.allImages = new Array();
 	        this.allUsers = new Array();
-	        this.selectedImage = "./app/assets/default.jpg";
+	        this.selectedImage = "./app/assets/images/default.jpg";
 	        this.getAvailableImages();
 	    }
 	    RegisterComponent.prototype.getAvailableImages = function () {
 	        var _this = this;
-	        this.avatarService.getUnusedImages()
+	        this.avatarService.getProfileImages()
 	            .subscribe(function (data) { return _this.allImages = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	    };
 	    RegisterComponent.prototype.onSelect = function (img) {
@@ -14015,7 +14014,7 @@ webpackJsonp([1,2],[
 	    RegisterComponent.prototype.addUser = function (user) {
 	        var _this = this;
 	        user.profileImg = this.selectedImage;
-	        if (user.profileImg == "./app/assets/default.jpg") {
+	        if (user.profileImg == "./app/assets/images/default.jpg") {
 	            this.alertingService.addDanger("За да креирате профил, ве молам изберете слика");
 	        }
 	        else {
@@ -14027,9 +14026,9 @@ webpackJsonp([1,2],[
 	    RegisterComponent = __decorate([
 	        core_1.Component({
 	            directives: [router_1.RouterLink],
-	            templateUrl: './app/views/register.html'
+	            templateUrl: './app/components/registration/register.html'
 	        }), 
-	        __metadata('design:paramtypes', [AlertingService_1.AlertingService, avatarService_1.avatarService, UserService_1.UserService, router_1.Router])
+	        __metadata('design:paramtypes', [AlertingService_1.AlertingService, AvatarService_1.AvatarService, UserService_1.UserService, router_1.Router])
 	    ], RegisterComponent);
 	    return RegisterComponent;
 	})();
@@ -14052,25 +14051,25 @@ webpackJsonp([1,2],[
 	var core_1 = __webpack_require__(246);
 	var http_1 = __webpack_require__(364);
 	var GlobalService_1 = __webpack_require__(488);
-	var avatarService = (function () {
-	    function avatarService(http, globalService) {
+	var AvatarService = (function () {
+	    function AvatarService(http, globalService) {
 	        this.http = http;
 	        this.globalService = globalService;
 	    }
-	    avatarService.prototype.getUnusedImages = function () {
-	        return this.http.get(this.globalService.URL_GETAVAILABLE_IMAGES)
+	    AvatarService.prototype.getProfileImages = function () {
+	        return this.http.get(this.globalService.URL_GETPROFILE_IMAGES)
 	            .map(function (res) {
 	            return res.json();
 	        });
 	    };
-	    avatarService = __decorate([
+	    AvatarService = __decorate([
 	        core_1.Injectable(), 
 	        __metadata('design:paramtypes', [http_1.Http, GlobalService_1.GlobalService])
-	    ], avatarService);
-	    return avatarService;
+	    ], AvatarService);
+	    return AvatarService;
 	})();
-	exports.avatarService = avatarService;
-	exports.avatarServiceInjectables = [core_1.bind(avatarService).toClass(avatarService)];
+	exports.AvatarService = AvatarService;
+	exports.avatarServiceInjectables = [core_1.bind(AvatarService).toClass(AvatarService)];
 
 
 /***/ },
@@ -14119,7 +14118,7 @@ webpackJsonp([1,2],[
 	    };
 	    LoginComponent.prototype.login = function () {
 	        if (!this.authService.login(this.selectedUser.name)) {
-	            this.alertingService.addDanger("User is not valid.");
+	            this.alertingService.addDanger("Корисникот не е валиден.");
 	        }
 	        else {
 	            this.router.navigate(["/Home"]);
@@ -14136,7 +14135,7 @@ webpackJsonp([1,2],[
 	            selector: 'login',
 	            directives: [router_1.RouterLink],
 	            pipes: [usersFilter_1.UsersFilter],
-	            templateUrl: "./app/views/login.html"
+	            templateUrl: "./app/components/login/login.html"
 	        }), 
 	        __metadata('design:paramtypes', [AlertingService_1.AlertingService, UserService_1.UserService, AuthService_1.AuthService, router_1.Router])
 	    ], LoginComponent);
@@ -14224,20 +14223,20 @@ webpackJsonp([1,2],[
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	var GlobalService_1 = __webpack_require__(488);
-	var UploadPictureService_1 = __webpack_require__(493);
 	var UserService_1 = __webpack_require__(486);
-	var avatarService_1 = __webpack_require__(497);
+	var AvatarService_1 = __webpack_require__(497);
+	var UploadPictureService_1 = __webpack_require__(493);
 	var AlertingService_1 = __webpack_require__(490);
 	__export(__webpack_require__(488));
-	__export(__webpack_require__(493));
 	__export(__webpack_require__(486));
 	__export(__webpack_require__(497));
+	__export(__webpack_require__(493));
 	__export(__webpack_require__(490));
 	exports.servicesInjectables = [
 	    GlobalService_1.globalServiceInjectables,
 	    UploadPictureService_1.uploadPictureServiceInjectables,
 	    UserService_1.userServiceInjectables,
-	    avatarService_1.avatarServiceInjectables,
+	    AvatarService_1.avatarServiceInjectables,
 	    AlertingService_1.alertingServiceInjectables
 	];
 

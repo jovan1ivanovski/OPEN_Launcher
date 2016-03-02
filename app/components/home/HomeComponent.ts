@@ -1,20 +1,18 @@
 import {Component} from 'angular2/core';
-import {UserService} from '../services/UserService';
-import {AuthService} from '../services/AuthService';
-import {AlertingService} from '../services/AlertingService';
-import {Users, User} from '../models/User';
+import {UserService} from '../../shared/services/UserService';
+import {AuthService} from '../../shared/services/AuthService';
+import {AlertingService} from '../alerting/AlertingService';
+import {Users, User} from '../../shared/models/User';
 
 @Component({
     selector: 'home',
-    templateUrl: `./app/views/home.html`
+    templateUrl: `./app/components/home/home.html`
 })
 export class HomeComponent {
     public allUsers: User[] = new Array<User>();
     public newUser: User = new User();
 
     constructor(private alertingService: AlertingService, private userService: UserService, private authService: AuthService) {
-        this.newUser.name = 'Igor';
-        this.newUser.profileImg = 'Picajzla';
     }
 
     getAllUsers() {
@@ -34,7 +32,7 @@ export class HomeComponent {
 
     login(username: string): boolean {
         if (!this.authService.login(username)) {
-            this.alertingService.addDanger("User is not valid.");
+            this.alertingService.addDanger("Корисникот не е валиден.");
         }
         return false;
     }

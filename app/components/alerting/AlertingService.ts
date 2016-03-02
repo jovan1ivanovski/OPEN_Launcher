@@ -1,6 +1,6 @@
 import {Injectable, bind} from 'angular2/core';
 
-import {Alert} from '../models/Alert'
+import {Alert} from './Alert'
 
 @Injectable()
 export class AlertingService {

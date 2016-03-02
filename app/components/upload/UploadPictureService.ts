@@ -1,11 +1,11 @@
 import {Injectable, bind} from 'angular2/core';
 import {Http} from 'angular2/http';
 
-import {GlobalService} from '../services/GlobalService';
-import {AlertingService} from '../services/AlertingService';
+import {GlobalService} from '../../shared/services/GlobalService';
+import {AlertingService} from '../alerting/AlertingService';
 
-import {MultipartItem} from "../../plugins/multipart-upload/multipart-item";
-import {MultipartUploader} from "../../plugins/multipart-upload/multipart-uploader";
+import {MultipartItem} from "../../shared/plugins/multipart-upload/multipart-item";
+import {MultipartUploader} from "../../shared/plugins/multipart-upload/multipart-uploader";
 
 @Injectable()
 export class UploadPictureService {

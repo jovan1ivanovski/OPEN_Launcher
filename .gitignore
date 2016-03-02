@@ -1,4 +1,3 @@
 .DS_Store
-app/assets/images
 node_modules
 npm-debug.log

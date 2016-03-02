@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
 
-import {AlertingService} from '../services/AlertingService';
+import {AlertingService} from './AlertingService';
 
-import {Alert} from '../models/Alert'
+import {Alert} from './Alert'
 
 @Component({
     selector: 'alerts',    

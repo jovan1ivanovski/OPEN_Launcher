@@ -1,14 +1,14 @@
 import {Component} from 'angular2/core';
 import {RouterLink, Router} from 'angular2/router';
 
-import {User} from '../models/User';
-import {avatarService} from '../services/avatarService';
-import {UserService} from '../services/UserService';
-import {AlertingService} from '../services/AlertingService';
+import {User} from '../../shared/models/User';
+import {AvatarService} from '../../shared/services/AvatarService';
+import {UserService} from '../../shared/services/UserService';
+import {AlertingService} from '../alerting/AlertingService';
 
 @Component({
     directives: [RouterLink],
-    templateUrl: './app/views/register.html'
+    templateUrl: './app/components/registration/register.html'
 })
 export class RegisterComponent {
     public newUser: User = new User();
@@ -17,13 +17,13 @@ export class RegisterComponent {
     public allUsers: User[] = new Array<User>();
     public selectedImage: string;
 
-    constructor(private alertingService: AlertingService, private avatarService: avatarService, private userService: UserService, private router: Router) {
-        this.selectedImage = "./app/assets/default.jpg";
+    constructor(private alertingService: AlertingService, private avatarService: AvatarService, private userService: UserService, private router: Router) {
+        this.selectedImage = "./app/assets/images/default.jpg";
         this.getAvailableImages();
     }
 
     getAvailableImages() {
-        this.avatarService.getUnusedImages()
+        this.avatarService.getProfileImages()
             .subscribe(data => this.allImages = data, err => this.alertingService.addDanger(err.toString()));
     }
 
@@ -33,7 +33,7 @@ export class RegisterComponent {
 
     addUser(user: User) {
         user.profileImg = this.selectedImage;
-        if (user.profileImg == "./app/assets/default.jpg") {
+        if (user.profileImg == "./app/assets/images/default.jpg") {
             this.alertingService.addDanger("За да креирате профил, ве молам изберете слика");
         }
         else {

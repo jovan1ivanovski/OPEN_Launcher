@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 gulp.task('main-scripts', function () {
     var files = [
         './node_modules/jquery/dist/jquery.min.js',
-        './app/js/jqueryelectron.js',
+        './app/assets/js/jqueryelectron.js',
         './node_modules/bootstrap/dist/js/bootstrap.min.js',
         './node_modules/angular2/bundles/angular2-polyfills.min.js'
     ];
@@ -22,7 +22,7 @@ gulp.task('main-scripts', function () {
 
 //CSS Bundle
 gulp.task('main-css', function () {
-    var files = ['./node_modules/bootstrap/dist/css/bootstrap.min.css', './app/styles/site.css'];
+    var files = ['./node_modules/bootstrap/dist/css/bootstrap.min.css', './app/assets/css/site.css'];
     return gulp.src(files)
     .pipe(concatCss('main-css.css'))
     .pipe(minifyCss())

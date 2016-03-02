@@ -36,7 +36,7 @@ app.get('/', function (req, res) {
 });
 
 // Retreave all images from ./app/assets/images/ directory
-app.get('/api/GetAssetImages', function (req, res) {
+app.get('/api/GetProfileImages', function (req, res) {
     readFiles(path.join(__dirname, '/app/assets/images/'),
         function (data) {
             for (var index = 0; index < data.length; index++) {
@@ -60,7 +60,7 @@ app.post('/api/upload', function (req, res) {
 });
 
 // Get all users defined in json lowdb file
-app.get('/getAllUsers/:name?', function (req, res) {
+app.get('/api/getAllUsers/:name?', function (req, res) {
     if (req.params.name != undefined) {
         res.send(db('users').find({ name: req.params.name }));
     } else {
@@ -69,13 +69,13 @@ app.get('/getAllUsers/:name?', function (req, res) {
 });
 
 // Add new user in the json lowdb file
-app.post('/addUser', function (req, res) {
+app.post('/api/addUser', function (req, res) {
     db('users').push(req.body)
         .then(post => res.send(post));
 });
 
 // Delete user from json lowdb file
-app.get('/deleteUser/:name', function (req, res) {
+app.get('/api/deleteUser/:name', function (req, res) {
     db('users').remove({ name: req.params.name });
     res.send(db('users').value());
 });

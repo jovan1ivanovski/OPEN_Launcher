@@ -23,24 +23,6 @@
     {
       "name": "Darth",
       "profileImg": "./app/assets/images/userPhoto-1456224008238.jpg"
-    },
-    {
-      "name": "Ig'Orc",
-      "profileImg": "./app/assets/images/userPhoto-1456224068215.jpg"
-    }
-  ],
-  "images": [
-    {
-      "path": "./app/assets/images/fish.png"
-    },
-    {
-      "path": "./app/assets/images/owl.png"
-    },
-    {
-      "path": "./app/assets/images/lion.png"
-    },
-    {
-      "path": "./app/assets/images/penguin.png"
     }
   ]
 }

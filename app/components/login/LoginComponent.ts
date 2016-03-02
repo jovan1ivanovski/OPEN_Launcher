@@ -1,17 +1,17 @@
 import {Component} from 'angular2/core';
 import {RouterLink, Router} from 'angular2/router';
 
-import {UserService} from '../services/UserService';
-import {AuthService} from '../services/AuthService';
-import {AlertingService} from '../services/AlertingService';
-import {Users, User} from '../models/User';
-import {UsersFilter} from '../filters/usersFilter';
+import {UserService} from '../../shared/services/UserService';
+import {AuthService} from '../../shared/services/AuthService';
+import {AlertingService} from '../alerting/AlertingService';
+import {Users, User} from '../../shared/models/User';
+import {UsersFilter} from '../../shared/filters/usersFilter';
 
 @Component({
     selector: 'login',
     directives: [RouterLink],
     pipes: [UsersFilter],
-    templateUrl: `./app/views/login.html`
+    templateUrl: `./app/components/login/login.html`
 })
 export class LoginComponent {
     public allUsers: User[] = new Array<User>();
@@ -37,7 +37,7 @@ export class LoginComponent {
 
     login(): void {
         if (!this.authService.login(this.selectedUser.name)) {
-            this.alertingService.addDanger("User is not valid.");
+            this.alertingService.addDanger("Корисникот не е валиден.");
         }
         else {
             this.router.navigate(["/Home"])
