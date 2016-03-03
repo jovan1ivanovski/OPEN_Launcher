@@ -68,7 +68,6 @@ The entry point for the app is the `./index.html` file.
     <script src="build/common.js"></script>
     <script src="build/angular2.js"></script>
     <script src="build/app.js"></script>
-    <script src="build/components.js"></script>
 </body>
 ```
 The Angular 2 app uses TypeScript and the Webpack configuration is set up to place the transpiled JavaScipt in the `build` directory.
