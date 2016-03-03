@@ -32,7 +32,13 @@ export class LoginComponent {
             .subscribe(data => {
                 this.allUsers = data;
                 this.selectedUser = new User();
-            }, err => this.alertingService.addDanger(err.toString()));
+                this.alertingService.addSuccess("Профилот е успешно избришан.");
+            }, err => {
+                this.alertingService.addDanger(err.toString());
+                this.alertingService.addDanger("Грешка при бришење на профилот.");
+            }
+            );
+
     }
 
     login(): void {
@@ -50,5 +56,9 @@ export class LoginComponent {
 
     ShouldApplySelectedUserCss(user: User): boolean {
         return this.selectedUser === user;
+    }
+
+    deleteCancelled(): void {
+        this.alertingService.addInfo("Бришењето е откажано.");
     }
 }
