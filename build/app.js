@@ -13357,11 +13357,6 @@ webpackJsonp([1,2],[
 	        this.userService.getAllUsers()
 	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	    };
-	    HomeComponent.prototype.addUser = function (user) {
-	        var _this = this;
-	        this.userService.addUser(user)
-	            .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
-	    };
 	    HomeComponent.prototype.deleteUser = function (name) {
 	        var _this = this;
 	        this.userService.deleteUser(name)
@@ -13425,12 +13420,14 @@ webpackJsonp([1,2],[
 	        });
 	    };
 	    UserService.prototype.addUser = function (user) {
+	        console.log(user);
 	        var headers = new http_1.Headers();
 	        headers.append('Content-Type', 'application/json');
 	        return this.http.post(this.globalService.URL_ADDUSER, JSON.stringify(user), { headers: headers })
 	            .map(function (res) {
-	            var response = new User_1.Users(res.json());
-	            return response.users;
+	            var result = res.json();
+	            var response = new User_1.Users(result.data);
+	            return { users: response.users, message: result.message };
 	        });
 	    };
 	    UserService.prototype.deleteUser = function (name) {
@@ -14000,6 +13997,7 @@ webpackJsonp([1,2],[
 	        this.newUser = new User_1.User();
 	        this.allImages = new Array();
 	        this.allUsers = new Array();
+	        this.vm = {};
 	        this.selectedImage = "./app/assets/images/default.jpg";
 	        this.getAvailableImages();
 	    }
@@ -14014,13 +14012,22 @@ webpackJsonp([1,2],[
 	    RegisterComponent.prototype.addUser = function (user) {
 	        var _this = this;
 	        user.profileImg = this.selectedImage;
+	        console.log(this.vm);
 	        if (user.profileImg == "./app/assets/images/default.jpg") {
 	            this.alertingService.addDanger("За да креирате профил, ве молам изберете слика");
 	        }
 	        else {
 	            this.userService.addUser(user)
-	                .subscribe(function (data) { return _this.allUsers = data; }, function (err) { return _this.alertingService.addDanger(err.toString()); });
-	            this.router.navigate(["/Login"]);
+	                .subscribe(function (data) {
+	                _this.allUsers = data.users;
+	                if (data.message.length > 0) {
+	                    _this.alertingService.addDanger("Корисничкото име веќе постои, обидете се да се регистрирате со друго име");
+	                }
+	                else {
+	                    _this.alertingService.addSuccess("Успешно внесен корисник.");
+	                    _this.router.navigate(["/Login"]);
+	                }
+	            }, function (err) { return _this.alertingService.addDanger(err.toString()); });
 	        }
 	    };
 	    RegisterComponent = __decorate([

@@ -23,6 +23,14 @@
     {
       "name": "Darth",
       "profileImg": "./app/assets/images/userPhoto-1456224008238.jpg"
+    },
+    {
+      "name": "Owl",
+      "profileImg": "./app/assets/images/owl.png"
+    },
+    {
+      "name": "Kiko",
+      "profileImg": "./app/assets/images/userPhoto-1456905132378.jpg"
     }
   ]
 }

@@ -70,8 +70,13 @@ app.get('/api/getAllUsers/:name?', function (req, res) {
 
 // Add new user in the json lowdb file
 app.post('/api/addUser', function (req, res) {
-    db('users').push(req.body)
-        .then(post => res.send(post));
+    var existingUser = db('users').find({ name: req.body.name });
+    if(existingUser) {
+        res.send({ data: db('users').value(), message: "Корисникот веќе постои"});
+    }
+    else {
+        db('users').push(req.body).then(post => res.send({ data: db('users').value(), message: "" }));
+    }
 });
 
 // Delete user from json lowdb file

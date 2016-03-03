@@ -20,10 +20,10 @@ export class HomeComponent {
             .subscribe(data => this.allUsers = data, err => this.alertingService.addDanger(err.toString()));
     }
 
-    addUser(user: User) {
-        this.userService.addUser(user)
-            .subscribe(data => this.allUsers = data, err => this.alertingService.addDanger(err.toString()));
-    }
+    //addUser(user: User) {
+      //  this.userService.addUser(user)
+        //    .subscribe(data => this.allUsers = data.users, err => this.alertingService.addDanger(err.toString()));
+    //}
 
     deleteUser(name) {
         this.userService.deleteUser(name)
