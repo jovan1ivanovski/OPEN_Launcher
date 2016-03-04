@@ -1,6 +1,7 @@
 # OPEN
 
 OpenTheWindow games project.
+
 1.  Angular2 
 2.  Electron 
 3.  Express (node backend server)
@@ -86,6 +87,7 @@ electron-packager . OPEN --platform=win32 --arch=x64 --version=version=0.36.9
 
 ### Unit Tests
 Jasmine with typescript are used for writing unit tests. 
+
 Karma is used as a test runner. 
 
 #### Unit test example
