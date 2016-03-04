@@ -102,7 +102,7 @@ describe('test', () => {
 #### Running unit tests
 To start Karma running all unit tests use this command:
 ```bash
-npm run test
+npm test
 ```
 
 #### Configuration
