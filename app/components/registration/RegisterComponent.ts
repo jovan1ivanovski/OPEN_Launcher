@@ -16,6 +16,7 @@ export class RegisterComponent {
     public newUserImage: string;
     public allUsers: User[] = new Array<User>();
     public selectedImage: string;
+    public vm: Object = {};
 
     constructor(private alertingService: AlertingService, private avatarService: AvatarService, private userService: UserService, private router: Router) {
         this.selectedImage = "./app/assets/images/default.jpg";
@@ -33,13 +34,23 @@ export class RegisterComponent {
 
     addUser(user: User) {
         user.profileImg = this.selectedImage;
+        console.log(this.vm);
+
         if (user.profileImg == "./app/assets/images/default.jpg") {
             this.alertingService.addDanger("За да креирате профил, ве молам изберете слика");
         }
         else {
             this.userService.addUser(user)
-                .subscribe(data => this.allUsers = data, err => this.alertingService.addDanger(err.toString()));
-            this.router.navigate(["/Login"]);
+                .subscribe(data => {
+                    this.allUsers = data.users;
+                    if (data.message.length > 0) {
+                        this.alertingService.addDanger("Корисничкото име веќе постои, обидете се да се регистрирате со друго име");
+                    }
+                    else {
+                        this.alertingService.addSuccess("Успешно внесен корисник.")
+                        this.router.navigate(["/Login"]);
+                    }
+                }, err => this.alertingService.addDanger(err.toString()));
         }
     }
 }
