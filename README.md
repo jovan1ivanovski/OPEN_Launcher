@@ -85,25 +85,26 @@ electron-packager . OPEN --platform=win32 --arch=x64 --version=version=0.36.9
 ## Testing
 
 ### Unit Tests
-#### Setup
-We are using Jasmine for writing unit test files with typescript and Karma as a runner of all our unit test files. 
+Jasmine with typescript are used for writing unit tests. 
+Karma is used as a test runner. 
 
-#### Location and Naming convention
-All unit test files must be placed in `app/**/**/*spec.ts`.
-
-#### Starting unit tests
-To start Karma running all unit tests use this command:
-```bash
-npm run test
-```
-All configurations regarding Jasmine and Karma can be found in `karma.config.js` file.
-Example of unit test file:
+#### Unit test example
 ```js
 /// <reference path="../../../typings/jasmine/jasmine.d.ts" />
 describe('test', () => {
   it('test description', () => expect(true).toEqual(true));
 });
 ```
+
+#### Running unit tests
+To start Karma running all unit tests use this command:
+```bash
+npm run test
+```
+
+#### Configuration
+Configuration file is `karma.conf.js`
+Unit test files must be placed in `app/**/**/*spec.ts` (/app/*anyFolder*/*anyFolder*/*spec.ts).
 
 ### Protractor
 #### Setup
