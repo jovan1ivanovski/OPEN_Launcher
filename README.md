@@ -1,12 +1,14 @@
 # OPEN
 
 OpenTheWindow games project.
+
 1.  Angular2 
 2.  Electron 
 3.  Express (node backend server)
-4.  Protractor (end to end testing)
-5.  Webpack
-6.  Gulp
+4.  Jasmine (unit tests) + Karma (test runner)
+5.  Protractor (end to end testing)
+6.  Webpack (script bundler)
+7.  Gulp (task runner)
 
 ## Instalation
 To get started, clone the repo to your target directory. This app uses Webpack, and a few commands have been provided as scripts in `package.json`.
@@ -85,16 +87,11 @@ electron-packager . OPEN --platform=win32 --arch=x64 --version=version=0.36.9
 ## Testing
 
 ### Unit Tests
-#### Setup
-We are using Jasmine for writing unit test files with typescript and Karma as a runner of all our unit test files. 
+Jasmine with typescript are used for writing unit tests. 
 
-#### Starting unit tests
-To start Karma running all unit tests use this command:
-```bash
-npm run test
-```
-All configurations regarding Jasmine and Karma can be found in `karma.config.js` file.
-Example of unit test file:
+Karma is used as a test runner. 
+
+#### Unit test example
 ```js
 /// <reference path="../../../typings/jasmine/jasmine.d.ts" />
 describe('test', () => {
@@ -102,15 +99,24 @@ describe('test', () => {
 });
 ```
 
-#### Location and Naming convention
-All unit test files must be placed in `app/**/**/*spec.ts`.
+#### Running unit tests
+To start Karma running all unit tests use this command:
+```bash
+npm run test
+```
+
+#### Configuration
+Configuration file is `karma.conf.js`
+
+Unit test files must be placed in `app/**/**/*spec.ts` (/app/*anyFolder*/*anyFolder*/*spec.ts).
 
 #### Reports
 Assuming the command "npm test" has been run, the folder `test_reports` is being created. 
 
 That folder contains two additional folders `test_reports/coverage` where coverage results are, and `test_reports/html` where plain html report is stored. 
 
-To view coverage results open `test_reports/coverage/index.html` in browser. To view test results open `test_reports/html/units.html` in browser. 
+To view coverage results open `test_reports/coverage/index.html` in browser. To view test results open `test_reports/html/units.html` in browser.
+
 
 ### Protractor
 #### Setup
