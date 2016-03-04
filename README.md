@@ -5,9 +5,10 @@ OpenTheWindow games project.
 1.  Angular2 
 2.  Electron 
 3.  Express (node backend server)
-4.  Protractor (end to end testing)
-5.  Webpack
-6.  Gulp
+4.  Jasmine (unit tests) + Karma (test runner)
+5.  Protractor (end to end testing)
+6.  Webpack (script bundler)
+7.  Gulp (task runner)
 
 ## Instalation
 To get started, clone the repo to your target directory. This app uses Webpack, and a few commands have been provided as scripts in `package.json`.
