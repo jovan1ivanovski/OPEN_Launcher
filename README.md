@@ -88,9 +88,6 @@ electron-packager . OPEN --platform=win32 --arch=x64 --version=version=0.36.9
 #### Setup
 We are using Jasmine for writing unit test files with typescript and Karma as a runner of all our unit test files. 
 
-#### Location and Naming convention
-All unit test files must be placed in `app/**/**/*spec.ts`.
-
 #### Starting unit tests
 To start Karma running all unit tests use this command:
 ```bash
@@ -104,6 +101,16 @@ describe('test', () => {
   it('test description', () => expect(true).toEqual(true));
 });
 ```
+
+#### Location and Naming convention
+All unit test files must be placed in `app/**/**/*spec.ts`.
+
+#### Reports
+Assuming the command "npm test" has been run, the folder `test_reports` is being created. 
+
+That folder contains two additional folders `test_reports/coverage` where coverage results are, and `test_reports/html` where plain html report is stored. 
+
+To view coverage results open `test_reports/coverage/index.html` in browser. To view test results open `test_reports/html/units.html` in browser. 
 
 ### Protractor
 #### Setup
