@@ -9,6 +9,7 @@ exports.config = {
     framework: 'jasmine',
      onPrepare: function() {
     browser.get('http://localhost:3000/');
+     global.EC = protractor.ExpectedConditions;
     },
 
     useAllAngular2AppRoots: true
