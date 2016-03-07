@@ -24,14 +24,16 @@ this.get = function (value) {
         deleteBtn.click();
         browser.wait(EC.visibilityOf(modal), 5000);
         NoBtn.click();
+        browser.wait(EC.visibilityOf(someProfile), 5000);
     };  
     
     
    this.CountProfile = function(){
        var items = element.all(by.className('img-circle'));  
-       items.count().then(function(originalCount) {
-       startCount = originalCount;
-       return startCount;
+       items.count().then(function (count) {
+       var res = count;
+       return res;
+       
    });
    
   };    

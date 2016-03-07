@@ -5,6 +5,7 @@ describe('Game menu log in user', function () {
 
 beforeEach(function () {
         console.log(" Method started");
+         browser.get("http://localhost:3000/#/login");
 });
  
 describe('Open application', function () {
@@ -16,7 +17,7 @@ describe('Open application', function () {
 
     it('sign in button should not be visible if profile is not selected', function () {
         
-        browser.get("http://localhost:3000/#/login");
+        
         expect(logInPage.signBtnIsVisible()).toBe(false);
         console.log("Finishing :Sign in button not visible");
         

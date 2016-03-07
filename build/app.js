@@ -13581,7 +13581,7 @@ webpackJsonp([1,2],[
 	            var _this = this;
 	            var alert = new Alert_1.Alert(type, message);
 	            this.currentAlerts.push(alert);
-	            setTimeout(function () { return _this.removeAlert(alert); }, 3500);
+	            setTimeout(function () { return _this.removeAlert(alert); }, 10000);
 	        };
 	    }
 	    AlertingService.prototype.addSuccess = function (message) {
@@ -14121,7 +14121,11 @@ webpackJsonp([1,2],[
 	            .subscribe(function (data) {
 	            _this.allUsers = data;
 	            _this.selectedUser = new User_1.User();
-	        }, function (err) { return _this.alertingService.addDanger(err.toString()); });
+	            _this.alertingService.addSuccess("Профилот е успешно избришан.");
+	        }, function (err) {
+	            _this.alertingService.addDanger(err.toString());
+	            _this.alertingService.addDanger("Грешка при бришење на профилот.");
+	        });
 	    };
 	    LoginComponent.prototype.login = function () {
 	        if (!this.authService.login(this.selectedUser.name)) {
@@ -14136,6 +14140,9 @@ webpackJsonp([1,2],[
 	    };
 	    LoginComponent.prototype.ShouldApplySelectedUserCss = function (user) {
 	        return this.selectedUser === user;
+	    };
+	    LoginComponent.prototype.deleteCancelled = function () {
+	        this.alertingService.addInfo("Бришењето е откажано.");
 	    };
 	    LoginComponent = __decorate([
 	        core_1.Component({

@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "name": "Leo",
-      "profileImg": "./app/assets/images/lion.png"
-    },
-    {
-      "name": "Fish",
-      "profileImg": "./app/assets/images/fish.png"
-    },
-    {
       "name": "Kiko",
       "profileImg": "./app/assets/images/userPhoto-1456905132378.jpg"
     },
@@ -17,20 +9,24 @@
       "profileImg": "./app/assets/images/userPhoto-1456758510015.jpg"
     },
     {
-      "name": "fsfsfsfsf",
-      "profileImg": "./app/assets/images/lion.png"
-    },
-    {
-      "name": "Dani",
-      "profileImg": "./app/assets/images/fish.png"
-    },
-    {
       "name": "daaaa",
       "profileImg": "./app/assets/images/fish.png"
     },
     {
-      "name": "daaaani",
-      "profileImg": "./app/assets/images/fish.png"
+      "name": "daniiiiii",
+      "profileImg": "./app/assets/images/lion.png"
+    },
+    {
+      "name": "adadadadadada",
+      "profileImg": "./app/assets/images/lion.png"
+    },
+    {
+      "name": "dfdfdfdfdf",
+      "profileImg": "./app/assets/images/penguin.png"
+    },
+    {
+      "name": "dfdfdfdfdffdfdf",
+      "profileImg": "./app/assets/images/owl.png"
     }
   ]
 }
