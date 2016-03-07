@@ -4,9 +4,13 @@ exports.config = {
     
     seleniumAddress: 'http://localhost:4444/wd/hub',
     
-    specs: [path.normalize("app/tests/e2e/example.js")],
+    specs: [path.normalize("app/tests/e2e/*.js")],
 
     framework: 'jasmine',
+     onPrepare: function() {
+    browser.get('http://localhost:3000/');
+     global.EC = protractor.ExpectedConditions;
+    },
 
     useAllAngular2AppRoots: true
 };
