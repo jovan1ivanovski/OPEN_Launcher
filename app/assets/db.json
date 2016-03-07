@@ -31,6 +31,10 @@
     {
       "name": "Kiko",
       "profileImg": "./app/assets/images/userPhoto-1456905132378.jpg"
+    },
+    {
+      "name": "dani",
+      "profileImg": "./app/assets/images/fish.png"
     }
   ]
 }

@@ -1,34 +1,31 @@
-var UserLogin = function () {
+var logInPage = function () {
 
 	
-	var profile_number = element.all(by.className('img-circle')).count();
-    var random_no = Math.floor(Math.random() * profile_number);
+	//var profile_number = element.all(by.className('img-circle')).count();
+   //var random_no = Math.floor(Math.random() * profile_number);
     var signBtn = element(by.id('btn-login'));
-    var someProfile =element.all(by.className('img-circle')).get(random_no);
+    var someProfile =element.all(by.className('img-circle')).get(4);
     var logOutbtn= element(by.id('logout'));
 	
-	
+	this.get = function (value) {
+        browser.get(value);
+    };
     
     this.LogIn = function () {
         someProfile.click();
         signBtn.click();
+        
 		
     };
     
        
     this.LogOut = function () {
-        someProfile.click();
-        signBtn.click();
-		logOutbtn.click();
+        logOutbtn.click();
     };
     
-    this.LoginButtonIsDisplayed= function (element){
-        element.isDisplayed();
-        return this;
-    }
+   
+  
 
-   
-   
 };
-
-module.exports = new UserLogin();
+   
+module.exports = new logInPage();

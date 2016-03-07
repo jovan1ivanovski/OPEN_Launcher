@@ -25,7 +25,7 @@
         <div class="form-group">
             <div class="col-sm-10 col-sm-push-2">
                 <div class="col-sm-4 text-left" *ngIf="selectedUser.name">
-                    <input type="button" class="btn btn-primary col-sm-12 center-block" value="Логирај се" (click)="login()" />
+                    <input type="button" id="btn-login"class="btn btn-primary col-sm-12 center-block" value="Логирај се" (click)="login()" />
                 </div>
                 <div class="col-sm-4 text-center">
                     <a class="btn btn-primary col-sm-12 center-block" [routerLink]="['/Register']">Креирај нов профил</a>
