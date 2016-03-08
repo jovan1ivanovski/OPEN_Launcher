@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Корисничко име</label>
                 <div class="col-sm-10">
-                    <input type="text" ngControl="name" class="form-control" placeholder="Корисничко име" required [(ngModel)]="vm.firstName"
+                    <input type="text" ngControl="name" id="username" class="form-control" placeholder="Корисничко име" required [(ngModel)]="vm.firstName"
                     />
                 </div>
             </div>
@@ -31,10 +31,10 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-1 col-sm-offset-2">
-                    <button type="submit" class="btn btn-primary" [disabled]="!user.valid">Креирај</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!user.valid" id="createNewUser">Креирај</button>
                 </div>
                 <div class="col-sm-4">
-                    <a class="btn btn-default" [routerLink]="['/Login']">Назад</a>
+                    <a class="btn btn-default" [routerLink]="['/Login']" id="backToLogin">Назад</a>
                 </div>
             </div>
         </form>
