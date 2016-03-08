@@ -28,10 +28,10 @@
                     <input type="button" id="btn-login"class="btn btn-primary col-sm-12 center-block" value="Логирај се" (click)="login()" />
                 </div>
                 <div class="col-sm-4 text-center">
-                    <a class="btn btn-primary col-sm-12 center-block" [routerLink]="['/Register']">Креирај нов профил</a>
+                    <a class="btn btn-primary col-sm-12 center-block" id="createUser"[routerLink]="['/Register']">Креирај нов профил</a>
                 </div>
                 <div class="col-sm-4 text-center" *ngIf="selectedUser.name">
-                    <input type="button" id= "deleteBtn" class="btn btn-primary col-sm-12 center-block" value="Избриши профил" data-toggle="modal" data-target="#myModal"
+                    <input type="button" id="deleteBtn" class="btn btn-primary col-sm-12 center-block" value="Избриши профил" data-toggle="modal" data-target="#myModal"
                     data-backdrop="static" />
                 </div>
             </div>

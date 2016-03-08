@@ -5,31 +5,30 @@ describe('Game menu delete user', function () {
 
 beforeEach(function () {
         console.log(" Method started");
+        browser.get("http://localhost:3000/#/login");
         
         
 });
  
 describe('Delete user', function () {
-it('should delete profile and remove it from the log in list', function() {
-   var before= deleteUser.CountProfile();
-   deleteUser.DeleteUser();
-   var after= deleteUser.CountProfile();
-   expect(before).toEqual(after);
-    console.log("Finishing : Delete username");
-        });
-    });
-    
- 
- xdescribe('Cancer Delete user', function () {
- it('should delete profile and remove it from the log in list', function() {
-   var before= deleteUser.CountProfile();
-   deleteUser.CancelDelete();
-  var after= deleteUser.CountProfile();
+it('should delete profile and remove it from the profile page', function() {
    
-   expect(before).toEqual(after);
-    console.log("Finishing :Cancel Delete username");
+   deleteUser.DeleteUser();
+  expect(deleteUser.deleteBtnIsVisible()).toBe(false);
+        
+console.log("Finishing : Delete profile");
+  });
+    
+    }); 
+ 
+ describe('Cancer Delete user', function () {
+ it('should return to the profile page and delete button to be visible', function() {
+   
+   deleteUser.CancelDelete();
+   expect(deleteUser.deleteBtnIsVisible()).toBe(true);
+   console.log("Finishing :Cancel Delete profile");
         });
     }); 
     
-});
+ }); 
 
