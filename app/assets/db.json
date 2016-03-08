@@ -1,24 +1,3 @@
 {
-  "users": [
-    {
-      "name": "ddddd",
-      "profileImg": "./app/assets/images/lion.png"
-    },
-    {
-      "name": "daniela",
-      "profileImg": "./app/assets/images/userPhoto-1456224068215.jpg"
-    },
-    {
-      "name": "darth",
-      "profileImg": "./app/assets/images/userPhoto-1456224008238.jpg"
-    },
-    {
-      "name": "daaaa",
-      "profileImg": "./app/assets/images/fish.png"
-    },
-    {
-      "name": "daaaaaaaa",
-      "profileImg": "./app/assets/images/lion.png"
-    }
-  ]
+    "users": []
 }
