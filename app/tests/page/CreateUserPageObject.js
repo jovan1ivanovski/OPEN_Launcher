@@ -8,6 +8,7 @@ var CreateUserPage = function () {
     var selectPhoto = element(by.xpath('/html/body/app/div/undefined/div/div/form/div[2]/div/div[3]/div/img'));
 	var createBtnSecondPage = element(by.id('createNewUser'));
 	var createdProfilMsg = element(by.xpath('/html/body/app/div/login/div/div/div[1]/label'));
+    var alertmessage= element(by.id('messagelabel'));
 	//var selectPictureMsg = element(by.xpath('/html/body/app/div/alerts/div/div'));
 	//var enterNameMsg = element(by.xpath(''));
 	var backBtn = element(by.id('backToLogin'));
@@ -40,8 +41,20 @@ var CreateUserPage = function () {
     this.clickBack = function(){
 		backBtn.click();
 	};
+    
+     this.ReturnMessage =function (){
+       var message = alertmessage.getText();
+       return message;   
+       
+     }
+     
+      this.isCreateBtnEnabled = function(){
+       var isDisabled= createBtnSecondPage.isEnabled();
+        return isDisabled;
    
   
+
+};
 
 };
    

@@ -5,7 +5,7 @@ var logInPage = function () {
     var signBtn = element(by.id('btn-login'));
     var someProfile =element.all(by.className('img-circle')).get(1);
     var logOutbtn= element(by.id('logout'));
-    var name= element(by.id('username'));
+    var name= element(by.id('usernamefield'));
     var Filtered_names =element.all(by.css('body > app > div > login > div > div > div:nth-child(2) > div')).get(0);
     
 	

@@ -26,6 +26,7 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "phantomjs-prebuilt": "^2.1.4",
     "protractor": "~3.1.1",
+    "jasmine-reporters": "*",
     "system-npm": "^0.5.8",
     "systemjs": "^0.19.23",
     "traceur": "0.0.104",
