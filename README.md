@@ -94,7 +94,7 @@ Karma is used as a test runner.
 #### Unit test example
 ```js
 /// <reference path="../../../typings/jasmine/jasmine.d.ts" />
-// if you are getting red text while running npm rub test-build because of typings remove the line above.
+// if you are getting red text while running npm run test-build because of typings remove the line above.
 describe('test', () => {
   it('test description', () => expect(true).toEqual(true));
 });
