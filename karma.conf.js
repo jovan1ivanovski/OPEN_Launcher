@@ -23,25 +23,41 @@ module.exports = function (config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'tests/**/**/*.js': ['browserify']
+            'tests/**/*.js': ['browserify'],
+            'tests/**/*spec.js': ['coverage']
+        },
+        
+        //Reports
+        reporters: ['progress','coverage', 'html'],
+ 
+        // configure the html reporter 
+        htmlReporter: {
+            outputDir: 'tests/unit_test_reports', // where to put the reports  
+            templatePath: null, // set if you moved jasmine_template.html 
+            focusOnFailures: true, // reports show failures on start 
+            namedFiles: false, // name files instead of creating sub-directories 
+            pageTitle: null, // page title for reports; browser info by default 
+            urlFriendlyName: false, // simply replaces spaces with _ for files/dirs 
+            reportName: 'html', // report summary filename; browser info by default 
+        },
+        
+        //configure the coverage reporter 
+        coverageReporter: {
+            dir : 'tests/unit_test_reports/coverage/'
         },
     
         // web server port
         port: 9876,
 
-
         // enable / disable colors in the output (reporters and logs)
         colors: true,
-
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO,
 
-
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: false,
-
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
@@ -58,7 +74,9 @@ module.exports = function (config) {
         plugins: [
             "karma-phantomjs-launcher",
             'karma-browserify',
-            "karma-jasmine"
+            "karma-jasmine",
+            "karma-coverage",
+            "karma-html-reporter"
           ],
     })
 }
