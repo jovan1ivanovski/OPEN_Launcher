@@ -13572,6 +13572,7 @@ webpackJsonp([1,2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
+	var reflect = __webpack_require__(244);
 	var core_1 = __webpack_require__(246);
 	var Alert_1 = __webpack_require__(491);
 	var AlertingService = (function () {
@@ -14220,7 +14221,7 @@ webpackJsonp([1,2],[
 	    AlertingComponent = __decorate([
 	        core_1.Component({
 	            selector: 'alerts',
-	            template: "\n        <div *ngIf=\"hasAlerts()\">\n            <div *ngFor=\"#alert of alerts()\" class=\"alert alert-{{alert.type}}\">\n                {{ alert.message }}\n                <div class=\"close\" (click)=\"removeAlert(alert)\">\n                    <span class=\"glyphicon glyphicon-remove\"></span>\n                </div>\n            </div>\n        </div>"
+	            template: "\n        <div *ngIf=\"hasAlerts()\">\n            <div *ngFor=\"#alert of alerts()\" class=\"alert alert-{{alert.type}}\">\n                <label id=\"messagelabel\">{{ alert.message }}</label>\n                <div class=\"close\" (click)=\"removeAlert(alert)\">\n                    <span class=\"glyphicon glyphicon-remove\"></span>\n                </div>\n            </div>\n        </div>"
 	        }), 
 	        __metadata('design:paramtypes', [AlertingService_1.AlertingService])
 	    ], AlertingComponent);
