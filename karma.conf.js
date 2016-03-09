@@ -7,65 +7,25 @@ module.exports = function (config) {
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
 
+        frameworks: ['browserify','jasmine'],
 
-        // frameworks to use
-        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine'],
-
-
-        // list of files / patterns to load in the browser
         files: [
-            'app/**/**/*spec.ts'
+            'node_modules/traceur/bin/traceur-runtime.js',
+            'node_modules/es6-module-loader/dist/es6-module-loader.js',
+            'node_modules/systemjs/dist/system.js',
+            'node_modules/angular2/bundles/angular2.dev.js',
+            'tests/**/*spec.js'
         ],
-
-
-        // list of files to exclude
+            
         exclude: [
         ],
-
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            '**/*.ts': ['typescript', 'coverage']
+            'tests/**/**/*.js': ['browserify']
         },
-
-        typescriptPreprocessor: {
-            // options passed to the typescript compiler 
-            options: {
-                sourceMap: false, // (optional) Generates corresponding .map file. 
-                target: 'ES5', // (optional) Specify ECMAScript target version: 'ES3' (default), or 'ES5' 
-                module: 'amd', // (optional) Specify module code generation: 'commonjs' or 'amd' 
-                noImplicitAny: true, // (optional) Warn on expressions and declarations with an implied 'any' type. 
-                noResolve: true, // (optional) Skip resolution and preprocessing. 
-                removeComments: true, // (optional) Do not emit comments to output. 
-                concatenateOutput: false // (optional) Concatenate and emit output to single file. By default true if module option is omited, otherwise false. 
-            },
-            // extra typing definitions to pass to the compiler (globs allowed) 
-            typings: [
-                'typings/**/*.d.ts'
-            ],
-            // transforming the filenames 
-            transformPath: function (path) {
-                return path.replace(/\.ts$/, '.js');
-            }
-        },
-
-        // test results reporter to use
-        // possible values: 'dots', 'progress'
-        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage', 'html'],
-
-        htmlReporter: {
-            outputFile: 'units.html',
-            outputDir: 'test_reports/html/'
-        },
-
-        coverageReporter: {
-            type: 'html',
-            dir: 'test_reports/coverage/'
-        },
-
+    
         // web server port
         port: 9876,
 
@@ -80,20 +40,25 @@ module.exports = function (config) {
 
 
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
+        autoWatch: false,
 
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: ['PhantomJS'],
 
-
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false,
+        singleRun: true,
 
         // Concurrency level
         // how many browser should be started simultaneous
-        concurrency: Infinity
+        concurrency: Infinity,
+        
+        plugins: [
+            "karma-phantomjs-launcher",
+            'karma-browserify',
+            "karma-jasmine"
+          ],
     })
 }
