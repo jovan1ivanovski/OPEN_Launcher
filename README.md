@@ -94,6 +94,7 @@ Karma is used as a test runner.
 #### Unit test example
 ```js
 /// <reference path="../../../typings/jasmine/jasmine.d.ts" />
+// if you are getting red text while running npm rub test-build because of typings remove the line above.
 describe('test', () => {
   it('test description', () => expect(true).toEqual(true));
 });
@@ -101,22 +102,20 @@ describe('test', () => {
 
 #### Running unit tests
 To start Karma running all unit tests use this command:
+
 ```bash
-npm test
+# to recreate all *.spec.ts files before running the test execute: 
+npm run test-build
+
+# run the tests (uses transpiled js files):
+npm run test
 ```
 
 #### Configuration
-Configuration file is `karma.conf.js`
+Configuration file is `karma.conf.js`.
+The unit tests setup files are transpiled with gulp.
 
 Unit test files must be placed in `app/**/**/*spec.ts` (/app/*anyFolder*/*anyFolder*/*spec.ts).
-
-#### Reports
-Assuming the command "npm test" has been run, the folder `test_reports` is being created. 
-
-That folder contains two additional folders `test_reports/coverage` where coverage results are, and `test_reports/html` where plain html report is stored. 
-
-To view coverage results open `test_reports/coverage/index.html` in browser. To view test results open `test_reports/html/units.html` in browser.
-
 
 ### Protractor
 #### Setup
