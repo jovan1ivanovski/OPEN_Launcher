@@ -9,7 +9,7 @@ import {Alert} from './Alert'
     template: `
         <div *ngIf="hasAlerts()">
             <div *ngFor="#alert of alerts()" class="alert alert-{{alert.type}}">
-                {{ alert.message }}
+               <label id="messagelabel"> {{ alert.message }}</label>
                 <div class="close" (click)="removeAlert(alert)">
                     <span class="glyphicon glyphicon-remove"></span>
                 </div>

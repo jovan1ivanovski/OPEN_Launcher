@@ -5,39 +5,58 @@ describe('Game menu log in user', function () {
  
 	beforeEach(function () {
         console.log(" Before Method : Before Each Function");
-
         CreateUserPage.get('http://localhost:3000/#/login');
+       browser.sleep(500);
+       browser.ignoreSynchronization = true;
         
 
     });
+    
+    afterAll(function() { 
+   // browser.sleep(500);
+   // browser.ignoreSynchronization = false; 
+        
+});
 
  
 
     it('User can create new user ', function () {
         CreateUserPage.clickCreateBtn();
-		CreateUserPage.writeName();
+		CreateUserPage.writeName("Josif");
 		CreateUserPage.selectPicture();
 		CreateUserPage.clickCreateBtnAfter();
-        expect(CreateUserPage.checkText()).toEqual("Корисничко име");
+        browser.sleep(500);
+        browser.ignoreSynchronization = true;
+        expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+        browser.sleep(500);
+        browser.ignoreSynchronization = false; 
 		console.log("Finishing : User created");
     });
     
     it('User can not create new user with same name ', function () {
         CreateUserPage.clickCreateBtn();
-		CreateUserPage.writeName();
+		CreateUserPage.writeName("Josif");
 		CreateUserPage.selectPicture();
 		CreateUserPage.clickCreateBtnAfter();
-        expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/#/register");
-		console.log("Finishing : User can not be created created");
+        browser.sleep(500);
+        browser.ignoreSynchronization = true;
+        expect(CreateUserPage.ReturnMessage()).toEqual("Корисничкото име веќе постои, обидете се да се регистрирате со друго име");
+        browser.sleep(500);
+        browser.ignoreSynchronization = false; 
+		console.log("Finishing : User with same name already exists");
     });
 
     
 	it('User can not be created without selecting picture', function () {
         CreateUserPage.clickCreateBtn();
-		CreateUserPage.writeName();
+		CreateUserPage.writeName("Dani");
 		CreateUserPage.clickCreateBtnAfter();
-        expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/#/register");
-		console.log("Finishing : User with same name already exists");
+        browser.sleep(500);
+        browser.ignoreSynchronization = true;
+        expect(CreateUserPage.ReturnMessage()).toEqual("За да креирате профил, ве молам изберете слика");
+        browser.sleep(500);
+        browser.ignoreSynchronization = false; 
+        console.log("Finishing : User can not be created");
           
  });
  
@@ -45,7 +64,7 @@ describe('Game menu log in user', function () {
         CreateUserPage.clickCreateBtn();
 		CreateUserPage.selectPicture();
 		CreateUserPage.clickCreateBtnAfter();
-        expect(browser.getCurrentUrl()).toEqual("http://localhost:3000/#/register");
+        expect(CreateUserPage.isCreateBtnEnabled()).toBe(false);
 		console.log("Finishing : User can not be created");
           
  });
@@ -60,7 +79,7 @@ describe('Game menu log in user', function () {
  
  it('Button back is clickable when name is populated', function(){
 		CreateUserPage.clickCreateBtn();
-		CreateUserPage.writeName();
+		CreateUserPage.writeName("Daniela123");
 		CreateUserPage.clickBack();
 		var url = browser.getCurrentUrl();
 		expect(url).toEqual('http://localhost:3000/#/login')
