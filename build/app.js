@@ -14220,7 +14220,7 @@ webpackJsonp([1,2],[
 	    AlertingComponent = __decorate([
 	        core_1.Component({
 	            selector: 'alerts',
-	            template: "\n        <div *ngIf=\"hasAlerts()\">\n            <div *ngFor=\"#alert of alerts()\" class=\"alert alert-{{alert.type}}\">\n               <label id=\"messagelabel\"> {{ alert.message }}</label>\n                <div class=\"close\" (click)=\"removeAlert(alert)\">\n                    <span class=\"glyphicon glyphicon-remove\"></span>\n                </div>\n            </div>\n        </div>"
+	            template: "\n        <div *ngIf=\"hasAlerts()\">\n            <div *ngFor=\"#alert of alerts()\" class=\"alert alert-{{alert.type}}\">\n                <label id=\"messagelabel\">{{ alert.message }}</label>\n                <div class=\"close\" (click)=\"removeAlert(alert)\">\n                    <span class=\"glyphicon glyphicon-remove\"></span>\n                </div>\n            </div>\n        </div>"
 	        }), 
 	        __metadata('design:paramtypes', [AlertingService_1.AlertingService])
 	    ], AlertingComponent);
