@@ -1,5 +1,5 @@
+var reflect = require('reflect-metadata');
 import {Injectable, bind} from 'angular2/core';
-
 import {Alert} from './Alert'
 
 @Injectable()

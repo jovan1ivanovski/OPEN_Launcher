@@ -4,7 +4,13 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
     minifyCss = require('gulp-minify-css'),
-    concatCss = require('gulp-concat-css');
+    concatCss = require('gulp-concat-css'),
+    ts = require('gulp-typescript'),
+    typescript = require('typescript'),
+    sourcemaps = require('gulp-sourcemaps');
+ var del = require('del');
+ var KarmaServer = require('karma').Server;
+ 
 
 //Scripts Bundle
 gulp.task('main-scripts', function () {
@@ -27,5 +33,46 @@ gulp.task('main-css', function () {
     .pipe(concatCss('main-css.css'))
     .pipe(minifyCss())
     .pipe(gulp.dest('build/'));
+});
+
+// tests
+gulp.task("clean-test-build", function () {
+	return del(['tests/**/**/*.js']);
+});
+
+gulp.task('component-build', ['clean-test-build'], function () {
+	var tsProject = ts.createProject('test.tsconfig.json', {
+		typescript: typescript
+	});
+
+	return gulp.src(['app/components/**/!(*spec).ts', 'app/shared/**/!(*spec).ts'])
+		.pipe(sourcemaps.init())
+        .pipe(ts(tsProject))
+        .pipe(gulp.dest('tests/'));
+});
+
+gulp.task('unit-tests-build', ['component-build'], function () {
+	var tsProject = ts.createProject('test.tsconfig.json', {
+		typescript: typescript
+	});
+
+	return gulp.src(['app/components/**/*spec.ts'])
+		.pipe(sourcemaps.init())
+        .pipe(ts(tsProject))
+        .pipe(gulp.dest('tests/'));
+});
+
+gulp.task("test-build", ['unit-tests-build'], function (done) {
+	new KarmaServer({
+		configFile: __dirname + '/karma.conf.js',
+		singleRun: true
+	}, done).start();
+});
+
+gulp.task("test", function (done) {
+	new KarmaServer({
+		configFile: __dirname + '/karma.conf.js',
+		singleRun: true
+	}, done).start();
 });
 
