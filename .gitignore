@@ -1,5 +1,5 @@
 .DS_Store
-app/assets/images
 node_modules
+app/assets/images
 npm-debug.log
 tests

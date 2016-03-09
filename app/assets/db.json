@@ -1,36 +1,3 @@
 {
-  "users": [
-    {
-      "name": "Igor",
-      "profileImg": "./app/assets/images/userPhoto-1456758510015.jpg"
-    },
-    {
-      "name": "Leo",
-      "profileImg": "./app/assets/images/lion.png"
-    },
-    {
-      "name": "Fish",
-      "profileImg": "./app/assets/images/fish.png"
-    },
-    {
-      "name": "Owl",
-      "profileImg": "./app/assets/images/owl.png"
-    },
-    {
-      "name": "Penguin Bob",
-      "profileImg": "./app/assets/images/penguin.png"
-    },
-    {
-      "name": "Darth",
-      "profileImg": "./app/assets/images/userPhoto-1456224008238.jpg"
-    },
-    {
-      "name": "Owl",
-      "profileImg": "./app/assets/images/owl.png"
-    },
-    {
-      "name": "Kiko",
-      "profileImg": "./app/assets/images/userPhoto-1456905132378.jpg"
-    }
-  ]
+    "users": []
 }
