@@ -20,7 +20,7 @@ describe('AlertingService', function() {
         expect(instance.currentAlerts.length).toEqual(1);
     });
 
-    it('AlertingService_addSuccess_TypeOfTheAddedAlertIsWarning', function() {
+    it('AlertingService_addSuccess_TypeOfTheAddedAlertIsSuccess', function() {
         // Act
         instance.addSuccess("message");
 
@@ -28,7 +28,7 @@ describe('AlertingService', function() {
         expect(instance.currentAlerts[0].type).toEqual("success");
     });
 
-    it('AlertingService_addInfo_TypeOfTheAddedAlertIsWarning', function() {
+    it('AlertingService_addInfo_TypeOfTheAddedAlertIsInfo', function() {
         // Act
         instance.addInfo("message");
 
@@ -44,7 +44,7 @@ describe('AlertingService', function() {
         expect(instance.currentAlerts[0].type).toEqual("warning");
     });
 
-    it('AlertingService_addDanger_TypeOfTheAddedAlertIsWarning', function() {
+    it('AlertingService_addDanger_TypeOfTheAddedAlertIsDanger', function() {
         // Act
         instance.addDanger("message");
 
@@ -52,7 +52,7 @@ describe('AlertingService', function() {
         expect(instance.currentAlerts[0].type).toEqual("danger");
     });
 
-    it('AlertingService_removeAlert_TypeOfTheAddedAlertIsWarning', function() {
+    it('AlertingService_removeAlert_ValidateThatAlertIsDismissed', function() {
         // Act
         instance.addDanger("message");
         instance.addDanger("message");
