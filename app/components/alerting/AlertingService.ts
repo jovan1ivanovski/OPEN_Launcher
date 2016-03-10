@@ -10,7 +10,7 @@ export class AlertingService {
     public addAlert = function(type: string, message: string) {
         var alert = new Alert(type, message);
         this.currentAlerts.push(alert);
-        setTimeout(() => this.removeAlert(alert), 10000);
+        setTimeout(() => this.removeAlert(alert), 3500);
     }
     addSuccess(message: string) {
         this.addAlert("success", message);
