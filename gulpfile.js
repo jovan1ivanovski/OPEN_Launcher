@@ -46,7 +46,7 @@ gulp.task('component-build', ['clean-test-build'], function () {
 		typescript: typescript
 	});
 
-	return gulp.src(['app/components/**/!(*spec).ts', 'app/shared/**/!(*spec).ts'])
+	return gulp.src(['app/**/**/!(*spec).ts'])
 		.pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(gulp.dest('tests/'));
@@ -58,7 +58,7 @@ gulp.task('unit-tests-build', ['component-build'], function () {
 		typescript: typescript
 	});
 
-	return gulp.src(['app/components/**/*spec.ts', 'app/shared/**/*spec.ts'])
+	return gulp.src(['app/**/**/*spec.ts'])
 		.pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(gulp.dest('tests/'));
