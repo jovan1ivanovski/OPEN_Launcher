@@ -14,7 +14,7 @@ import {Alert} from './Alert'
 import {AlertingComponent} from './AlertingComponent'
 import {AlertingService} from './AlertingService'
 
-describe('AlertingService', function() {
+describe('AlertingComponent', function() {
     class AlertingServiceMock {
         currentAlerts: Array<Alert> = new Array<Alert>();
 
