@@ -117,6 +117,13 @@ The unit tests setup files are transpiled with gulp.
 
 Unit test files must be placed in `app/**/**/*spec.ts` (/app/*anyFolder*/*anyFolder*/*spec.ts).
 
+#### Unit test reports
+After executing all unit tests with karma, folder `unit_test_reports` is created inside `tests` folder.
+In this folder you have 2 kind of reports, html and coverage with corresponding folder.
+You can open the index.html file inside these folders to see the unit test results.
+
+
+
 ### Protractor
 #### Setup
 Use npm to install Protractor globally with:

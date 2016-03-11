@@ -35,33 +35,36 @@ gulp.task('main-css', function () {
     .pipe(gulp.dest('build/'));
 });
 
-// tests
+// clean all unit tests and components
 gulp.task("clean-test-build", function () {
 	return del(['tests/**/**/*.js']);
 });
 
+//build all components inside tests folder
 gulp.task('component-build', ['clean-test-build'], function () {
 	var tsProject = ts.createProject('test.tsconfig.json', {
 		typescript: typescript
 	});
 
-	return gulp.src(['app/components/**/!(*spec).ts', 'app/shared/**/!(*spec).ts'])
+	return gulp.src(['app/**/**/!(*spec).ts'])
 		.pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(gulp.dest('tests/'));
 });
 
+//build all unit test files inside tests folder
 gulp.task('unit-tests-build', ['component-build'], function () {
 	var tsProject = ts.createProject('test.tsconfig.json', {
 		typescript: typescript
 	});
 
-	return gulp.src(['app/components/**/*spec.ts'])
+	return gulp.src(['app/**/**/*spec.ts'])
 		.pipe(sourcemaps.init())
         .pipe(ts(tsProject))
         .pipe(gulp.dest('tests/'));
 });
 
+//build all components and unit test and start karma 
 gulp.task("test-build", ['unit-tests-build'], function (done) {
 	new KarmaServer({
 		configFile: __dirname + '/karma.conf.js',
@@ -69,6 +72,7 @@ gulp.task("test-build", ['unit-tests-build'], function (done) {
 	}, done).start();
 });
 
+//start karma
 gulp.task("test", function (done) {
 	new KarmaServer({
 		configFile: __dirname + '/karma.conf.js',
