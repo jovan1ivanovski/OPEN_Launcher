@@ -1842,7 +1842,10 @@ function fromByteArray (uint8) {
   // BN
 
   function BN (number, base, endian) {
-    if (BN.isBN(number)) {
+    // May be `new BN(bn)` ?
+    if (number !== null &&
+      typeof number === 'object' &&
+      Array.isArray(number.words)) {
       return number;
     }
 
@@ -1876,11 +1879,6 @@ function fromByteArray (uint8) {
     Buffer = require('buf' + 'fer').Buffer;
   } catch (e) {
   }
-
-  BN.isBN = function isBN (num) {
-    return num !== null && typeof num === 'object' &&
-      num.constructor.name === 'BN' && Array.isArray(num.words);
-  };
 
   BN.max = function max (left, right) {
     if (left.cmp(right) > 0) return left;
@@ -14211,7 +14209,7 @@ module.exports={
   "_args": [
     [
       "elliptic@^6.0.0",
-      "C:\\Users\\idimchevski\\Desktop\\OPEN\\node_modules\\browserify-sign"
+      "E:\\OpenMenu\\OPEN\\node_modules\\browserify-sign"
     ]
   ],
   "_from": "elliptic@>=6.0.0 <7.0.0",
@@ -14242,7 +14240,7 @@ module.exports={
   "_shasum": "18e46d7306b0951275a2d42063270a14b74ebe99",
   "_shrinkwrap": null,
   "_spec": "elliptic@^6.0.0",
-  "_where": "C:\\Users\\idimchevski\\Desktop\\OPEN\\node_modules\\browserify-sign",
+  "_where": "E:\\OpenMenu\\OPEN\\node_modules\\browserify-sign",
   "author": {
     "email": "fedor@indutny.com",
     "name": "Fedor Indutny"

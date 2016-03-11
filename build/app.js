@@ -13572,7 +13572,6 @@ webpackJsonp([1,2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var reflect = __webpack_require__(244);
 	var core_1 = __webpack_require__(246);
 	var Alert_1 = __webpack_require__(491);
 	var AlertingService = (function () {
@@ -13582,7 +13581,7 @@ webpackJsonp([1,2],[
 	            var _this = this;
 	            var alert = new Alert_1.Alert(type, message);
 	            this.currentAlerts.push(alert);
-	            setTimeout(function () { return _this.removeAlert(alert); }, 10000);
+	            setTimeout(function () { return _this.removeAlert(alert); }, 3500);
 	        };
 	    }
 	    AlertingService.prototype.addSuccess = function (message) {
