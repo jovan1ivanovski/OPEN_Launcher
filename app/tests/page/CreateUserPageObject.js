@@ -25,10 +25,15 @@ var CreateUserPage = function () {
 	this.clickCreateBtnAfter = function () {
 		createBtnSecondPage.click();
 	};
-	this.writeName = function (name) {
-		enterName.sendKeys(name);
-	};
-	
+    
+    this.autoGenerateUserName = function() {
+        var autoGenerateUserName = "Auto-UserName-";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        for (var i = 0; i < 3; i++)
+        autoGenerateUserName += possible.charAt(Math.floor(Math.random() * possible.length));
+        enterName.sendKeys(autoGenerateUserName);
+    };
+
 	this.selectPicture = function () {
 		selectPhoto.click();
 	};
