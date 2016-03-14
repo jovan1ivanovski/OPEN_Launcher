@@ -23,7 +23,7 @@
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.0",
     "jquery": "~2.2.0",
-    "browserify": "13.0.0",
+    "browserify": ">=10 <=13",
     "karma-browserify": "5.0.2",
     "vinyl-source-stream": "~1.1.0",
     "event-stream": "~3.3.2",
