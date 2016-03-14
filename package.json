@@ -16,7 +16,7 @@
   "devDependencies": {
     "del": "2.2.0",
     "electron-prebuilt": "^0.35.4",
-    "es6-shim": "^0.34.0",
+    "es6-shim": "^0.33.3",
     "jasmine-core": "^2.4.1",
     "jasmine-reporters": "*",
     "jasmine-spec-reporter": "^2.4.0",
