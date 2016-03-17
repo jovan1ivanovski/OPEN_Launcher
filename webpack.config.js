@@ -34,7 +34,11 @@ module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    'main': './src/main.ts'
+    'app': './src/app.ts',
+    'main-scripts': [
+      './node_modules/jquery/dist/jquery.min.js',
+      './src/assets/js/jqueryelectron.js',
+      './node_modules/bootstrap/dist/js/bootstrap.min.js']
   },
 
   resolve: {
@@ -63,18 +67,23 @@ module.exports = {
       { test: /\.json$/, loader: 'json-loader' },
 
       // Support for CSS as raw text
-      { test: /\.css$/, loader: 'raw-loader' },
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
 
       // support for .html as raw text
-      { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] }
+      { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] },
 
+      // the url-loader uses DataUrls. // the file-loader emits files.
+      { test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
     ]
   },
 
   plugins: [
     new ForkCheckerPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin({ name: ['main', 'vendor', 'polyfills'], minChunks: Infinity }),
+    new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'vendor', 'polyfills'], minChunks: Infinity }),
     // static assets
     new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
     // generating html

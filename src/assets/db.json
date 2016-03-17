@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "name": "daniela",
+      "profileImg": "./assets/images/momce.png"
+    },
+    {
+      "name": "Auto-UserName-ZGT",
+      "profileImg": "./assets/images/riba.png"
+    },
+    {
+      "name": "Milka",
+      "profileImg": "./assets/images/krava.png"
+    },
+    {
+      "name": "Aleksandra",
+      "profileImg": "./assets/images/devojce.png"
+    }
+  ]
+}

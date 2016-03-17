@@ -42,7 +42,7 @@ module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    'main': './src/main.ts'
+    'app': './src/app.ts'
   },
 
   // Config for our build files
@@ -126,7 +126,7 @@ module.exports = {
     new DedupePlugin(),
     new OccurenceOrderPlugin(true),
     new CommonsChunkPlugin({
-      name: ['main', 'vendor', 'polyfills'],
+      name: ['app', 'vendor', 'polyfills'],
       filename: '[name].bundle.js',
       minChunks: Infinity
     }),
