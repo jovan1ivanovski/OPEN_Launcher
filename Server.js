@@ -8,6 +8,9 @@ var low = require('lowdb');
 var lowdbStorage = require('lowdb/file-async');
 
 var webpack = require('webpack');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+
 var config = require('./webpack.config');
 var compiler = webpack(config);
 
@@ -25,13 +28,13 @@ var fileStorage = multer.diskStorage({
 var db = low(path.join(__dirname, '/src/assets/db.json'), { storage: lowdbStorage });
 var upload = multer({ storage: fileStorage }).single('userPhoto');
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  publicPath: config.output.publicPath,
-  stats: {
-    colors: true
-  }
-}));
-app.use(require('webpack-hot-middleware')(compiler));
+// app.use(webpackDevMiddleware(compiler, {
+//   publicPath: config.output.publicPath,
+//   stats: { colors: true }
+// }));
+// app.use(webpackHotMiddleware(compiler, {
+//   log: console.log
+// }));
 
 app.use(bodyParser.json());                         // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
@@ -110,6 +113,6 @@ function readFiles(dirname, onSuccess, onError) {
 }
 // == HELPER FUNCTIONS ===============================================================
 
-app.listen(3000, function() {
-  console.log("Working on port 3000");
+app.listen(3010, function() {
+  console.log("Working on port 3010");
 });
