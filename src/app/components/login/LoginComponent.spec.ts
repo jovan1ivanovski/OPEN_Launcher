@@ -15,6 +15,7 @@ import {Observable} from 'rxjs/Rx';
 import {RouterLink, Router} from 'angular2/router';
 
 import {User, Users} from '../../shared/models/User';
+import {UsersFilter} from '../../shared/filters/usersFilter';
 import {AuthService} from '../../shared/services/AuthService';
 import {UserService} from '../../shared/services/UserService';
 import {AlertingService} from '../alerting/AlertingService';
@@ -46,23 +47,39 @@ class UserServiceMock {
         return Observable.of(allUsers);
     }
 
-    getAllUsers() {
-        var string1 = '[{"name": "", "profileImg":""}]'
-        var obj = JSON.parse(string1);
-        return Observable.of(obj);
-    }
+       getAllUsers() {
+            var string1 = '[{"name": "Daniela", "profileImg":"danielImg"},{"name": "Daniela1", "profileImg":"danielImg1"}]'
+            var obj = JSON.parse(string1);
+            return Observable.of(obj);
+        }
+         addUser() {
+        }
 }
 
 class AlertingServiceMock {
     addDanger(message: string) { }
     addSuccess(message: string) { }
     addInfo(message: string) { }
+     addAlert() {}
 }
 
 class AuthServiceMock {
+        currentUsers: Array<User> = new Array<User>();
+        getUser() {
+            var string1 = '[{"name": "Daniela", "profileImg":"danielImg"},{"name": "Daniela1", "profileImg":"danielImg1"}]'
+            var obj = JSON.parse(string1);
+            return Observable.of(obj);
+        }
+        login() {
+        }
+        CheckAuth() {
+        }
+    }
+    class RouterMock {
+        navigate(urlList: Array<String>) {
 
-}
-
+        }
+     }
 describe('Login Component', function() {
 
     var injector: Injector;
@@ -70,23 +87,97 @@ describe('Login Component', function() {
     var _authService: AuthService;
     var _userService: UserService;
     var _alertingService: AlertingService;
-    var router: Router;
+    var _router: Router;
 
     beforeEach(() => {
         injector = Injector.resolveAndCreate([
             provide(AuthService, { useClass: AuthServiceMock }),
             provide(UserService, { useClass: UserServiceMock }),
-            provide(AlertingService, { useClass: AlertingServiceMock })
+            provide(AlertingService, { useClass: AlertingServiceMock }),
+            provide(Router, { useClass: RouterMock }),
         ]);
 
         _authService = injector.get(AuthService);
         _userService = injector.get(UserService);
         _alertingService = injector.get(AlertingService);
+        _router = injector.get(Router);
+    });
+    
+    it('LoginComponent_GetAllUsers_ReturnTrueWhen', function() {
+        // Arrange       
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
+        var localUsers = [{ "name": "Daniela", "profileImg": "danielImg" }, { "name": "Daniela1", "profileImg": "danielImg1" }];
+
+        //Assert
+        expect(instance.allUsers).toEqual(localUsers);
+    });
+
+    it('LoginComponent_UserIsSelected_ReturnTrueWhen', function() {
+        // Arrange
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
+        var user: User = new User();
+        user.name = "daniela";
+        user.profileImg = "path";
+
+        instance.selectUser(user);
+
+        //Assert
+        expect(instance.selectedUser).toEqual(user);
+    });
+
+    it('LoginComponent_ShouldApplySelectedUserCss_ReturnTrueWhen', function() {
+        // Arrange
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
+        var user: User = new User();
+        user.name = "daniela";
+        user.profileImg = "path";
+        var try1: boolean;
+        instance.selectUser(user);
+        try1 = instance.ShouldApplySelectedUserCss(user);
+
+        //Assert
+        expect(try1).toEqual(true);
+    });
+    
+    it("LoginComponent_Login_SuccessfulLogin", function (){
+        //Arrange
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
+        var user: User = new User();
+        user.name = "daniela";
+        user.profileImg = "kjg";
+        
+        spyOn(_router, "navigate").and.callThrough();
+        spyOn(_alertingService, "addDanger").and.callThrough();
+        spyOn(_authService, "login").and.callFake(function() { return false; });
+        
+        instance.selectUser(user);
+        instance.login();
+        
+        expect(_authService.login).toHaveBeenCalledWith(user.name);
+       expect(_alertingService.addDanger).toHaveBeenCalledWith("Корисникот не е валиден.");
+      
+    });
+         it("LoginComponent_Login_UnsuccessfulLogin", function (){
+        //Arrange
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
+        var user: User = new User();
+        user.name = "daniela";
+        user.profileImg = "kjg";
+        
+        spyOn(_router, "navigate").and.callThrough();
+        spyOn(_alertingService, "addDanger").and.callThrough();
+        spyOn(_authService, "login").and.callFake(function() { return true; });
+        
+        instance.selectUser(user);
+        instance.login();
+        
+        expect(_authService.login).toHaveBeenCalledWith(user.name);
+       expect(_router.navigate).toHaveBeenCalledWith(["/Home"]);
     });
 
     it('DeleteUser_GivenSelectedUser_DeletesTheSelectedUser', function() {
         // Arrange
-        instance = new LoginComponent(_alertingService, _userService, _authService, router);
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
         let selectedUser = new User();
         selectedUser.name = "c";
         instance.selectedUser = selectedUser;
@@ -108,7 +199,7 @@ describe('Login Component', function() {
 
     it('DeleteUser_GivenSelectedUser_ResetsTheSelectedUser', function() {
         // Arrange
-        instance = new LoginComponent(_alertingService, _userService, _authService, router);
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
         let selectedUser = new User();
         selectedUser.name = "c";
         instance.selectedUser = selectedUser;
@@ -130,7 +221,7 @@ describe('Login Component', function() {
 
     it('DeleteUser_WhenUserIsDeleted_SuccessMessageIsShown', function() {
         // Arrange
-        instance = new LoginComponent(_alertingService, _userService, _authService, router);
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
 
         // Act
         spyOn(_alertingService, "addSuccess");
@@ -142,7 +233,7 @@ describe('Login Component', function() {
 
     it('DeleteCancelled_DeleteIsCancelled_InfoMessageIsShown', function() {
         // Arrange
-        instance = new LoginComponent(_alertingService, _userService, _authService, router);
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
 
         // Act
         spyOn(_alertingService, "addInfo");
@@ -154,7 +245,7 @@ describe('Login Component', function() {
 
     it('SelectUser_GivenAuser_SetsTheSelectedUser', function() {
         // Arrange
-        instance = new LoginComponent(_alertingService, _userService, _authService, router);
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
         let user = new User();
         user.name = "a";
         // Act        
@@ -166,7 +257,7 @@ describe('Login Component', function() {
 
     it('ShouldApplySelectedUserCss_GivenTheSelectedUser_ReturnsTrue', function() {
         // Arrange
-        instance = new LoginComponent(_alertingService, _userService, _authService, router);
+        instance = new LoginComponent(_alertingService, _userService, _authService, _router);
         let user = new User();
         user.name = "a";
         // Act    
