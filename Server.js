@@ -55,7 +55,7 @@ app.get('/api/GetProfileImages', function(req, res) {
   readFiles(path.join(__dirname, '/src/assets/images/'),
     function(data) {
       for (var index = 0; index < data.length; index++) {
-        data[index] = './src/assets/images/' + data[index];
+        data[index] = './assets/images/' + data[index];
       }
       return res.send(data);
     },
