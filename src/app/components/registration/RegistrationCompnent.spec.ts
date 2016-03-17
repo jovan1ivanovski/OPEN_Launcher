@@ -88,7 +88,7 @@ describe('Register Component', function() {
         expect(instance.allImages).toEqual(allImagesLocal);
     });
 
-    it('RegisterComponent_onSelect_shouldbeDefaultPath', function() {
+    it('RegisterComponent_onSelect_shouldbeEljesa', function() {
 
         //act
         instance.onSelect('eljesa');
@@ -96,10 +96,10 @@ describe('Register Component', function() {
         expect(instance.selectedImage).toBe('eljesa');
     });
 
-    it('RegisterComponent_onSelect_shouldBeEljesa', function() {
+    it('RegisterComponent_onSelect_shouldBeDefaultPath', function() {
 
         //assert
-        expect(instance.selectedImage).toBe('./app/assets/images/default.jpg');
+        expect(instance.selectedImage).toBe('./assets/images/default.jpg');
     });
 
     it('RegisterComponent_adduser_shouldAddUserAndReturnUsersAndEmptyMessage', function() {
@@ -198,7 +198,7 @@ describe('Register Component', function() {
         expect(_alertingService.addDanger).toHaveBeenCalledWith("Корисничкото име веќе постои, обидете се да се регистрирате со друго име");
     });
 
-    it('RegisterComponent_addUser_SelectedPicIsDefault_ShouldNotAddAndShouldReturnAllUsersWithWrittenMessage', function() {
+    it('RegisterComponent_addUser_ShouldNotAddAndShouldReturnAllUsersWithWrittenMessage', function() {
         //Arrange
         spyOn(_userService, "addUser").and.callFake(function(user) {
             var user1 = new User();
@@ -220,7 +220,7 @@ describe('Register Component', function() {
 
 
         //Act
-        instance.onSelect("./app/assets/images/default.jpg");
+        instance.onSelect("./assets/images/default.jpg");
         let user: User = new User();
         user.name = "eljesa";
         user.profileImg = "PATH";
