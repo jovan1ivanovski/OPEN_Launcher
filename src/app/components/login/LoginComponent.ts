@@ -5,7 +5,7 @@ import {UserService} from '../../shared/services/UserService';
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../alerting/AlertingService';
 import {Users, User} from '../../shared/models/User';
-import {UsersFilter} from '../../shared/filters/usersFilter';
+import {UsersFilter} from '../../shared/filters/UsersFilter';
 
 @Component({
     selector: 'login',
