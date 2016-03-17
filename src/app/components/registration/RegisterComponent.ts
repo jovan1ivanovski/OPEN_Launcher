@@ -19,7 +19,7 @@ export class RegisterComponent {
     public vm: Object = {};
 
     constructor(private alertingService: AlertingService, private avatarService: AvatarService, private userService: UserService, private router: Router) {
-        this.selectedImage = "./app/assets/images/default.jpg";
+        this.selectedImage = "./assets/images/default.jpg";
         this.getAvailableImages();
     }
 
@@ -36,7 +36,7 @@ export class RegisterComponent {
         user.profileImg = this.selectedImage;
         console.log(this.vm);
 
-        if (user.profileImg == "./app/assets/images/default.jpg") {
+        if (user.profileImg == "./assets/images/default.jpg") {
             this.alertingService.addDanger("За да креирате профил, ве молам изберете слика");
         }
         else {
