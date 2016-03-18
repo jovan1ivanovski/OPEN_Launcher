@@ -2,10 +2,10 @@ import {Component} from 'angular2/core';
 
 import {AlertingService} from './AlertingService';
 
-import {Alert} from './Alert'
+import {Alert} from './Alert';
 
 @Component({
-    selector: 'alerts',    
+    selector: 'alerts',
     template: `
         <div *ngIf="hasAlerts()">
             <div *ngFor="#alert of alerts()" class="alert alert-{{alert.type}}">

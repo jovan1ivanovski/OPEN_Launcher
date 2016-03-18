@@ -11,9 +11,9 @@ export * from '../../components/upload/UploadPictureService';
 export * from '../../components/alerting/AlertingService';
 
 export var servicesInjectables: Array<any> = [
-    globalServiceInjectables,
-    uploadPictureServiceInjectables,
-    userServiceInjectables,
-    avatarServiceInjectables,
-    alertingServiceInjectables
+  globalServiceInjectables,
+  uploadPictureServiceInjectables,
+  userServiceInjectables,
+  avatarServiceInjectables,
+  alertingServiceInjectables
 ];

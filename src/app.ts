@@ -1,10 +1,10 @@
- import "bootstrap/dist/css/bootstrap.css";
- require("./assets/css/site.css");
+ import 'bootstrap/dist/css/bootstrap.css';
+ require('./assets/css/site.css');
 
 import {provide, Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouterOutlet, LocationStrategy, HashLocationStrategy, APP_BASE_HREF} from 'angular2/router';
-import {HTTP_PROVIDERS} from 'angular2/http'
+import {HTTP_PROVIDERS} from 'angular2/http';
 
 /*
  * Components
@@ -42,5 +42,5 @@ export class App { }
 
 bootstrap(App, [servicesInjectables,
     AUTH_PROVIDERS, ROUTER_PROVIDERS, HTTP_PROVIDERS,
-    provide(APP_BASE_HREF, { useValue: "/" }),
+    provide(APP_BASE_HREF, { useValue: '/' }),
     provide(LocationStrategy, { useClass: HashLocationStrategy })]);

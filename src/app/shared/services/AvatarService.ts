@@ -6,15 +6,14 @@ import {GlobalService} from './GlobalService';
 
 @Injectable()
 export class AvatarService {
+  constructor(private http: Http, private globalService: GlobalService) { }
 
-    constructor(private http: Http, private globalService: GlobalService) { }
-    
-    getProfileImages() {
-        return this.http.get(this.globalService.URL_GETPROFILE_IMAGES)
-                        .map(res => {
-                            return res.json();
-                        });
-    }
+  getProfileImages() {
+    return this.http.get(this.globalService.URL_GETPROFILE_IMAGES)
+      .map(res => {
+        return res.json();
+      });
+  }
 }
 
-export var avatarServiceInjectables: Array<any> = [bind(AvatarService).toClass(AvatarService)]
+export var avatarServiceInjectables: Array<any> = [bind(AvatarService).toClass(AvatarService)];
