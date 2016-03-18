@@ -1,4 +1,4 @@
-var logInPage = function() {
+var LogInPage = function() {
 
 
 
@@ -6,10 +6,10 @@ var logInPage = function() {
     var profile = element.all(by.className("img-circle"));
     var logOutbtn = element(by.id("logout"));
     var name = element(by.id("usernamefield"));
-    var Filtered_names = element.all(by.css("body > app > div > login > div > div > div:nth-child(2) > div")).get(0);
+    var filtered_names = element.all(by.css("body > app > div > login > div > div > div:nth-child(2) > div")).get(0);
     var loggedUser = element(by.css("body > app > div > home > div > div > b"));
-    var profile_number;
-    var random_no;
+    var profileNumber;
+    var randomNo;
     var profileNames;
     var selectedName;
     var loggedUsername;
@@ -22,15 +22,15 @@ var logInPage = function() {
     this.LogIn = function() {
         profile.count().then(function(counted) {
             console.log(counted);
-            profile_number = parseInt(counted);
-            console.log("Profilenumber: " + profile_number);
-            random_no = Math.floor(Math.random() * (profile_number - 1));
-            profileNames = element.all(by.className("text-overflow")).get(random_no);
+            profileNumber = parseInt(counted);
+            console.log("Profilenumber: " + profileNumber);
+            randomNo = Math.floor(Math.random() * (profileNumber - 1));
+            profileNames = element.all(by.className("text-overflow")).get(randomNo);
             profileNames.getAttribute("innerHTML").then(function(text) {
                 selectedName = text;
-                console.log("Random number: " + random_no);
+                console.log("Random number: " + randomNo);
                 console.log("Selected user:" + selectedName);
-                profile.get(random_no).click();
+                profile.get(randomNo).click();
                 signBtn.click();
             });
         });
@@ -56,7 +56,7 @@ var logInPage = function() {
 
     }
     this.GetTextFromFilter = function() {
-        var names = Filtered_names.getText();
+        var names = filtered_names.getText();
         return names;
     }
 
@@ -86,4 +86,4 @@ var logInPage = function() {
 
 };
 
-module.exports = new logInPage();
+module.exports = new LogInPage();

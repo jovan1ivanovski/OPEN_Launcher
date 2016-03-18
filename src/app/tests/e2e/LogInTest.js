@@ -1,7 +1,7 @@
 describe("Game menu log in page", function() {
 
 
-    var logInPage = require("../page/LoginPageObject.js");
+    var LogInPage = require("../page/LoginPageObject.js");
     
 
     beforeEach(function() {
@@ -11,35 +11,35 @@ describe("Game menu log in page", function() {
 
     
      it("should display log in page", function() {
-         expect(logInPage.GetTitle()).toEqual("OPEN");
+         expect(LogInPage.GetTitle()).toEqual("OPEN");
      });
    
 
     it("sign in button should not be visible if profile is not selected", function() {
-        expect(logInPage.signBtnIsVisible()).toBe(false);
+        expect(LogInPage.signBtnIsVisible()).toBe(false);
         console.log("sign in button should not be visible if profile is not selected");
     });
 
     it("User can log in when selecting existing profile ", function() {
-        logInPage.LogIn();
-        expect(logInPage.GetLoggedUser()).toEqual(logInPage.GetSelectedUser());
-        expect(logInPage.getCurrentURL()).toEqual("http://localhost:3000/#/home");
-        logInPage.LogOut();
+        LogInPage.LogIn();
+        expect(LogInPage.GetLoggedUser()).toEqual(LogInPage.GetSelectedUser());
+        expect(LogInPage.getCurrentURL()).toEqual("http://localhost:3000/#/home");
+        LogInPage.LogOut();
         console.log("Finishing : User loged in");
     });
 
     it("User can log out from home page ", function() {
-        logInPage.LogIn();
-        logInPage.LogOut();
-        expect(logInPage.getCurrentURL()).toEqual("http://localhost:3000/#/login");
+        LogInPage.LogIn();
+        LogInPage.LogOut();
+        expect(LogInPage.getCurrentURL()).toEqual("http://localhost:3000/#/login");
         console.log("Finishing : User loged out");
     });
 
 
     it("should filter profiles by entering username", function() {
-        logInPage.FilterUsername("Auto");
-        expect(logInPage.GetTextFromFilter()).toContain("Auto");
-        logInPage.FilterUsernameClear();
+        LogInPage.FilterUsername("Auto");
+        expect(LogInPage.GetTextFromFilter()).toContain("Auto");
+        LogInPage.FilterUsernameClear();
         console.log("Finishing : Filter username");
 
     });
