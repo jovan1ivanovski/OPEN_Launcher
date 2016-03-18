@@ -1,4 +1,4 @@
-var uploadPage = function() {
+var UploadPage = function() {
 
     var path = require("path");
     var elm = element(by.css('input[type="file"]'));
@@ -42,7 +42,7 @@ var uploadPage = function() {
         return browser.getCurrentUrl();
     };
 
-    this.NavigateToLoginPage = function() {
+    this.NavigateToLogInPage = function() {
         navigateHome.click();
     }
 
@@ -63,4 +63,4 @@ var uploadPage = function() {
 
 };
 
-module.exports = new uploadPage();
+module.exports = new UploadPage();

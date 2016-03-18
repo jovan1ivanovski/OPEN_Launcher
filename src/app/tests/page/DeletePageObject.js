@@ -1,19 +1,17 @@
-var deleteUser = function() {
+var DeleteUser = function() {
 
     var someProfile = element.all(by.className("img-circle")).get(0);
-    var profiles = element.all(by.className("img-circle"));
     var deleteBtn = element(by.id("deleteBtn"));
     var YesBtn = element(by.id("daBtn"));
     var NoBtn = element(by.id("neBtn"));
     var modal = element(by.id("myModal"));
-    var alertwin = element(by.xpath("/html/body/app/div/alerts/div/div/text()"));
     var alertmessage = element(by.id("messagelabel"));
 
     this.get = function(value) {
         browser.get(value);
     };
 
-    this.DeleteUser = function() {
+    this.DeleteProfile = function() {
         someProfile.click();
         deleteBtn.click();
         browser.wait(EC.visibilityOf(modal), 5000);
@@ -42,12 +40,12 @@ var deleteUser = function() {
     
     this.IsDeleteBtnIsVisible = function() {
         return deleteBtn.isPresent();
-    }
+    };
 
 
     this.ReturnMessage = function() {
         var message = alertmessage.getText();
         return message;
-    }
+    };
 };
-module.exports = new deleteUser();
+module.exports = new DeleteUser();
