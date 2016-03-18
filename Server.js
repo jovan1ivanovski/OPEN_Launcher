@@ -28,13 +28,13 @@ var fileStorage = multer.diskStorage({
 var db = low(path.join(__dirname, '/src/assets/db.json'), { storage: lowdbStorage });
 var upload = multer({ storage: fileStorage }).single('userPhoto');
 
-// app.use(webpackDevMiddleware(compiler, {
-//   publicPath: config.output.publicPath,
-//   stats: { colors: true }
-// }));
-// app.use(webpackHotMiddleware(compiler, {
-//   log: console.log
-// }));
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+  stats: { colors: true }
+}));
+app.use(webpackHotMiddleware(compiler, {
+  log: console.log
+}));
 
 app.use(bodyParser.json());                         // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
@@ -43,11 +43,11 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
-app.use(express.static(path.join(__dirname, '/')));
+app.use(express.static(path.join(__dirname, '/src/')));
 
 // == API ============================================================================
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '/index.html'));
+  res.sendFile(path.join(__dirname, '/src/index.html'));
 });
 
 // Retreave all images from ./app/assets/images/ directory
@@ -113,6 +113,6 @@ function readFiles(dirname, onSuccess, onError) {
 }
 // == HELPER FUNCTIONS ===============================================================
 
-app.listen(3010, function() {
-  console.log("Working on port 3010");
+app.listen(3000, function() {
+  console.log("Working on port 3000");
 });

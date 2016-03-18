@@ -1,6 +1,6 @@
 import {Injectable, bind} from 'angular2/core';
 
-const URL: string = 'http://localhost:3010';
+const URL: string = 'http://localhost:3000';
 
 @Injectable()
 export class GlobalService {

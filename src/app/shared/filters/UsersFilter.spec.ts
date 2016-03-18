@@ -3,7 +3,7 @@ import {it, describe, expect, beforeEach, inject} from 'angular2/testing';
 import {UsersFilter} from './UsersFilter';
 import {User} from '../models/User';
 
-describe('UsersFilter Tests', () => {
+describe('UsersFilter', () => {
   let pipe: UsersFilter;
 
   beforeEach(() => {

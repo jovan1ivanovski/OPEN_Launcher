@@ -19,8 +19,7 @@ import {AlertingService} from '../alerting/AlertingService';
 import {RegisterComponent} from './RegisterComponent';
 import {Alert} from '../Alerting/Alert';
 
-describe('Register Component', function() {
-
+describe('RegistrationCompnent', function() {
   class AvatarServiceMock {
     getProfileImages() {
       var string1 = '["./app/assets/images/default.jpg", "./app/assets/images/devojce.png"]';

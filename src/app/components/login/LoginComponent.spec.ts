@@ -22,65 +22,63 @@ import {AlertingService} from '../alerting/AlertingService';
 import {LoginComponent} from './LoginComponent';
 import {Alert} from '../Alerting/Alert';
 
-class UserServiceMock {
+describe('LoginComponent', function() {
+  class UserServiceMock {
+    deleteUser(name) {
+      var user1 = new User();
+      user1.name = 'a';
+      var user2 = new User();
+      user2.name = 'b';
+      var user3 = new User();
+      user3.name = 'c';
+      var allUsers: User[] = new Array<User>();
+      allUsers[0] = user1;
+      allUsers[1] = user2;
+      allUsers[2] = user3;
 
-  deleteUser(name) {
-
-    var user1 = new User();
-    user1.name = 'a';
-    var user2 = new User();
-    user2.name = 'b';
-    var user3 = new User();
-    user3.name = 'c';
-    var allUsers: User[] = new Array<User>();
-    allUsers[0] = user1;
-    allUsers[1] = user2;
-    allUsers[2] = user3;
-
-    for (var index = 0; index < 3; index++) {
-      if (allUsers[index].name === name) {
-        allUsers.splice(index, 1);
-        break;
+      for (var index = 0; index < 3; index++) {
+        if (allUsers[index].name === name) {
+          allUsers.splice(index, 1);
+          break;
+        }
       }
+
+      return Observable.of(allUsers);
     }
 
-    return Observable.of(allUsers);
+    getAllUsers() {
+      var string1 = '[{"name": "Daniela", "profileImg":"danielImg"},{"name": "Daniela1", "profileImg":"danielImg1"}]';
+      var obj = JSON.parse(string1);
+      return Observable.of(obj);
+    }
+    addUser() {
+    }
   }
 
-  getAllUsers() {
-    var string1 = '[{"name": "Daniela", "profileImg":"danielImg"},{"name": "Daniela1", "profileImg":"danielImg1"}]';
-    var obj = JSON.parse(string1);
-    return Observable.of(obj);
+  class AlertingServiceMock {
+    addDanger(message: string) { }
+    addSuccess(message: string) { }
+    addInfo(message: string) { }
+    addAlert() { }
   }
-  addUser() {
-  }
-}
 
-class AlertingServiceMock {
-  addDanger(message: string) { }
-  addSuccess(message: string) { }
-  addInfo(message: string) { }
-  addAlert() { }
-}
+  class AuthServiceMock {
+    currentUsers: Array<User> = new Array<User>();
+    getUser() {
+      var string1 = '[{"name": "Daniela", "profileImg":"danielImg"},{"name": "Daniela1", "profileImg":"danielImg1"}]';
+      var obj = JSON.parse(string1);
+      return Observable.of(obj);
+    }
+    login() {
+    }
+    CheckAuth() {
+    }
+  }
+  class RouterMock {
+    navigate(urlList: Array<String>) {
 
-class AuthServiceMock {
-  currentUsers: Array<User> = new Array<User>();
-  getUser() {
-    var string1 = '[{"name": "Daniela", "profileImg":"danielImg"},{"name": "Daniela1", "profileImg":"danielImg1"}]';
-    var obj = JSON.parse(string1);
-    return Observable.of(obj);
+    }
   }
-  login() {
-  }
-  CheckAuth() {
-  }
-}
-class RouterMock {
-  navigate(urlList: Array<String>) {
-
-  }
-}
-describe('Login Component', function() {
 
   var injector: Injector;
   var instance: LoginComponent = null;

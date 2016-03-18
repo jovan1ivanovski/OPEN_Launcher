@@ -39,7 +39,6 @@ export class RegisterComponent {
 
   addUser(user: User) {
     user.profileImg = this.selectedImage;
-    console.log(this.vm);
 
     if (user.profileImg === './assets/images/default.jpg') {
       this.alertingService.addDanger('За да креирате профил, ве молам изберете слика');

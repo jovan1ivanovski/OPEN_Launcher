@@ -20,7 +20,7 @@ app.on('ready', function() {
   //mainWindow.webContents.openDevTools();
 
   // Tell Electron where to load the entry point from
-  mainWindow.loadURL('file://' + __dirname + '/src/index.html');
+  mainWindow.loadURL('http://localhost:3000/');
 
   // Clear out the main window when the app is closed
   mainWindow.on('closed', function() {
