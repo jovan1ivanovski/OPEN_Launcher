@@ -2,8 +2,8 @@ describe("Game menu log in user", function() {
 
 
     var CreateUserPage = require("../page/CreateUserPageObject.js");
-    var logInPage = require("../page/LoginPageObject.js");
-    var deleteUser = require("../page/DeletePageObject.js");
+    var LogInPage = require("../page/LoginPageObject.js");
+    var DeleteUser = require("../page/DeletePageObject.js");
   
 
 
@@ -46,8 +46,8 @@ describe("Game menu log in user", function() {
         browser.ignoreSynchronization = true;
         expect(CreateUserPage.ReturnMessage()).toEqual("Корисничкото име веќе постои, обидете се да се регистрирате со друго име");
         CreateUserPage.clickBack();
-        logInPage.FilterUsername("Josif");
-        deleteUser.DeleteFilteredUser();
+        LogInPage.FilterUsername("Josif");
+        DeleteUser.DeleteFilteredUser();
         browser.sleep(500);
         browser.ignoreSynchronization = false;
         console.log("Finishing : User with same name already exists");
