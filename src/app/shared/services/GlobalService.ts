@@ -14,7 +14,7 @@ export class GlobalService {
   URL_DELETEUSER(username: string): string {
     return URL + '/api/deleteUser/' + username;
   }
-  URL_GET_USERSETTINGS(username: string): string{
+  URL_GET_USERSETTINGS(username: string): string {
     return URL + '/api/getUserSettings/' + username;
   }
   constructor() { }

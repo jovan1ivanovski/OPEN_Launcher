@@ -16,28 +16,19 @@ import {UserSettingsService} from './UserSettingsService';
 describe('UserSettingsService', function() {
   var instance: UserSettingsService = null;
   // ****************************************
-  var connection;
-  var injector = Injector.resolveAndCreate([
-    MockBackend,
-    provide(Http, {useFactory: (backend, options) => {
-      return new Http(backend, options);
-    }, deps: [MockBackend, BaseRequestOptions]})]);
+  // var connection;
+  // var injector = Injector.resolveAndCreate([
+  //   MockBackend,
+  //   provide(Http, {useFactory: (backend, options) => {
+  //     return new Http(backend, options);
+  //   }, deps: [MockBackend, BaseRequestOptions]})]);
 
-  var http = injector.get(Http);
-  var backend = injector.get(MockBackend);
-  backend.connections.subscribe(c => connection = c);
+  // var http = injector.get(Http);
+  // var backend = injector.get(MockBackend);
+  // backend.connections.subscribe(c => connection = c);
   // ****************************************
 
   beforeEach(() => {
-    instance = new UserSettingsService(null,null);
+    instance = new UserSettingsService(null, null);
   });
-
-it('should get some data', inject([UserSettingsService], (async) => {
-  //Assign any newly-created connection to local variable
-  http.request('data.json').subscribe((res) => {
-    //expect(res.text()).toBe('awesome');
-      async.done();
-    });
-    //connection.mockRespond(new Response('awesome'));
-  }));
 });
