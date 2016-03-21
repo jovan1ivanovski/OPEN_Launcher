@@ -4,7 +4,7 @@ import {RouterLink, Router} from 'angular2/router';
 import {UserService} from '../../shared/services/UserService';
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../alerting/AlertingService';
-import {Users, User} from '../../shared/models/User';
+import {User} from '../../shared/models/User';
 import {UsersFilter} from '../../shared/filters/UsersFilter';
 
 @Component({

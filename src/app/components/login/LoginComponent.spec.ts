@@ -14,7 +14,7 @@ import {provide, Injector, Component} from 'angular2/core';
 import {Observable} from 'rxjs/Rx';
 import {RouterLink, Router} from 'angular2/router';
 
-import {User, Users} from '../../shared/models/User';
+import {User} from '../../shared/models/User';
 import {UsersFilter} from '../../shared/filters/UsersFilter';
 import {AuthService} from '../../shared/services/AuthService';
 import {UserService} from '../../shared/services/UserService';

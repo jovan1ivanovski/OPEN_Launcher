@@ -1,3 +1,5 @@
+import {UserSettings} from './UserSettings';
+
 //Class that represents the user entity from db
 export class User {
   public name: string;
@@ -6,6 +8,11 @@ export class User {
   public pointerColor: string;
   public pointerSpeed: string;
   public backgroundColor: string;
+  public userSettings: UserSettings;
+
+  constructor() {
+    this.userSettings = new UserSettings();
+  }
 }
 
 export class Users {

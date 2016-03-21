@@ -99,6 +99,23 @@ app.get('/api/deleteUser/:name', function(req, res) {
   db('users').remove({ name: req.params.name });
   res.send(db('users').value());
 });
+
+// Get UserSettings for specified username
+app.get('/api/getUserSettings/:username?', function(req, res) {
+  var username = req.params.username;
+  if (username != undefined) {
+    var user = db('users').find({ name: username })
+    if (user != undefined) {
+      res.send(user.userSettings);
+    } else {
+      res.status(404);
+      res.send({ error: 'Not found' });
+    }
+  } else {
+    res.status(404);
+    res.send({ error: 'Not found' });
+  }
+});
 // == API ============================================================================
 
 // == HELPER FUNCTIONS ===============================================================
