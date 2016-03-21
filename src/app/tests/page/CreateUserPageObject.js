@@ -14,8 +14,10 @@ var CreateUserPage = function() {
   var imageNumber;
   var randomNo;
   var autoGenerateUserName;
-
-
+  var imageurl;
+  var selectedProfileImg = element(by.css("#username > div:nth-child(2) > img"));
+  var profileName = element(by.css("#username > div.title.text-center > label"));
+  var nameProfile;
 
 
   this.get = function(value) {
@@ -33,6 +35,8 @@ var CreateUserPage = function() {
       imageNumber = parseInt(counted);
       randomNo = Math.floor(Math.random() * (imageNumber - 1)) + 1;
       image.get(randomNo).click();
+      imageurl = image.getAttribute('src');
+
 
     });
 
@@ -99,9 +103,27 @@ var CreateUserPage = function() {
     enterName.clear();
   };
 
+  this.GetImageUrl = function() {
+    return imageurl;
+  };
+
+  this.GetProfileImageUrl = function() {
+   return selectedProfileImg.getAttribute('src');
+  };
+
   this.GetCurrentUrl = function() {
     return browser.getCurrentUrl();
   };
+
+  this.GetEnteredName = function() {
+    return enterName.getText();
+  };
+
+    this.GetProfileName = function() {
+     return profileName.getText()
+   };
+
+
 
   this.WaitforCreateBtn = function() {
     browser.wait(EC.visibilityOf(createBtnFirstPage), 5000);
