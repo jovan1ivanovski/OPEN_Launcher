@@ -26,9 +26,8 @@ var UploadPage = function() {
   };
 
   this.ReturnMessage = function() {
-    var message = alertmessage.getText();
-    return message;
-  }
+    return alertmessage.getText();
+  };
 
   this.NavigateToHomePage = function() {
     navigateToHome.click();
@@ -47,19 +46,16 @@ var UploadPage = function() {
   }
 
   this.isUploadBtnEnabled = function() {
-    var isEnabled = uploadBtn.isEnabled();
-    return isEnabled;
+    return uploadBtn.isEnabled();
   };
 
   this.isChooseBtnEnabled = function() {
-    var isEnabled = choosePicture.isEnabled();
-    return isEnabled;
+    return choosePicture.isEnabled();;
   };
 
   this.isPathFieldEnabled = function() {
-    var isEnabled = pathFiled.isEnabled();
-    return isEnabled;
-  }
+    return pathFiled.isEnabled();
+  };
 
 };
 

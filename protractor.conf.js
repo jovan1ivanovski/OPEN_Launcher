@@ -1,11 +1,15 @@
 require('ts-node/register');
+var HtmlReporter = require('protractor-html-screenshot-reporter');
+var reporter=new HtmlReporter({
+    baseDirectory: 'src/app/tests/protractor-result', // a location to store screen shots.
+    docTitle: 'Protractor Demo Reporter',
+    docName:    'protractor-demo-tests-report.html'
+});
 
 exports.config = {
   baseUrl: 'http://localhost:3000/',
 
-  //seleniumAddress: 'http://localhost:4444/wd/hub',
 
-  // use `npm run e2e`
   specs: [
     'src/app/tests/e2e/*.js'
   ],
@@ -33,10 +37,9 @@ exports.config = {
 
   onPrepare: function() {
     global.EC = protractor.ExpectedConditions;
-
+    browser.driver.manage().window().maximize();
     browser.get('http://localhost:3000/');
-    browser.ignoreSynchronization = true;
-
+    jasmine.getEnv().addReporter(reporter);
     var SpecReporter = require('jasmine-spec-reporter');
     jasmine.getEnv().addReporter(new SpecReporter({ displayStacktrace: 'all' }));
   },
