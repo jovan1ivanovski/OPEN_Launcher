@@ -17,7 +17,7 @@ import {AvatarService} from '../../shared/services/AvatarService';
 import {UserService} from '../../shared/services/UserService';
 import {AlertingService} from '../alerting/AlertingService';
 import {RegisterComponent} from './RegisterComponent';
-import {Alert} from '../Alerting/Alert';
+import {Alert} from '../alerting/Alert';
 
 describe('RegistrationCompnent', function() {
   class AvatarServiceMock {

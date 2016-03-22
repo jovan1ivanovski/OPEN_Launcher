@@ -19,7 +19,7 @@ import {AuthService} from '../../shared/services/AuthService';
 import {UserService} from '../../shared/services/UserService';
 import {AlertingService} from '../alerting/AlertingService';
 import {LoginComponent} from './LoginComponent';
-import {Alert} from '../Alerting/Alert';
+import {Alert} from '../alerting/Alert';
 
 describe('LoginComponent', function() {
 
