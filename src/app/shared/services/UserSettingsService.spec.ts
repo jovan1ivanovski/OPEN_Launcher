@@ -52,15 +52,13 @@ describe('UserSettingsService', () => {
   }));
 
   it('getUserSettingsFor_ValidUserName_ValidateRetrievedDataMatchFromTheHttpResponse',
-    inject([UserSettingsService, MockBackend], (userSettingsService, mockBackend) => {
+    inject([UserSettingsService, MockBackend], (userSettingsService: UserSettingsService, mockBackend) => {
       var userSettingsObject = getUserSettingsObject(
         UserSettingsEnums.PointerSize.Small,
         UserSettingsEnums.PointerType.Hand,
         UserSettingsEnums.PointerColor.White,
         UserSettingsEnums.BackgroundColor.Color
       );
-
-      console.log(userSettingsService.globalService.URL_GET_USERSETTINGS('username'));
 
       mockBackend.connections.subscribe(
         (connection: MockConnection) => {
