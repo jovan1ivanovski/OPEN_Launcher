@@ -1,46 +1,51 @@
-<div class="row">
-  <div id="pointer" class="col-sm-8 form-group">
-
-    <div class="row">
-      <label class="text-center">Покажувач</label>
-    </div>
-
+<div class="container">
+  <div id="bgColor" class="col-sm-3 form-group">
     <div class="row top-buffer">
-      <div class="col-sm-6">
-        <div *ngFor="#color of availablePointerColors">
-          <div id="{{color}}" class="pointer-color-{{color}} color-box thumbnail"
-          [class.selected]="shouldApplySelectedColorCss(color)"
+      <div class="row">
+        <h3>Позадина</h3>
+      </div>
+      <div class="radio">
+        <label class="h4">
+          <input #inColor name="bgColorOption" type="radio" value="0" checked="checked" (click)="selectBackgroundColor(inColor.value)"
+          />Во боја
+        </label>
+      </div>
+      <div class="radio">
+        <label class="h4">
+          <input #blackWhite name="bgColorOption" type="radio" value="1" (click)="selectBackgroundColor(blackWhite.value)" />Црно-бела
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div id="pointer" class="col-sm-9 form-group">
+    <div class="row top-buffer">
+      <div class="row">
+        <h3>Покажувач</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2 text-right">
+          <h4>Големина: </h4>
+        </div>
+        <div *ngFor="#img of allImages; #i=index" class="col-sm-2">
+          <!--<label *ngIf="i===0">Мал</label>
+        <label *ngIf="i===1">Голем</label>-->
+          <img src="{{img}}" class="color-box thumbnail" [class.selected]="shouldApplySelectedPointerSizeCss(i)" (click)="selectPointerSize(i)"
+          />
+        </div>
+      </div>
+      <div class="row top-buffer">
+        <div class="col-sm-2 text-right">
+          <h4>Боја: </h4>
+        </div>
+        <div *ngFor="#color of availablePointerColors" class="col-sm-2">
+          <div id="{{color}}" class="pointer-color-{{color}} color-box thumbnail" [class.selected]="shouldApplySelectedColorCss(color)"
           (click)="selectPointerColor(color)"></div>
         </div>
       </div>
     </div>
-    <div class="col-sm-6 ">
-      <div *ngFor="#img of allImages; #i=index">
-        <label *ngIf="i===0">Мал</label>
-        <label *ngIf="i===1">Голем</label>
-        <img src="{{img}}" class="color-box thumbnail"
-          [class.selected]="shouldApplySelectedPointerSizeCss(img)"
-          (click)="selectPointerSize(img)"/>
-      </div>
-    </div>
-  </div>
-
-  <div id="bgColor" class="col-sm-4 form-group">
-    <div class="row">
-      <label class="text-center">Позадина</label>
-    </div>
-    <div class="row top-buffer">
-      <label>
-        <input #inColor name="bgColorOption" type="radio" value="0" checked="checked" (click)="selectBackgroundColor(inColor.value)"
-        />Во боја
-      </label>
-      <label>
-        <input #blackWhite name="bgColorOption" type="radio" value="1" (click)="selectBackgroundColor(blackWhite.value)"
-        />Црно-бела
-      </label>
-    </div>
   </div>
 </div>
-{{userSettings.backgroundColor | json}}
-{{userSettings | json}}
 
+{{userSettings.backgroundColor | json}} {{userSettings | json}}
