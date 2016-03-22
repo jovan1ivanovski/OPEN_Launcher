@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {RouterLink, Router} from 'angular2/router';
 
 import {User} from '../../shared/models/User';
-import {AvatarService} from '../../shared/services/AvatarService';
+import {ImagesService} from '../../shared/services/ImagesService';
 import {UserService} from '../../shared/services/UserService';
 import {AlertingService} from '../alerting/AlertingService';
 
@@ -20,7 +20,7 @@ export class RegisterComponent {
 
   constructor(
     private alertingService: AlertingService,
-    private avatarService: AvatarService,
+    private imagesService: ImagesService,
     private userService: UserService,
     private router: Router) {
 
@@ -29,7 +29,7 @@ export class RegisterComponent {
   }
 
   getAvailableImages() {
-    this.avatarService.getProfileImages()
+    this.imagesService.getProfileImages()
       .subscribe(data => this.allImages = data, err => this.alertingService.addDanger(err.toString()));
   }
 

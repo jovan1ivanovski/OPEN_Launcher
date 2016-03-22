@@ -59,26 +59,22 @@ a.link{
   height:50px;
 }
 
-.white-bg{
+.pointer-color-0{
   background-color:white;
 }
 
-.yellow-bg{
+.pointer-color-1{
   background-color:yellow;
 }
 
-/*.black-bg{
-  background-color:black;
-}*/
-
-.red-bg{
-  background-color:red;
-}
-
-.green-bg{
+.pointer-color-2{
   background-color:green;
 }
 
-.blue-bg{
+.pointer-color-3{
   background-color:blue;
+}
+
+.pointer-color-4{
+  background-color:red;
 }

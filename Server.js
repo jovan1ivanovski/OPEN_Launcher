@@ -64,6 +64,20 @@ app.get('/api/GetProfileImages', function(req, res) {
     });
 });
 
+// Retreave all images from ./app/assets/images/pointer/ directory
+app.get('/api/GetPointerImages', function(req, res) {
+  readFiles(path.join(__dirname, '/src/assets/images/pointer/'),
+    function(data) {
+      for (var index = 0; index < data.length; index++) {
+        data[index] = './assets/images/pointer/' + data[index];
+      }
+      return res.send(data);
+    },
+    function(error) {
+      throw error;
+    });
+});
+
 // Upload profile picture
 app.post('/api/upload', function(req, res) {
   upload(req, res, function(err) {
