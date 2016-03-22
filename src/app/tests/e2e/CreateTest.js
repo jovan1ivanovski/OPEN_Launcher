@@ -23,6 +23,20 @@ describe("Game menu log in user", function() {
     SelectRandomPicture();
   });
 
+  it ("Selected picture should match profile picure while creating a profile", function() {
+    CreateUserPage.clickCreateBtn();
+    SelectRandomPicture();
+    expect(CreateUserPage.GetImageUrl()).toMatch(CreateUserPage.GetProfileImageUrl());
+    });
+
+    it ("Entered name should match profile name while creating a profile", function() {
+    CreateUserPage.clickCreateBtn();
+    CreateUserPage.writeName("Daniiiiiiiiii");
+    SelectRandomPicture();
+    expect(CreateUserPage.GetProfileName()).toEqual("Daniiiiiiiiii");
+    });
+
+
 
   it("User can create new user ", function() {
     CreateUserPage.CreateAutoGenerateUserName();

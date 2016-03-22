@@ -2,10 +2,9 @@ import {Component} from 'angular2/core';
 import {UserService} from '../../shared/services/UserService';
 import {AuthService} from '../../shared/services/AuthService';
 import {AlertingService} from '../alerting/AlertingService';
-import {Users, User} from '../../shared/models/User';
 import {UserSettingsComponent} from '../../components/userSettings/UserSettingsComponent';
 import {UserSettings} from '../../shared/models/UserSettings';
-
+import {User} from '../../shared/models/User';
 
 @Component({
   selector: 'home',
