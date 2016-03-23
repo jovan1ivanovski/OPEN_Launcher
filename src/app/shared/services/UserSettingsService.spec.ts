@@ -57,7 +57,7 @@ describe('UserSettingsService', () => {
         UserSettingsEnums.PointerSize.Small,
         UserSettingsEnums.PointerType.Hand,
         UserSettingsEnums.PointerColor.White,
-        UserSettingsEnums.BackgroundColor.Color
+        UserSettingsEnums.BackgroundColor.InColor
       );
 
       mockBackend.connections.subscribe(
@@ -74,7 +74,7 @@ describe('UserSettingsService', () => {
           expect(data.pointerSize).toBe(UserSettingsEnums.PointerSize.Small);
           expect(data.pointerType).toBe(UserSettingsEnums.PointerType.Hand);
           expect(data.pointerColor).toBe(UserSettingsEnums.PointerColor.White);
-          expect(data.backgroundColor).toBe(UserSettingsEnums.BackgroundColor.Color);
+          expect(data.backgroundColor).toBe(UserSettingsEnums.BackgroundColor.InColor);
         },
         (error) => {
           fail(error);

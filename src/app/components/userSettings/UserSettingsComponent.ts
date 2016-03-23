@@ -9,7 +9,6 @@ import {ImagesService} from '../../shared/services/ImagesService';
 
 @Component({
   selector: 'settings',
-  inputs: ['userSettings'],
   templateUrl: './app/components/userSettings/userSettings.html'
 })
 export class UserSettingsComponent {
