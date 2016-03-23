@@ -5,9 +5,10 @@ import {User} from '../../shared/models/User';
 import {ImagesService} from '../../shared/services/ImagesService';
 import {UserService} from '../../shared/services/UserService';
 import {AlertingService} from '../alerting/AlertingService';
+import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
 
 @Component({
-  directives: [RouterLink],
+  directives: [RouterLink, UserSettingsComponent],
   templateUrl: './app/components/registration/register.html'
 })
 export class RegisterComponent {
@@ -16,7 +17,6 @@ export class RegisterComponent {
   public newUserImage: string;
   public allUsers: User[] = new Array<User>();
   public selectedImage: string;
-  public vm: Object = {};
 
   constructor(
     private alertingService: AlertingService,
@@ -24,7 +24,7 @@ export class RegisterComponent {
     private userService: UserService,
     private router: Router) {
 
-    this.selectedImage = './assets/images/default.jpg';
+    this.selectedImage = './assets/images/avatars/default.jpg';
     this.getAvailableImages();
   }
 
@@ -39,8 +39,9 @@ export class RegisterComponent {
 
   addUser(user: User) {
     user.profileImg = this.selectedImage;
+    user.userSettings = this.newUser.userSettings;
 
-    if (user.profileImg === './assets/images/default.jpg') {
+    if (user.profileImg === './assets/images/avatars/default.jpg') {
       this.alertingService.addDanger('За да креирате профил, ве молам изберете слика');
     } else {
       this.userService.addUser(user)

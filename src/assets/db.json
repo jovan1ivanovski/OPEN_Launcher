@@ -2,119 +2,19 @@
   "users": [
     {
       "name": "dssdsdsdd",
-      "profileImg": "./assets/images/devojce.png"
+      "profileImg": "./assets/images/avatars/devojce.png"
     },
     {
       "name": "Auto-UserName-kdb",
-      "profileImg": "./assets/images/devojce.png"
+      "profileImg": "./assets/images/avatars/devojce.png"
     },
     {
       "name": "Auto-UserName-fPe",
-      "profileImg": "./assets/images/srce.png"
+      "profileImg": "./assets/images/avatars/srce.png"
     },
     {
       "name": "dssdsdsds",
-      "profileImg": "./assets/images/devojce.png"
-    },
-    {
-      "name": "sfasfasf",
-      "profileImg": "./assets/images/krava.png"
-    },
-    {
-      "name": "Auto-UserName-eun",
-      "profileImg": "./assets/images/devojce.png"
-    },
-    {
-      "name": "Auto-UserName-oJW",
-      "profileImg": "./assets/images/prase.png"
-    },
-    {
-      "name": "Auto-UserName-ynU",
-      "profileImg": "./assets/images/torta.png"
-    },
-    {
-      "name": "Auto-UserName-BYh",
-      "profileImg": "./assets/images/sveke.png"
-    },
-    {
-      "name": "Josif",
-      "profileImg": "./assets/images/userPhoto-1458313994967.jpg"
-    },
-    {
-      "name": "d",
-      "profileImg": "./assets/images/prase.png"
-    },
-    {
-      "name": "Auto-UserName-VLs",
-      "profileImg": "./assets/images/sveke.png"
-    },
-    {
-      "name": "Auto-UserName-Xuu",
-      "profileImg": "./assets/images/peperutka.jpg"
-    },
-    {
-      "name": "Auto-UserName-Bgy",
-      "profileImg": "./assets/images/torta.png"
-    },
-    {
-      "name": "Auto-UserName-aPu",
-      "profileImg": "./assets/images/srce.png"
-    },
-    {
-      "name": "daniiiiiii",
-      "profileImg": "./assets/images/momce.png"
-    },
-    {
-      "name": "AutOE",
-      "profileImg": "./assets/images/peperutka.jpg"
-    },
-    {
-      "name": "Au-tJq",
-      "profileImg": "./assets/images/devojce.png"
-    },
-    {
-      "name": "AutkG",
-      "profileImg": "./assets/images/topka.png"
-    },
-    {
-      "name": "Auame-dnu",
-      "profileImg": "./assets/images/slon.png"
-    },
-    {
-      "name": "AutN",
-      "profileImg": "./assets/images/userPhoto-1458566948589.jpg"
-    },
-    {
-      "name": "AutL",
-      "profileImg": "./assets/images/torta.png"
-    },
-    {
-      "name": "AutCp",
-      "profileImg": "./assets/images/krava.png"
-    },
-    {
-      "name": "AuRJ",
-      "profileImg": "./assets/images/torta.png"
-    },
-    {
-      "name": "Auto-UserName-Ery",
-      "profileImg": "./assets/images/mecka.png"
-    },
-    {
-      "name": "AutZpM",
-      "profileImg": "./assets/images/mecka.png"
-    },
-    {
-      "name": "AutJY",
-      "profileImg": "./assets/images/devojce.png"
-    },
-    {
-      "name": "Autm",
-      "profileImg": "./assets/images/peperutka.jpg"
-    },
-    {
-      "name": "Aue-ror",
-      "profileImg": "./assets/images/peperutka.jpg">>>>>>>upstream/master
+      "profileImg": "./assets/images/avatars/devojce.png"
     }
   ]
 }

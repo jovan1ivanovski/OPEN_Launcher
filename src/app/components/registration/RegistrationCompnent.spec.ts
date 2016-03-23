@@ -22,7 +22,7 @@ import {Alert} from '../alerting/Alert';
 describe('RegistrationCompnent', function() {
   class ImagesServiceMock {
     getProfileImages() {
-      var string1 = '["./app/assets/images/default.jpg", "./app/assets/images/devojce.png"]';
+      var string1 = '["./app/assets/images/avatars/default.jpg", "./app/assets/images/avatars/devojce.png"]';
       var obj = JSON.parse(string1);
       return Observable.of(obj);
     }
@@ -81,7 +81,7 @@ describe('RegistrationCompnent', function() {
   it('RegisterComponent_getAvailableImages_returnJSONOfImagesFiles', function() {
     // Act
     var allImagesLocal: string[] = new Array<string>();
-    allImagesLocal = ['./app/assets/images/default.jpg', './app/assets/images/devojce.png'];
+    allImagesLocal = ['./app/assets/images/avatars/default.jpg', './app/assets/images/avatars/devojce.png'];
 
     // Assert
     expect(instance.allImages).toEqual(allImagesLocal);
@@ -98,7 +98,7 @@ describe('RegistrationCompnent', function() {
   it('RegisterComponent_onSelect_shouldBeDefaultPath', function() {
 
     //assert
-    expect(instance.selectedImage).toBe('./assets/images/default.jpg');
+    expect(instance.selectedImage).toBe('./assets/images/avatars/default.jpg');
   });
 
   it('RegisterComponent_adduser_shouldAddUserAndReturnUsersAndEmptyMessage', function() {
@@ -219,7 +219,7 @@ describe('RegistrationCompnent', function() {
 
 
     //Act
-    instance.onSelect('./assets/images/default.jpg');
+    instance.onSelect('./assets/images/avatars/default.jpg');
     let user: User = new User();
     user.name = 'eljesa';
     user.profileImg = 'PATH';

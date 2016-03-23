@@ -20,6 +20,8 @@ export class UserSettingsComponent {
   ngOnInit() {
     this.userSettings.backgroundColor = BackgroundColor.InColor;
     this.userSettings.pointerType = PointerType.Hand;
+    this.userSettings.pointerSize = PointerSize.Small;
+    this.userSettings.pointerColor = PointerColor.White;
 
     this.selectBackgroundColor(this.userSettings.backgroundColor);
   }
@@ -40,7 +42,7 @@ export class UserSettingsComponent {
 
   selectBackgroundColor(backgroundColor: BackgroundColor) {
     this.userSettings.backgroundColor = backgroundColor;
-    this.userSettings.pointerColor = null;
+    this.userSettings.pointerColor = PointerColor.White;
     this.availablePointerColors = this.pointerColorService.getPointerColors(backgroundColor);
   }
 

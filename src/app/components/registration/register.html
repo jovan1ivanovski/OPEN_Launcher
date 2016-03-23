@@ -4,8 +4,7 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Корисничко име</label>
         <div class="col-sm-10">
-          <input type="text" ngControl="name" id="username" class="form-control" placeholder="Корисничко име" required [(ngModel)]="vm.firstName"
-          />
+          <input type="text" ngControl="name" id="username" class="form-control" placeholder="Корисничко име" required />
         </div>
       </div>
       <div class="form-group">
@@ -29,6 +28,7 @@
           </div>
         </div>
       </div>
+      <settings [userSettings]="newUser.userSettings"></settings>
       <div class="form-group">
         <div class="col-sm-1 col-sm-offset-2">
           <button type="submit" id="createNewUser" class="btn btn-primary" [disabled]="!user.valid">Креирај</button>
@@ -37,6 +37,7 @@
           <a class="btn btn-default" id="backToLogin" [routerLink]="['/Login']">Назад</a>
         </div>
       </div>
+
     </form>
   </div>
 </div>
