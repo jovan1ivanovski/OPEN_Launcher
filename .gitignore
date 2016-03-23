@@ -59,5 +59,6 @@ npm-debug.log
 *.swp
 
 # Assets #
+src/assets/*.json
 /src/assets/images/
-/src/assets/*.json
+
