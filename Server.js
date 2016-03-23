@@ -18,7 +18,7 @@ var app = express();
 
 var fileStorage = multer.diskStorage({
   destination: function(req, file, callback) {
-    callback(null, path.join(__dirname, '/src/assets/images'));
+    callback(null, path.join(__dirname, '/src/assets/images/avatars'));
   },
   filename: function(req, file, callback) {
     callback(null, file.fieldname + '-' + Date.now() + '.jpg');
@@ -50,12 +50,26 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/src/index.html'));
 });
 
-// Retreave all images from ./app/assets/images/ directory
+// Retreave all images from ./app/assets/images/avatars/ directory
 app.get('/api/GetProfileImages', function(req, res) {
-  readFiles(path.join(__dirname, '/src/assets/images/'),
+  readFiles(path.join(__dirname, '/src/assets/images/avatars/'),
     function(data) {
       for (var index = 0; index < data.length; index++) {
-        data[index] = './assets/images/' + data[index];
+        data[index] = './assets/images/avatars/' + data[index];
+      }
+      return res.send(data);
+    },
+    function(error) {
+      throw error;
+    });
+});
+
+// Retreave all images from ./app/assets/images/pointer/ directory
+app.get('/api/GetPointerImages', function(req, res) {
+  readFiles(path.join(__dirname, '/src/assets/images/pointer/'),
+    function(data) {
+      for (var index = 0; index < data.length; index++) {
+        data[index] = './assets/images/pointer/' + data[index];
       }
       return res.send(data);
     },
@@ -98,6 +112,23 @@ app.post('/api/addUser', function(req, res) {
 app.get('/api/deleteUser/:name', function(req, res) {
   db('users').remove({ name: req.params.name });
   res.send(db('users').value());
+});
+
+// Get UserSettings for specified username
+app.get('/api/getUserSettings/:username?', function(req, res) {
+  var username = req.params.username;
+  if (username != undefined) {
+    var user = db('users').find({ name: username })
+    if (user != undefined) {
+      res.send(user.userSettings);
+    } else {
+      res.status(404);
+      res.send({ error: 'Not found' });
+    }
+  } else {
+    res.status(404);
+    res.send({ error: 'Not found' });
+  }
 });
 // == API ============================================================================
 

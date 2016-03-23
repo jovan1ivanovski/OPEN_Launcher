@@ -21,7 +21,7 @@ a.link{
 
 .selected {
     box-shadow:0px 12px 22px 1px #333;
-    border:solid 2px gold;
+    border:solid 2px gold !important;
 }
 
 .text-overflow {
@@ -50,4 +50,30 @@ a.link{
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+
+.color-box{
+  height: 128px;
+  width: 128px;
+  border: 1px #cccccc solid;
+}
+
+.pointer-color-0{
+  background-color:white;
+}
+
+.pointer-color-1{
+  background-color:yellow;
+}
+
+.pointer-color-2{
+  background-color:green;
+}
+
+.pointer-color-3{
+  background-color:blue;
+}
+
+.pointer-color-4{
+  background-color:red;
 }
