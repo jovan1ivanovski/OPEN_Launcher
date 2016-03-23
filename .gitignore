@@ -60,4 +60,4 @@ npm-debug.log
 
 # Assets #
 /src/assets/images/
-/src/assets/db.json
+/src/assets/*.json
