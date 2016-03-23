@@ -1,26 +1,6 @@
 {
   "users": [
     {
-      "name": "dssdsdsdd",
-      "profileImg": "./assets/images/devojce.png"
-    },
-    {
-      "name": "Auto-UserName-kdb",
-      "profileImg": "./assets/images/devojce.png"
-    },
-    {
-      "name": "Auto-UserName-fPe",
-      "profileImg": "./assets/images/srce.png"
-    },
-    {
-      "name": "dssdsdsds",
-      "profileImg": "./assets/images/devojce.png"
-    },
-    {
-      "name": "sfasfasf",
-      "profileImg": "./assets/images/krava.png"
-    },
-    {
       "name": "Auto-UserName-eun",
       "profileImg": "./assets/images/devojce.png"
     },
@@ -35,10 +15,6 @@
     {
       "name": "Auto-UserName-BYh",
       "profileImg": "./assets/images/sveke.png"
-    },
-    {
-      "name": "Josif",
-      "profileImg": "./assets/images/srce.png"
     },
     {
       "name": "Auto-UserName-VLs",
@@ -111,6 +87,26 @@
     {
       "name": "Aue-ror",
       "profileImg": "./assets/images/peperutka.jpg"
+    },
+    {
+      "name": "Auto-UserName-PiF",
+      "profileImg": "./assets/images/topka.png"
+    },
+    {
+      "name": "Auto-UserName-rQi",
+      "profileImg": "./assets/images/userPhoto-1458572322596.jpg"
+    },
+    {
+      "name": "Auto-UserName-Bkz",
+      "profileImg": "./assets/images/userPhoto-1458572507707.jpg"
+    },
+    {
+      "name": "Auto-UserName-atK",
+      "profileImg": "./assets/images/userPhoto-1458572322596.jpg"
+    },
+    {
+      "name": "Auto-UserName-ZhI",
+      "profileImg": "./assets/images/momce.png"
     }
   ]
 }
