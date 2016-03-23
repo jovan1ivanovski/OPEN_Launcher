@@ -13,16 +13,16 @@ import {Observable} from 'rxjs/Rx';
 import {RouterLink, Router} from 'angular2/router';
 
 import {User, Users} from '../../shared/models/User';
-import {AvatarService} from '../../shared/services/AvatarService';
+import {ImagesService} from '../../shared/services/ImagesService';
 import {UserService} from '../../shared/services/UserService';
 import {AlertingService} from '../alerting/AlertingService';
 import {RegisterComponent} from './RegisterComponent';
 import {Alert} from '../alerting/Alert';
 
 describe('RegistrationCompnent', function() {
-  class AvatarServiceMock {
+  class ImagesServiceMock {
     getProfileImages() {
-      var string1 = '["./app/assets/images/default.jpg", "./app/assets/images/devojce.png"]';
+      var string1 = '["./app/assets/images/avatars/default.jpg", "./app/assets/images/avatars/devojce.png"]';
       var obj = JSON.parse(string1);
       return Observable.of(obj);
     }
@@ -50,20 +50,20 @@ describe('RegistrationCompnent', function() {
 
   var injector: Injector;
   var instance: RegisterComponent = null;
-  var _avatarService: AvatarService;
+  var _imagesService: ImagesService;
   var _userService: UserService;
   var _alertingService: AlertingService;
   var _router: Router;
 
   beforeEach(() => {
     injector = Injector.resolveAndCreate([
-      provide(AvatarService, { useClass: AvatarServiceMock }),
+      provide(ImagesService, { useClass: ImagesServiceMock }),
       provide(UserService, { useClass: UserServiceMock }),
       provide(AlertingService, { useClass: AlertingServiceMock }),
       provide(Router, { useClass: RouterMock })
     ]);
 
-    _avatarService = injector.get(AvatarService);
+    _imagesService = injector.get(ImagesService);
     _userService = injector.get(UserService);
     _alertingService = injector.get(AlertingService);
     _router = injector.get(Router);
@@ -73,7 +73,7 @@ describe('RegistrationCompnent', function() {
     spyOn(_alertingService, 'addSuccess').and.callThrough();
     spyOn(_alertingService, 'addDanger').and.callThrough();
 
-    instance = new RegisterComponent(_alertingService, _avatarService, _userService, _router);
+    instance = new RegisterComponent(_alertingService, _imagesService, _userService, _router);
 
 
   });
@@ -81,7 +81,7 @@ describe('RegistrationCompnent', function() {
   it('RegisterComponent_getAvailableImages_returnJSONOfImagesFiles', function() {
     // Act
     var allImagesLocal: string[] = new Array<string>();
-    allImagesLocal = ['./app/assets/images/default.jpg', './app/assets/images/devojce.png'];
+    allImagesLocal = ['./app/assets/images/avatars/default.jpg', './app/assets/images/avatars/devojce.png'];
 
     // Assert
     expect(instance.allImages).toEqual(allImagesLocal);
@@ -98,7 +98,7 @@ describe('RegistrationCompnent', function() {
   it('RegisterComponent_onSelect_shouldBeDefaultPath', function() {
 
     //assert
-    expect(instance.selectedImage).toBe('./assets/images/default.jpg');
+    expect(instance.selectedImage).toBe('./assets/images/avatars/default.jpg');
   });
 
   it('RegisterComponent_adduser_shouldAddUserAndReturnUsersAndEmptyMessage', function() {
@@ -219,7 +219,7 @@ describe('RegistrationCompnent', function() {
 
 
     //Act
-    instance.onSelect('./assets/images/default.jpg');
+    instance.onSelect('./assets/images/avatars/default.jpg');
     let user: User = new User();
     user.name = 'eljesa';
     user.profileImg = 'PATH';

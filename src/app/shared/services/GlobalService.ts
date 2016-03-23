@@ -8,6 +8,7 @@ export class GlobalService {
   URL_GETALLUSERS: string = URL + '/api/getAllUsers';
   URL_ADDUSER: string = URL + '/api/addUser';
   URL_GETPROFILE_IMAGES: string = URL + '/api/GetProfileImages/';
+  URL_GETPOINTER_IMAGES: string = URL + '/api/GetPointerImages/';
   URL_GETUSER(username: string): string {
     return URL + '/api/getAllUsers/' + username;
   }

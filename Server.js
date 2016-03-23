@@ -18,7 +18,7 @@ var app = express();
 
 var fileStorage = multer.diskStorage({
   destination: function(req, file, callback) {
-    callback(null, path.join(__dirname, '/src/assets/images'));
+    callback(null, path.join(__dirname, '/src/assets/images/avatars'));
   },
   filename: function(req, file, callback) {
     callback(null, file.fieldname + '-' + Date.now() + '.jpg');
@@ -50,12 +50,26 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/src/index.html'));
 });
 
-// Retreave all images from ./app/assets/images/ directory
+// Retreave all images from ./app/assets/images/avatars/ directory
 app.get('/api/GetProfileImages', function(req, res) {
-  readFiles(path.join(__dirname, '/src/assets/images/'),
+  readFiles(path.join(__dirname, '/src/assets/images/avatars/'),
     function(data) {
       for (var index = 0; index < data.length; index++) {
-        data[index] = './assets/images/' + data[index];
+        data[index] = './assets/images/avatars/' + data[index];
+      }
+      return res.send(data);
+    },
+    function(error) {
+      throw error;
+    });
+});
+
+// Retreave all images from ./app/assets/images/pointer/ directory
+app.get('/api/GetPointerImages', function(req, res) {
+  readFiles(path.join(__dirname, '/src/assets/images/pointer/'),
+    function(data) {
+      for (var index = 0; index < data.length; index++) {
+        data[index] = './assets/images/pointer/' + data[index];
       }
       return res.send(data);
     },

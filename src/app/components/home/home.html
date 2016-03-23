@@ -1,6 +1,7 @@
 <div class="row" *ngIf="authService.getUser()">
-    <div class="col-sm-12">
-        Најавен корисник: <b>{{ authService.getUser() }}</b>
-        <a href id="logout"(click)="logout()">Одјави се</a>
-    </div>
+  <div class="col-sm-12">
+    Најавен корисник: <b>{{ authService.getUser() }}</b>
+    <a href id="logout" (click)="logout()">Одјави се</a>
+  </div>
 </div>
+<settings [userSettings]="userSettings"></settings>
