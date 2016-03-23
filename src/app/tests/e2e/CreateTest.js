@@ -17,6 +17,8 @@ describe("Game menu log in user", function() {
 
 
 
+<<<<<<< HEAD
+=======
 
   it("User can choose random picture", function() {
     CreateUserPage.clickCreateBtn();
@@ -38,6 +40,7 @@ describe("Game menu log in user", function() {
 
 
 
+>>>>>>> upstream/master
   it("User can create new user ", function() {
     CreateUserPage.CreateAutoGenerateUserName();
     browser.sleep(500);
@@ -117,5 +120,23 @@ describe("Game menu log in user", function() {
     CreateUserPage.clickBack();
     expect(CreateUserPage.GetCurrentUrl()).toEqual("http://localhost:3000/#/login");
     console.log("Button back is clickable")
+  });
+
+  it("User can choose random picture", function() {
+    CreateUserPage.clickCreateBtn();
+    SelectRandomPicture();
+  });
+
+  it("Selected picture should match profile picure while creating a profile", function() {
+    CreateUserPage.clickCreateBtn();
+    SelectRandomPicture();
+    expect(CreateUserPage.GetImageUrl()).toMatch(CreateUserPage.GetProfileImageUrl());
+  });
+
+  it("Entered name should match profile name while creating a profile", function() {
+    CreateUserPage.clickCreateBtn();
+    CreateUserPage.writeName("Dani");
+    SelectRandomPicture();
+    expect(CreateUserPage.GetProfileName()).toEqual("Dani");
   });
 });
