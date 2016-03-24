@@ -1,52 +1,63 @@
 import {Component} from 'angular2/core';
 import {RouterLink, Router} from 'angular2/router';
+import {
+  FORM_DIRECTIVES,
+  FormBuilder,
+  ControlGroup,
+  Validators
+} from 'angular2/common';
 
 import {User} from '../../shared/models/User';
 import {ImagesService} from '../../shared/services/ImagesService';
 import {UserService} from '../../shared/services/UserService';
+import {UserValidationService} from '../../shared/services/UserValidationService';
 import {AlertingService} from '../alerting/AlertingService';
 import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
 
 @Component({
-  directives: [RouterLink, UserSettingsComponent],
+  directives: [FORM_DIRECTIVES, RouterLink, UserSettingsComponent],
   templateUrl: './app/components/registration/register.html'
 })
 export class RegisterComponent {
-  public newUser: User = new User();
+  public vm: User = new User();
+  public registerForm: ControlGroup;
   public allImages: string[] = new Array<string>();
-  public newUserImage: string;
-  public allUsers: User[] = new Array<User>();
-  public selectedImage: string;
 
   constructor(
     private alertingService: AlertingService,
     private imagesService: ImagesService,
     private userService: UserService,
-    private router: Router) {
+    private userValidationService: UserValidationService,
+    private router: Router,
+    private fb: FormBuilder) {
 
-    this.selectedImage = './assets/images/avatars/default.jpg';
+    this.vm.profileImg = './assets/images/avatars/default.jpg';
+
+    this.registerForm = fb.group({
+      'name': ['', Validators.required]
+    });
+
     this.getAvailableImages();
   }
 
   getAvailableImages() {
     this.imagesService.getProfileImages()
-      .subscribe(data => this.allImages = data, err => this.alertingService.addDanger(err.toString()));
+      .subscribe(
+      data => this.allImages = data,
+      err => this.alertingService.addDanger(err.toString()));
   }
 
   onSelect(img: string) {
-    this.selectedImage = img;
+    this.vm.profileImg = img;
   }
 
-  addUser(user: User) {
-    user.profileImg = this.selectedImage;
-    user.userSettings = this.newUser.userSettings;
-
-    if (user.profileImg === './assets/images/avatars/default.jpg') {
-      this.alertingService.addDanger('За да креирате профил, ве молам изберете слика');
+  onSubmit() {
+    var validationMessage = this.userValidationService.IsValid(this.vm);
+    if (validationMessage) {
+      this.alertingService.addDanger(validationMessage);
     } else {
-      this.userService.addUser(user)
+      this.userService.addUser(this.vm)
         .subscribe(data => {
-          this.allUsers = data.users;
           if (data.message.length > 0) {
             this.alertingService.addDanger('Корисничкото име веќе постои, обидете се да се регистрирате со друго име');
           } else {

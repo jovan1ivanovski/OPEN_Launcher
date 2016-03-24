@@ -4,10 +4,6 @@ import {UserSettings} from './UserSettings';
 export class User {
   public name: string;
   public profileImg: string;
-  public pointerSize: string;
-  public pointerColor: string;
-  public pointerSpeed: string;
-  public backgroundColor: string;
   public userSettings: UserSettings;
 
   constructor() {
