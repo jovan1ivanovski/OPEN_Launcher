@@ -38,6 +38,7 @@ exports.config = {
   onPrepare: function() {
     global.EC = protractor.ExpectedConditions;
     browser.driver.manage().window().maximize();
+    browser.executeScript("document.body.style.transform='scale(0.75)';");
     browser.get('http://localhost:3000/');
     jasmine.getEnv().addReporter(reporter);
     var SpecReporter = require('jasmine-spec-reporter');

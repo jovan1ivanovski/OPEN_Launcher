@@ -16,31 +16,6 @@ describe("Game menu log in user", function() {
   });
 
 
-
-<<<<<<< HEAD
-=======
-
-  it("User can choose random picture", function() {
-    CreateUserPage.clickCreateBtn();
-    SelectRandomPicture();
-  });
-
-  it("Selected picture should match profile picure while creating a profile", function() {
-    CreateUserPage.clickCreateBtn();
-    SelectRandomPicture();
-    expect(CreateUserPage.GetImageUrl()).toMatch(CreateUserPage.GetProfileImageUrl());
-  });
-
-  it("Entered name should match profile name while creating a profile", function() {
-    CreateUserPage.clickCreateBtn();
-    CreateUserPage.writeName("Daniiiiiiiiii");
-    SelectRandomPicture();
-    expect(CreateUserPage.GetProfileName()).toEqual("Daniiiiiiiiii");
-  });
-
-
-
->>>>>>> upstream/master
   it("User can create new user ", function() {
     CreateUserPage.CreateAutoGenerateUserName();
     browser.sleep(500);
@@ -64,8 +39,37 @@ describe("Game menu log in user", function() {
     DeleteUser.DeleteFilteredUser();
     browser.sleep(500);
     browser.ignoreSynchronization = false;
+
     console.log("Finishing : User with same name already exists");
   });
+
+    it("User can choose random picture", function() {
+    CreateUserPage.clickCreateBtn();
+    SelectRandomPicture();
+  });
+
+   it("When color game is selected there should be 5 colors to select", function() {
+    CreateUserPage.clickCreateBtn();
+    AutoGenerateUserName();
+    SelectRandomPicture();
+    CreateUserPage.SelectRadioButton(0);
+    expect(CreateUserPage.NumberOfColors()).toEqual(5);
+    });
+
+  it("When black and white game is selected there should be 2 colors to select", function() {
+    CreateUserPage.clickCreateBtn();
+    AutoGenerateUserName();
+    SelectRandomPicture();
+    CreateUserPage.SelectRadioButton(1);
+    expect(CreateUserPage.NumberOfColors()).toEqual(2);
+     });
+
+     it("When color game is selected there should be red color to select", function() {
+    CreateUserPage.clickCreateBtn();
+    AutoGenerateUserName();
+    SelectRandomPicture();
+    expect(CreateUserPage.IsRedPresent()).toBe(true);
+      });
 
 
   it("User can not be created without selecting picture", function() {

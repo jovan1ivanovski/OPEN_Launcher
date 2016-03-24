@@ -39,6 +39,136 @@
         "pointerSize": 1,
         "pointerColor": 4
       }
+    },
+    {
+      "name": "daniela",
+      "profileImg": "./assets/images/avatars/riba.png",
+      "userSettings": {
+        "backgroundColor": "0",
+        "pointerType": 0,
+        "pointerSize": 1,
+        "pointerColor": 1
+      }
+    },
+    {
+      "name": "Auto-UserName-HaO",
+      "profileImg": "./assets/images/avatars/sveke.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-Nee",
+      "profileImg": "./assets/images/avatars/srce.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-pyz",
+      "profileImg": "./assets/images/avatars/momce.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-tgv",
+      "profileImg": "./assets/images/avatars/sveke.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-NMG",
+      "profileImg": "./assets/images/avatars/topka.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-Afr",
+      "profileImg": "./assets/images/avatars/peperutka.jpg",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-plr",
+      "profileImg": "./assets/images/avatars/torta.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-iwJ",
+      "profileImg": "./assets/images/avatars/riba.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-CCd",
+      "profileImg": "./assets/images/avatars/srce.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-WnR",
+      "profileImg": "./assets/images/avatars/krava.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-Ahz",
+      "profileImg": "./assets/images/avatars/prase.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
+    },
+    {
+      "name": "Auto-UserName-pSX",
+      "profileImg": "./assets/images/avatars/krava.png",
+      "userSettings": {
+        "backgroundColor": 0,
+        "pointerType": 0,
+        "pointerSize": 0,
+        "pointerColor": 0
+      }
     }
   ]
 }

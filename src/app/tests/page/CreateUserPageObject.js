@@ -18,7 +18,11 @@ var CreateUserPage = function() {
   var selectedProfileImg = element(by.css("#username > div:nth-child(2) > img"));
   var profileName = element(by.css("#username > div.title.text-center > label"));
   var nameProfile;
-
+  var radiobtn = element.all(by.css('input[type="radio"]'));
+  var colors = element.all(by.className('color-box'));
+  var colorRed = element(by.id('pointer-color-4'));
+  var countedcolors;
+  var option;
 
   this.get = function(value) {
     browser.get(value);
@@ -36,14 +40,21 @@ var CreateUserPage = function() {
       randomNo = Math.floor(Math.random() * (imageNumber - 1)) + 1;
       image.get(randomNo).click();
       imageurl = image.getAttribute('src');
-
-
     });
 
   };
 
   this.clickCreateBtnAfter = function() {
     createBtnSecondPage.click();
+  };
+
+  AutoGenerateUserName = function() {
+    autoGenerateUserName = "Auto-UserName-";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    for (var i = 0; i < 3; i++) {
+      autoGenerateUserName += possible.charAt(Math.floor(Math.random() * possible.length));
+    };
+    enterName.sendKeys(autoGenerateUserName);
   };
 
   this.CreateAutoGenerateUserName = function() {
@@ -58,6 +69,18 @@ var CreateUserPage = function() {
     createBtnSecondPage.click();
   };
 
+  this.NumberOfColors = function() {
+    return colors.count();
+  };
+
+  this.SelectRadioButton = function(option){
+    var radioselect=radiobtn.get(option);
+    radioselect.getAttribute("innerHTML").then(function(text) {
+      var  selectedOption = text;
+      console.log("Selektirana opcija"+ selectedOption);
+      radioselect.click();
+    });
+  };
 
   this.CreatePredefinedUserName = function(name) {
     createBtnFirstPage.click();
@@ -108,7 +131,7 @@ var CreateUserPage = function() {
   };
 
   this.GetProfileImageUrl = function() {
-   return selectedProfileImg.getAttribute('src');
+    return selectedProfileImg.getAttribute('src');
   };
 
   this.GetCurrentUrl = function() {
@@ -119,11 +142,14 @@ var CreateUserPage = function() {
     return enterName.getText();
   };
 
-    this.GetProfileName = function() {
-     return profileName.getText()
-   };
+  this.GetProfileName = function() {
+    return profileName.getText()
+  };
 
+  this.IsRedPresent = function() {
 
+    return colorRed.isPresent();
+  }
 
   this.WaitforCreateBtn = function() {
     browser.wait(EC.visibilityOf(createBtnFirstPage), 5000);
