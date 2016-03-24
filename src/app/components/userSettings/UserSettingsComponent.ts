@@ -53,7 +53,7 @@ export class UserSettingsComponent {
     this.userSettings.pointerSize = pointerSize;
   }
 
-  shouldApplySelectedColorCss(pointerColor: PointerColor): boolean {
+  shouldApplySelectedPointerColorCss(pointerColor: PointerColor): boolean {
     return this.userSettings.pointerColor === pointerColor;
   }
 
