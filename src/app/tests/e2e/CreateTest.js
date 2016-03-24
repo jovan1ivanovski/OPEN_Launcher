@@ -15,7 +15,6 @@ describe("Game menu log in user", function() {
     browser.ignoreSynchronization = true;
   });
 
-
   it("User can create new user ", function() {
     CreateUserPage.CreateAutoGenerateUserName();
     browser.sleep(500);
@@ -142,5 +141,23 @@ describe("Game menu log in user", function() {
     CreateUserPage.writeName("Dani");
     SelectRandomPicture();
     expect(CreateUserPage.GetProfileName()).toEqual("Dani");
+  });
+
+    it("User can choose random picture", function() {
+    CreateUserPage.clickCreateBtn();
+    SelectRandomPicture();
+  });
+
+  it("Selected picture should match profile picure while creating a profile", function() {
+    CreateUserPage.clickCreateBtn();
+    SelectRandomPicture();
+    expect(CreateUserPage.GetImageUrl()).toMatch(CreateUserPage.GetProfileImageUrl());
+  });
+
+  it("Entered name should match profile name while creating a profile", function() {
+    CreateUserPage.clickCreateBtn();
+    CreateUserPage.writeName("Daniiiiiiiiii");
+    SelectRandomPicture();
+    expect(CreateUserPage.GetProfileName()).toEqual("Daniiiiiiiiii");
   });
 });
