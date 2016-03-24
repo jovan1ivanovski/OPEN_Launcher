@@ -76,7 +76,7 @@ describe('UserSettingsComponent', function() {
       instance.selectBackgroundColor(bgColor);
 
       // Assert
-      expect(fixture.componentInstance.pointerColorService.getPointerColors).toHaveBeenCalled();
+      expect(fixture.componentInstance.pointerColorService.getPointerColors).toHaveBeenCalledWith(bgColor);
       expect(instance.userSettings.backgroundColor).toEqual(bgColor);
       expect(instance.userSettings.pointerColor).toEqual(defaultPointerColor);
       expect(instance.availablePointerColors).toEqual(getTestPointerColors());
@@ -119,7 +119,7 @@ describe('UserSettingsComponent', function() {
     });
   }));
 
-  it('UserSettingsComponent_shouldApplySelectedColorCss_shouldReturnTrue', injectAsync([TestComponentBuilder], (tcb) => {
+  it('UserSettingsComponent_shouldApplySelectedPointerColorCss_shouldReturnTrue', injectAsync([TestComponentBuilder], (tcb) => {
     return tcb.overrideTemplate(UserSettingsComponent, '').createAsync(UserSettingsComponent).then((fixture) => {
       // Arrange
       var selectedPointerColor: PointerColor = PointerColor.White;
