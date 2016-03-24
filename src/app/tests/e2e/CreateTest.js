@@ -149,4 +149,203 @@ describe("Game menu log in user", function() {
     SelectRandomPicture();
   });
 
+  it("User can create new user in color version with pointer size m and pointer color red", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectMediumPointer();
+    CreateUserPage.selectRedColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+   it("User can create new user in color version with pointer size m and pointer color white", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectMediumPointer();
+    CreateUserPage.selectWhiteColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+  it("User can create new user in color version with pointer size m and pointer color blue", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectMediumPointer();
+    CreateUserPage.selectBlueColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+  it("User can create new user in color version with pointer size m and pointer color green", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectMediumPointer();
+    CreateUserPage.selectGreenColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+  it("User can create new user in color version with pointer size m and pointer color yellow", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectMediumPointer();
+    CreateUserPage.selectYellowColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+
+   it("User can create new user in color version with pointer size s and pointer color red", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectSmallPointer();
+    CreateUserPage.selectRedColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+   it("User can create new user in color version with pointer size s and pointer color white", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectSmallPointer();
+    CreateUserPage.selectWhiteColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+  it("User can create new user in color version with pointer size s and pointer color blue", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectSmallPointer();
+    CreateUserPage.selectBlueColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+  it("User can create new user in color version with pointer size s and pointer color green", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectSmallPointer();
+    CreateUserPage.selectGreenColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+  it("User can create new user in color version with pointer size s and pointer color yellow", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("0");
+    CreateUserPage.selectSmallPointer();
+    CreateUserPage.selectYellowColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+   it("User can create new user in color version with pointer size m and pointer color white", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("1");
+    CreateUserPage.selectMediumPointer();
+    CreateUserPage.selectWhiteColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+   it("User can create new user in color version with pointer size m and pointer color yellow", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("1");
+    CreateUserPage.selectMediumPointer();
+    CreateUserPage.selectYellowColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+  it("User can create new user in color version with pointer size s and pointer color white", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("1");
+    CreateUserPage.selectSmallPointer();
+    CreateUserPage.selectWhiteColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+  it("User can create new user in BW version with pointer size s and pointer color yellow", function() {
+    CreateUserPage.CreateUserSettingsRandom();
+    CreateUserPage.SelectRadioButton("1");
+    CreateUserPage.selectSmallPointer();
+    CreateUserPage.selectYellowColor();
+    CreateUserPage.clickCreateBtnAfter();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    expect(CreateUserPage.ReturnMessage()).toEqual("Успешно внесен корисник.");
+    browser.sleep(500);
+    browser.ignoreSynchronization = false;
+    console.log("Finishing : User created");
+  });
+
+
+
 });
