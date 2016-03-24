@@ -11,8 +11,8 @@ describe("Game menu log in user", function() {
   beforeEach(function() {
     console.log(" Before Method : Before Each Function");
     CreateUserPage.get("http://localhost:3000/#/login");
-    browser.sleep(500);
-    browser.ignoreSynchronization = true;
+    browser.sleep(1000);
+
   });
 
   it("User can create new user ", function() {
@@ -38,7 +38,6 @@ describe("Game menu log in user", function() {
     DeleteUser.DeleteFilteredUser();
     browser.sleep(500);
     browser.ignoreSynchronization = false;
-
     console.log("Finishing : User with same name already exists");
   });
 
@@ -86,7 +85,7 @@ describe("Game menu log in user", function() {
 
   it("User can not be created without entering name ", function() {
     CreateUserPage.clickCreateBtn();
-    CreateUserPage.selectPicture();
+    SelectRandomPicture();
     CreateUserPage.clickCreateBtnAfter();
     expect(CreateUserPage.isCreateBtnEnabled()).toBe(false);
     console.log("Finishing : User can not be created");
@@ -110,7 +109,7 @@ describe("Game menu log in user", function() {
 
   it("Button back is clickable when picture is selected", function() {
     CreateUserPage.clickCreateBtn();
-    CreateUserPage.selectPicture();
+    SelectRandomPicture();
     CreateUserPage.clickBack();
     expect(CreateUserPage.GetCurrentUrl()).toEqual("http://localhost:3000/#/login");
     console.log("Button back is clickable")
@@ -118,7 +117,7 @@ describe("Game menu log in user", function() {
 
   it("Button back is clickable when picture is selected and name is populated", function() {
     CreateUserPage.clickCreateBtn();
-    CreateUserPage.selectPicture();
+    SelectRandomPicture();
     CreateUserPage.writeName("DAni");
     CreateUserPage.clickBack();
     expect(CreateUserPage.GetCurrentUrl()).toEqual("http://localhost:3000/#/login");
@@ -130,11 +129,13 @@ describe("Game menu log in user", function() {
     SelectRandomPicture();
   });
 
-  it("Selected picture should match profile picure while creating a profile", function() {
+    it("Selected picture should match profile picure while creating a profile", function() {
     CreateUserPage.clickCreateBtn();
     SelectRandomPicture();
     expect(CreateUserPage.GetImageUrl()).toMatch(CreateUserPage.GetProfileImageUrl());
   });
+
+
 
   it("Entered name should match profile name while creating a profile", function() {
     CreateUserPage.clickCreateBtn();
@@ -148,16 +149,4 @@ describe("Game menu log in user", function() {
     SelectRandomPicture();
   });
 
-  it("Selected picture should match profile picure while creating a profile", function() {
-    CreateUserPage.clickCreateBtn();
-    SelectRandomPicture();
-    expect(CreateUserPage.GetImageUrl()).toMatch(CreateUserPage.GetProfileImageUrl());
-  });
-
-  it("Entered name should match profile name while creating a profile", function() {
-    CreateUserPage.clickCreateBtn();
-    CreateUserPage.writeName("Daniiiiiiiiii");
-    SelectRandomPicture();
-    expect(CreateUserPage.GetProfileName()).toEqual("Daniiiiiiiiii");
-  });
 });
