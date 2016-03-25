@@ -1,8 +1,5 @@
 var CreateUserPage = function() {
 
-
-
-
   var createBtnFirstPage = element(by.id("createUser"));
   var enterName = element(by.id("username"));
   var createBtnSecondPage = element(by.id("createNewUser"));
@@ -25,7 +22,7 @@ var CreateUserPage = function() {
   var countedcolors;
   var option;
   var selectedImage;
-  
+
   this.get = function(value) {
     browser.get(value);
   };
@@ -82,7 +79,6 @@ var CreateUserPage = function() {
     createBtnFirstPage.click();
     SelectRandomPicture();
     enterName.sendKeys(name);
-
     createBtnSecondPage.click();
   };
 
