@@ -13,6 +13,7 @@ import {UserService} from '../../shared/services/UserService';
 import {UserValidationService} from '../../shared/services/UserValidationService';
 import {AlertingService} from '../alerting/AlertingService';
 import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
+import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 
 @Component({
   directives: [FORM_DIRECTIVES, RouterLink, UserSettingsComponent],
@@ -31,7 +32,7 @@ export class RegisterComponent {
     private router: Router,
     private fb: FormBuilder) {
 
-    this.user.profileImg = './assets/images/avatars/default.jpg';
+    this.user = this.getInitialUser();
 
     this.registerForm = fb.group({
       'name': ['', Validators.required]
@@ -66,5 +67,15 @@ export class RegisterComponent {
           }
         }, err => this.alertingService.addDanger(err.toString()));
     }
+  }
+
+  private getInitialUser(): User {
+    var result = new User();
+    result.profileImg = './assets/images/avatars/default.jpg';
+    result.userSettings.backgroundColor = BackgroundColor.InColor;
+    result.userSettings.pointerType = PointerType.Hand;
+    result.userSettings.pointerSize = PointerSize.Small;
+    result.userSettings.pointerColor = PointerColor.White;
+    return result;
   }
 }
