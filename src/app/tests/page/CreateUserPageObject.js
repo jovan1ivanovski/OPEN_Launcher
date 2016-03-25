@@ -1,5 +1,8 @@
 var CreateUserPage = function() {
 
+
+
+
   var createBtnFirstPage = element(by.id("createUser"));
   var enterName = element(by.id("username"));
   var createBtnSecondPage = element(by.id("createNewUser"));
@@ -22,6 +25,12 @@ var CreateUserPage = function() {
   var countedcolors;
   var option;
   var selectedImage;
+  var whiteColor = element(by.id("pointer-color-0"));
+  var blueColor = element(by.id("pointer-color-3"));
+  var greenColor = element(by.id("pointer-color-2"));
+  var yellowColor = element(by.id("pointer-color-1"));
+  var smallPointer = element(by.id("pointer-size-0"));
+  var mediumPointer = element(by.id("pointer-size-1"));
 
   this.get = function(value) {
     browser.get(value);
@@ -55,6 +64,19 @@ var CreateUserPage = function() {
     enterName.sendKeys(autoGenerateUserName);
   };
 
+  this.CreateUserSettingsRandom = function() {
+    createBtnFirstPage.click();
+    browser.sleep(500);
+    browser.ignoreSynchronization = true;
+    autoGenerateUserName = "Auto-UserName-";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    for (var i = 0; i < 3; i++) {
+      autoGenerateUserName += possible.charAt(Math.floor(Math.random() * possible.length));
+    };
+    enterName.sendKeys(autoGenerateUserName);
+    SelectRandomPicture();
+  }
+
   this.CreateAutoGenerateUserName = function() {
     createBtnFirstPage.click();
     SelectRandomPicture();
@@ -79,6 +101,7 @@ var CreateUserPage = function() {
     createBtnFirstPage.click();
     SelectRandomPicture();
     enterName.sendKeys(name);
+
     createBtnSecondPage.click();
   };
 
@@ -146,6 +169,34 @@ var CreateUserPage = function() {
 
   this.WaitforCreateBtn = function() {
     browser.wait(EC.visibilityOf(createBtnFirstPage), 5000);
+  };
+
+  this.selectMediumPointer = function() {
+    mediumPointer.click();
+  };
+
+  this.selectSmallPointer = function() {
+    smallPointer.click();
+  };
+
+  this.selectRedColor = function() {
+    colorRed.click();
+  };
+
+  this.selectGreenColor = function() {
+    greenColor.click();
+  };
+
+  this.selectBlueColor = function() {
+    blueColor.click();
+  };
+
+  this.selectWhiteColor = function() {
+    whiteColor.click();
+  };
+
+  this.selectYellowColor = function() {
+    yellowColor.click();
   };
 
 
