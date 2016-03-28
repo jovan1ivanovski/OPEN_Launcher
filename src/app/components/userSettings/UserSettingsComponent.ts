@@ -17,12 +17,16 @@ export class UserSettingsComponent {
 
   @Input() userSettings: UserSettings;
   ngOnInit() {
-    this.userSettings.backgroundColor = BackgroundColor.InColor;
-    this.userSettings.pointerType = PointerType.Hand;
-    this.userSettings.pointerSize = PointerSize.Small;
-    this.userSettings.pointerColor = PointerColor.White;
+    if (this.userSettings.backgroundColor === undefined) {
+      this.userSettings.backgroundColor = BackgroundColor.InColor;
+      this.userSettings.pointerType = PointerType.Hand;
+      this.userSettings.pointerSize = PointerSize.Small;
+      this.userSettings.pointerColor = PointerColor.White;
+    }
 
-    this.selectBackgroundColor(this.userSettings.backgroundColor);
+    this.setBackgroundColorAndPointerColors(this.userSettings.backgroundColor);
+    this.selectPointerSize(this.userSettings.pointerSize);
+    this.selectPointerColor(this.userSettings.pointerColor);
   }
 
   constructor(
@@ -39,10 +43,14 @@ export class UserSettingsComponent {
       err => this.alertingService.addDanger(err.toString()));
   }
 
-  selectBackgroundColor(backgroundColor: BackgroundColor) {
+  setBackgroundColorAndPointerColors(backgroundColor: BackgroundColor) {
     this.userSettings.backgroundColor = backgroundColor;
-    this.userSettings.pointerColor = PointerColor.White;
     this.availablePointerColors = this.pointerColorService.getPointerColors(backgroundColor);
+  }
+
+  selectBackgroundColor(backgroundColor: BackgroundColor) {
+    this.setBackgroundColorAndPointerColors(backgroundColor);
+    this.selectPointerColor(PointerColor.White);
   }
 
   selectPointerColor(pointerColor: PointerColor) {
@@ -51,6 +59,10 @@ export class UserSettingsComponent {
 
   selectPointerSize(pointerSize: PointerSize) {
     this.userSettings.pointerSize = pointerSize;
+  }
+
+  shouldBeChecked(backgroundColor: BackgroundColor): boolean {
+    return this.userSettings.backgroundColor === Number(backgroundColor);
   }
 
   shouldApplySelectedPointerColorCss(pointerColor: PointerColor): boolean {

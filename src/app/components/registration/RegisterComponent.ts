@@ -13,13 +13,14 @@ import {UserService} from '../../shared/services/UserService';
 import {UserValidationService} from '../../shared/services/UserValidationService';
 import {AlertingService} from '../alerting/AlertingService';
 import {UserSettingsComponent} from '../userSettings/UserSettingsComponent';
+import {PointerType, PointerSize, PointerColor, BackgroundColor} from '../../shared/enums/UserSettingsEnums';
 
 @Component({
   directives: [FORM_DIRECTIVES, RouterLink, UserSettingsComponent],
   templateUrl: './app/components/registration/register.html'
 })
 export class RegisterComponent {
-  public vm: User = new User();
+  public user: User = new User();
   public registerForm: ControlGroup;
   public allImages: string[] = new Array<string>();
 
@@ -31,7 +32,7 @@ export class RegisterComponent {
     private router: Router,
     private fb: FormBuilder) {
 
-    this.vm.profileImg = './assets/images/avatars/default.jpg';
+    this.user = this.getInitialUser();
 
     this.registerForm = fb.group({
       'name': ['', Validators.required]
@@ -48,15 +49,15 @@ export class RegisterComponent {
   }
 
   onSelect(img: string) {
-    this.vm.profileImg = img;
+    this.user.profileImg = img;
   }
 
   onSubmit() {
-    var validationMessage = this.userValidationService.IsValid(this.vm);
+    var validationMessage = this.userValidationService.IsValid(this.user);
     if (validationMessage) {
       this.alertingService.addDanger(validationMessage);
     } else {
-      this.userService.addUser(this.vm)
+      this.userService.addUser(this.user)
         .subscribe(data => {
           if (data.message.length > 0) {
             this.alertingService.addDanger('Корисничкото име веќе постои, обидете се да се регистрирате со друго име');
@@ -66,5 +67,15 @@ export class RegisterComponent {
           }
         }, err => this.alertingService.addDanger(err.toString()));
     }
+  }
+
+  private getInitialUser(): User {
+    var result = new User();
+    result.profileImg = './assets/images/avatars/default.jpg';
+    result.userSettings.backgroundColor = BackgroundColor.InColor;
+    result.userSettings.pointerType = PointerType.Hand;
+    result.userSettings.pointerSize = PointerSize.Small;
+    result.userSettings.pointerColor = PointerColor.White;
+    return result;
   }
 }
