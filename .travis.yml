@@ -1,7 +1,4 @@
 language: node_js
-node_js:
-    -"5.3.0"
-    -"4.1.0"
 
 script: node_modules/karma/bin/karma start karma.conf.js --single-run
     
