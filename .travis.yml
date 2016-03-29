@@ -23,7 +23,7 @@ env:
     
     
 after_success:
-  - "curl -o /tmp/travis-automerge github-automerge-script"
+  - "curl -o /tmp/travis-automerge https://github.com/jovan1ivanovski/OPEN_Launcher/github-automerge-script"
   - "chmod a+x /tmp/travis-automerge"
   - "GITHUB_SECRET_TOKEN='4SUdaxNI3C85hRnIo1+B2pD/3kKu5YuynRNhFNzF7MQ4hpYzDq8Xdo4em3PJsfThueBQhpgM8Y4C/D4fmxybd4XrC06yDlFvpbXvg2CoXdJxGbWVyqYJzOxmq7Im0BTsh++66LS+HfvieKsC9KegM009hbR2Knx NG4XcV4huM0cH2HJgg8XgAkTzuwLP4Ffd0/+FErA0Uhp6wDZhLebhRx/K5E/EksQMJ4colaR7jcvHmAWlnZgRr4e/+RW2Lg0L3fRIeDEaFH1FUxGC+xLqKuuSzchaC3CP03LsywjJpiPj3V/0lMCBd0n1/nC68RQd81cnF15VG jB++WnQdwk3RmVZ0sOBcVmK9ghE9o/NcSr9vt0oTvCx4KuvVRu3L8VFkm6WnX4lFPirA3rZHYJgTOySK5X02Ghbte154XFox8voAkmi4l4XcrZJLtDhPm8uE/BH18A5eUgO3+HR7u00Evg1adNolP5FtIZ+KMoOElEaNI1IaoQ TOMUtwGsr6LWxowD3673IZp9E8Nqlxag7rt1b+hZn9qK7JYp6NXYDFXTEgDR7Auh3L6qL+eTuH4yVnaTjwQK2C9QDmZCF0=' GITHUB_REPO=jovan1ivanovski/OPEN_Launcher /tmp/travis-automerge"
 
