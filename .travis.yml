@@ -7,8 +7,7 @@ before_script:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
     - npm install
-    - npm run start
-    - npm run e2e
+    - npm run test
 
 notifications:
   slack: otwangular2:FoXPtnPC1yCGFxuiLF01EnuD
