@@ -14,9 +14,9 @@ notifications:
   slack: otwangular2:FoXPtnPC1yCGFxuiLF01EnuD
   
 branches:
-only:
+  only:
+    - master
     - development
-	- master
 
 # Github deployment key
 env:
