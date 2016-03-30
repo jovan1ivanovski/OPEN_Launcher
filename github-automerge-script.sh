@@ -9,10 +9,6 @@ mkdir out;
 cd out
 git clone ${GH_REF} out
 
-# inside this git repo we'll pretend to be a new user
-git config user.name "Travis CI"
-git config user.email "jovan1ivanovski@gmail.com"
-
 # Force push from the current repo's master branch to the remote
 # repo's gh-pages branch. (All previous history on the gh-pages branch
 # will be lost, since we are overwriting it.) We redirect any output to
