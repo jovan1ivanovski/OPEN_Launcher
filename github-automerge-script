@@ -11,6 +11,9 @@ cd out
 
 git clone "${GH_REF}" out
 
+printf 'Fetching all branches %s\n' >&2
+git fetch --all
+
 printf 'Checking out to master branch %s\n' >&2
 git checkout master 
 
