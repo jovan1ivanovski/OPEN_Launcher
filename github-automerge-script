@@ -16,7 +16,7 @@ printf 'Checking out to master branch %s\n' >&2
 git checkout master 
 
 printf 'Merging development into master %s\n' >&2
-git merge --ff-only origin development
+git merge --ff-only origin/development
 
 printf 'Pushing to %s\n' "$GITHUB_REPO" >&2
 
