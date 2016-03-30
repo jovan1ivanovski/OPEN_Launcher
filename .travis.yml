@@ -27,7 +27,7 @@ global:
 after_success:
   - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/jovan1ivanovski/OPEN_Launcher/development/github-automerge-script"
   - "chmod a+x /tmp/travis-automerge"
-  - "GITHUB_REPO=jovan1ivanovski/OPEN_Launcher /tmp/travis-automerge"
+  - "GH_REF /tmp/travis-automerge"
 
 
   
