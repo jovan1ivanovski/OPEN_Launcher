@@ -14,6 +14,9 @@ git clone ${GH_REF} out
 # will be lost, since we are overwriting it.) We redirect any output to
 # /dev/null to hide any sensitive credential data that might otherwise be exposed.
 git fetch --all
+
+git show-branch --all
+
 #git checkout master
 git merge --ff-only origin/development
 git push --force "https://${GH_TOKEN}@${GH_REF}" master > /dev/null 2>&1
