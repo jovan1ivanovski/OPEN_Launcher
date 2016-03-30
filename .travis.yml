@@ -16,6 +16,7 @@ notifications:
 branches:
 only:
     - development
+	- master
 
 # Github deployment key
 env:
