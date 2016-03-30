@@ -9,6 +9,9 @@ before_script:
     - npm install
     - npm run test
 
+cache:
+directories:
+-node_modules
 
 notifications:
   slack: otwangular2:FoXPtnPC1yCGFxuiLF01EnuD

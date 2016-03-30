@@ -1,26 +1,22 @@
 #!/bin/bash -e
 
-
-export GIT_COMMITTER_EMAIL='travis@travis'
-export GIT_COMMITTER_NAME='Travis CI'
-
+# clear and re-create the out directory
 rm -rf out || exit 0;
 mkdir out;
 
+# go to the out directory and clone a ​*new*​ Git repo
 cd out
+git clone ${GH_REF} out
 
-git clone "${GH_REF}" out
+# inside this git repo we'll pretend to be a new user
+git config user.name "Travis CI"
+git config user.email "jovan1ivanovski@gmail.com"
 
-printf 'Fetching all branches %s\n' >&2
+# Force push from the current repo's master branch to the remote
+# repo's gh-pages branch. (All previous history on the gh-pages branch
+# will be lost, since we are overwriting it.) We redirect any output to
+# /dev/null to hide any sensitive credential data that might otherwise be exposed.
 git fetch --all
-
-printf 'Checking out to master branch %s\n' >&2
-git checkout master 
-
-printf 'Merging development into master %s\n' >&2
+#git checkout master
 git merge --ff-only origin/development
-
-printf 'Pushing to %s\n' development %s\n' >&2
-
-git push --force "https://${GH_TOKEN}@${GH_REF}" development:master> /dev/null 2>&1
-
+git push --force "https://${GH_TOKEN}@${GH_REF}" master > /dev/null 2>&1
